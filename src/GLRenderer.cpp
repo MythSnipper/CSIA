@@ -401,13 +401,18 @@ glm::mat4 Transform::get_matrix(){
 }
 
 glm::mat4 Camera::get_view_matrix(){
-    return glm::lookAt(position, target, worldUp);
+    
+    return glm::lookAt(position, position + getForward(), worldUp);
 }
 glm::mat4 Camera::get_projection_matrix(){
     return glm::perspective(glm::radians(fov), aspect_ratio, near_plane, far_plane);
 }
 glm::vec3 Camera::getForward(){
-    return glm::normalize(target - position);
+    glm::vec3 forward;
+    forward.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+    forward.y = sin(glm::radians(pitch));
+    forward.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+    return glm::normalize(forward);
 }
 glm::vec3 Camera::getRight(){
     return glm::normalize(
@@ -421,56 +426,19 @@ glm::vec3 Camera::getUp(){
 }
 void Camera::moveForward(float amount){
     position += getForward() * amount;
-    target += getForward() * amount;
 }
 void Camera::moveRight(float amount){
-    glm::vec3 right = getRight();
-
-    position += right * amount;
-    target += right * amount;
+    position += getRight() * amount;
 }
 void Camera::moveUp(float amount){
     position += worldUp * amount;
-    target += worldUp * amount;
 }
-void Camera::rotate(float deltaX, float deltaY){
-    glm::vec3 offset = position - target;
-
-    float radius = glm::length(offset);
-    if(radius < 0.001f){
-        return;
-    }
-
-    float yaw = std::atan2(offset.z, offset.x);
-    float pitch = std::asin(
-        glm::clamp(offset.y / radius, -1.0f, 1.0f)
-    );
-
-    yaw -= glm::radians(deltaX * rotationSensitivity);
-    pitch += glm::radians(deltaY * rotationSensitivity);
-
-    float limit = glm::radians(89.0f);
-
-    pitch = glm::clamp(pitch, -limit, limit);
-
-    position = target + glm::vec3(
-        radius * std::cos(pitch) * std::cos(yaw),
-        radius * std::sin(pitch),
-        radius * std::cos(pitch) * std::sin(yaw)
-    );
+void Camera::rotate(float yaw, float pitch){
+    this->yaw += yaw;
+    this->pitch += pitch;
 }
 void Camera::zoom(float amount){
-    glm::vec3 offset = position - target;
-    float distance = glm::length(offset);
 
-    if(distance < 0.001f){
-        return;
-    }
-
-    distance -= amount * zoomSensitivity;
-    distance = glm::clamp(distance, 0.5f, 100.0f);
-
-    position = target + glm::normalize(offset) * distance;
 }
 
 Mesh::Mesh(float vertices[], int vertices_size){

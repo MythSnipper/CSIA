@@ -69,7 +69,6 @@ public:
 };
 
 
-
 class VBO : protected QOpenGLFunctions_3_3_Core{
 public:
     GLuint id = 0;
@@ -133,7 +132,10 @@ class Camera{
 public:
     //position and orientation
     glm::vec3 position{4.0f, 3.0f, 5.0f};
-    glm::vec3 target{0.0f, 0.0f, 0.0f};
+    float yaw = -90.0f;
+    float pitch = 0.0f;
+    glm::vec3 front, right, up;
+
     glm::vec3 worldUp{0.0f, 1.0f, 0.0f};
 
     //projection
@@ -145,8 +147,6 @@ public:
     //movement
     float movementSpeed = 10.0f;
     float rotationSensitivity = 0.2f;
-    float zoomSensitivity = 1.0f;
-
 
     //get matrices for rendering
     glm::mat4 get_view_matrix();
@@ -172,6 +172,7 @@ class RenderObject{
 public:
     Transform transform;
 
+    bool wireframeMode = false;
     Mesh* mesh = nullptr;
     ShaderProgram* shader = nullptr;
 };

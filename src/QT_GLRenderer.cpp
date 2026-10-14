@@ -55,23 +55,14 @@ void QT_GLRenderer::paintGL(){
     //clear screen
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    int tempntrack = 0;
     //draw render objects
     for(auto& object : objects){
-        if(tempntrack == 1){
-            glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-        }
-        glm::vec3 t = object.get()->transform.position;
         drawRenderObject(object);
-        if(tempntrack == 1){
-            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-        }
-        tempntrack++;
     }
 }
 
 void QT_GLRenderer::keyPressEvent(QKeyEvent* event){
-    switch (event->key()){
+    switch(event->key()){
         case Qt::Key_W:
             moveForward = true;
             break;
@@ -99,7 +90,7 @@ void QT_GLRenderer::keyPressEvent(QKeyEvent* event){
 }
 
 void QT_GLRenderer::keyReleaseEvent(QKeyEvent* event){
-    switch (event->key()){
+    switch(event->key()){
         case Qt::Key_W:
             moveForward = false;
             break;
@@ -263,10 +254,17 @@ void QT_GLRenderer::createGLResources(){
 
     auto cube3 = std::make_unique<RenderObject>();
     cube3->transform.position = glm::vec3(0.0f, 0.0f, 0.0f);
-    cube3->transform.scale = glm::vec3(0.5f, 0.5f, 0.5f);
+    cube3->transform.scale = glm::vec3(0.4f);
     cube3->mesh = mesh.get();
     cube3->shader = shaderProgram.get();
     objects.push_back(std::move(cube3));
+
+    auto cube4 = std::make_unique<RenderObject>();
+    cube4->transform.position = glm::vec3(0.0f, 0.0f, -5.0f);
+    cube4->transform.scale = glm::vec3(0.5f, 2.0f, 0.5f);
+    cube4->mesh = mesh.get();
+    cube4->shader = shaderProgram.get();
+    objects.push_back(std::move(cube4));
 }
 
 void QT_GLRenderer::destroyGLResources(){
@@ -287,6 +285,20 @@ void QT_GLRenderer::drawRenderObject(std::unique_ptr<RenderObject>& object){
     object->shader->set_mat4("view", false, view);
     object->shader->set_mat4("projection", false, projection);
 
+    //set 
+    object->shader->set_mat4("inverseView", false, glm::inverse(view));
+    object->shader->set_mat4("inverseProjection", false, glm::inverse(projection));
+    object->shader->set_mat4("viewProjection", false, glm::mat4(projection * view));
+    object->shader->set_float("viewportSize", {(float)width(), (float)height()});
+    object->shader->set_float("spacing", {1.0f});
+    object->shader->set_float("cameraPosition", {camera.position.x, camera.position.y, camera.position.z});
+
+    if(object->wireframeMode){
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    }
+    else{
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    }
     object->mesh->draw();
 }
 
@@ -322,6 +334,18 @@ void QT_GLRenderer::applySettings(){
         glDisable(GL_DEPTH_TEST);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -74,7 +74,6 @@ private:
     //mouse
     QPoint lastMousePosition;
     bool rotating = false;
-    bool panning = false;
     
 };
 
