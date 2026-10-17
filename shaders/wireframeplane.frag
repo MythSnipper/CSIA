@@ -42,17 +42,17 @@ void main(){
     float line = 1.0 - min(min(grid.x, grid.y), 1.0);
 
     // Fade grid lines with distance.
-    float fade = 1.0 - smoothstep(20.0, 100.0, t);
+    float fade = 1.0 - smoothstep(20.0, 80.0, t);
     float alpha = line * fade;
+
+    if(alpha < 0.01){
+        discard;
+    }
 
     // Calculate depth so scene geometry can occlude the grid.
     vec4 clipPosition = viewProjection * vec4(worldPosition, 1.0);
     float depth = clipPosition.z / clipPosition.w;
     gl_FragDepth = depth * 0.5 + 0.5;
-
-    if(alpha < 0.01){
-        discard;
-    }
 
     FragColor = vec4(0.6, 0.1, 1.0, alpha);
 }

@@ -78,8 +78,10 @@ QuantumEngine_autogen/timestamp: CMakeFiles/QuantumEngine.dir/compiler_depend.ts
 
 QuantumEngine_autogen/EWIEGA46WW/qrc_resources.cpp: /home/mythsnipper/Dev/cpp/QuantumSimulator/resources.qrc
 QuantumEngine_autogen/EWIEGA46WW/qrc_resources.cpp: CMakeFiles/QuantumEngine_autogen.dir/AutoRcc_resources_EWIEGA46WW_Info.json
-QuantumEngine_autogen/EWIEGA46WW/qrc_resources.cpp: /home/mythsnipper/Dev/cpp/QuantumSimulator/shaders/frag.glsl
-QuantumEngine_autogen/EWIEGA46WW/qrc_resources.cpp: /home/mythsnipper/Dev/cpp/QuantumSimulator/shaders/vert.glsl
+QuantumEngine_autogen/EWIEGA46WW/qrc_resources.cpp: /home/mythsnipper/Dev/cpp/QuantumSimulator/shaders/object.frag
+QuantumEngine_autogen/EWIEGA46WW/qrc_resources.cpp: /home/mythsnipper/Dev/cpp/QuantumSimulator/shaders/object.vert
+QuantumEngine_autogen/EWIEGA46WW/qrc_resources.cpp: /home/mythsnipper/Dev/cpp/QuantumSimulator/shaders/wireframeplane.frag
+QuantumEngine_autogen/EWIEGA46WW/qrc_resources.cpp: /home/mythsnipper/Dev/cpp/QuantumSimulator/shaders/wireframeplane.vert
 QuantumEngine_autogen/EWIEGA46WW/qrc_resources.cpp: /usr/lib/qt6/rcc
 QuantumEngine_autogen/EWIEGA46WW/qrc_resources.cpp: /usr/lib/qt6/rcc
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/mythsnipper/Dev/cpp/QuantumSimulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Automatic RCC for resources.qrc"

@@ -1,6 +1,8 @@
 <RCC>
     <qresource prefix="/shaders">
-        <file alias="vert.glsl">shaders/vert.glsl</file>
-        <file alias="frag.glsl">shaders/frag.glsl</file>
+        <file alias="object.vert">shaders/object.vert</file>
+        <file alias="object.frag">shaders/object.frag</file>
+        <file alias="wireframeplane.vert">shaders/wireframeplane.vert</file>
+        <file alias="wireframeplane.frag">shaders/wireframeplane.frag</file>
     </qresource>
 </RCC>

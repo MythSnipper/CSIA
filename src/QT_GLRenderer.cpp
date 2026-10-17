@@ -2,8 +2,10 @@
 
 #include <cstdio>
 
-const char* vertexShaderPath = ":/shaders/vert.glsl";
-const char* fragmentShaderPath = ":/shaders/frag.glsl";
+const char* objectVertShaderPath = ":/shaders/object.vert";
+const char* objectFragShaderPath = ":/shaders/object.frag";
+const char* wireframePlaneVertShaderPath = ":/shaders/wireframeplane.vert";
+const char* wireframePlaneFragShaderPath = ":/shaders/wireframeplane.frag";
 
 QT_GLRenderer::QT_GLRenderer(QWidget* parent) : QOpenGLWidget(parent){
     //settings
@@ -59,6 +61,7 @@ void QT_GLRenderer::paintGL(){
     for(auto& object : objects){
         drawRenderObject(object);
     }
+
 }
 
 void QT_GLRenderer::keyPressEvent(QKeyEvent* event){
@@ -175,9 +178,12 @@ void QT_GLRenderer::updateCamera(float deltaTime){
 
 void QT_GLRenderer::createGLResources(){
     //make shader
-    shaderProgram = std::make_unique<ShaderProgram>();
-    shaderProgram->from_files(vertexShaderPath, fragmentShaderPath);
+    objectShader = std::make_unique<ShaderProgram>();
+    objectShader->from_files(objectVertShaderPath, objectFragShaderPath);
+    wireframePlaneShader = std::make_unique<ShaderProgram>();
+    wireframePlaneShader->from_files(wireframePlaneVertShaderPath, wireframePlaneFragShaderPath);
 
+    //vertices defining a cube
     float vertices[] = {
         // back face
         -1.0f, -1.0f, -1.0f,
@@ -234,44 +240,56 @@ void QT_GLRenderer::createGLResources(){
         -1.0f,  1.0f, -1.0f
     };
 
-    //make mesh
+    //make mesh for cube object
     mesh = std::make_unique<Mesh>(vertices, sizeof(vertices));
     
+    //make mesh for plane(any vertices data is fine because the shader doesn't use the vertices anyway)
+    mesh2 = std::make_unique<Mesh>(vertices, 3);
+
     objects.clear();
 
     //make render objects
     auto cube1 = std::make_unique<RenderObject>();
     cube1->transform.position = glm::vec3(-2.0f, 0.0f, 0.0f);
     cube1->mesh = mesh.get();
-    cube1->shader = shaderProgram.get();
+    cube1->shader = objectShader.get();
     objects.push_back(std::move(cube1));
 
     auto cube2 = std::make_unique<RenderObject>();
     cube2->transform.position = glm::vec3(2.0f, 0.0f, 0.0f);
     cube2->mesh = mesh.get();
-    cube2->shader = shaderProgram.get();
+    cube2->shader = objectShader.get();
     objects.push_back(std::move(cube2));
 
     auto cube3 = std::make_unique<RenderObject>();
     cube3->transform.position = glm::vec3(0.0f, 0.0f, 0.0f);
     cube3->transform.scale = glm::vec3(0.4f);
     cube3->mesh = mesh.get();
-    cube3->shader = shaderProgram.get();
+    cube3->shader = objectShader.get();
     objects.push_back(std::move(cube3));
 
     auto cube4 = std::make_unique<RenderObject>();
     cube4->transform.position = glm::vec3(0.0f, 0.0f, -5.0f);
     cube4->transform.scale = glm::vec3(0.5f, 2.0f, 0.5f);
     cube4->mesh = mesh.get();
-    cube4->shader = shaderProgram.get();
+    cube4->shader = objectShader.get();
     objects.push_back(std::move(cube4));
+    
+
+    auto wireframeplaneShaderEffect = std::make_unique<RenderObject>();
+    wireframeplaneShaderEffect->mesh = mesh2.get();
+    wireframeplaneShaderEffect->shader = wireframePlaneShader.get();
+    objects.push_back(std::move(wireframeplaneShaderEffect));
+
 }
 
 void QT_GLRenderer::destroyGLResources(){
     objects.clear();
 
     mesh.reset();
-    shaderProgram.reset();
+    mesh2.reset();
+    objectShader.reset();
+    wireframePlaneShader.reset();
 }
 
 void QT_GLRenderer::drawRenderObject(std::unique_ptr<RenderObject>& object){
@@ -281,11 +299,12 @@ void QT_GLRenderer::drawRenderObject(std::unique_ptr<RenderObject>& object){
 
     object->shader->activate();
 
+    //needed by object shader
     object->shader->set_mat4("model", false, model);
     object->shader->set_mat4("view", false, view);
     object->shader->set_mat4("projection", false, projection);
 
-    //set 
+    //needed by wireframeplane shader
     object->shader->set_mat4("inverseView", false, glm::inverse(view));
     object->shader->set_mat4("inverseProjection", false, glm::inverse(projection));
     object->shader->set_mat4("viewProjection", false, glm::mat4(projection * view));

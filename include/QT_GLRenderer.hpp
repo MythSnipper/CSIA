@@ -54,7 +54,9 @@ private:
 
     //renderer objects
     std::unique_ptr<Mesh> mesh;
-    std::unique_ptr<ShaderProgram> shaderProgram;
+    std::unique_ptr<Mesh> mesh2;
+    std::unique_ptr<ShaderProgram> objectShader;
+    std::unique_ptr<ShaderProgram> wireframePlaneShader;
 
     Camera camera;
     std::vector<std::unique_ptr<RenderObject>> objects;
