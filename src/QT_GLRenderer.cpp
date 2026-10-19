@@ -186,6 +186,63 @@ void QT_GLRenderer::createGLResources(){
     //vertices defining a cube
     float vertices[] = {
         // back face
+         0.0f,  0.0f,  0.0f,
+         1.0f,  0.0f,  0.0f,
+         1.0f,  1.0f,  0.0f,
+
+         1.0f,  1.0f,  0.0f,
+         0.0f,  1.0f,  0.0f,
+         0.0f,  0.0f,  0.0f,
+
+        // front face
+         0.0f,  0.0f,  1.0f,
+         1.0f,  0.0f,  1.0f,
+         1.0f,  1.0f,  1.0f,
+
+         1.0f,  1.0f,  1.0f,
+         0.0f,  1.0f,  1.0f,
+         0.0f,  0.0f,  1.0f,
+
+        // left face
+         0.0f,  1.0f,  1.0f,
+         0.0f,  1.0f,  0.0f,
+         0.0f,  0.0f,  0.0f,
+
+         0.0f,  0.0f,  0.0f,
+         0.0f,  0.0f,  1.0f,
+         0.0f,  1.0f,  1.0f,
+
+        // right face
+         1.0f,  1.0f,  1.0f,
+         1.0f,  0.0f,  0.0f,
+         1.0f,  1.0f,  0.0f,
+
+         1.0f,  0.0f,  0.0f,
+         1.0f,  1.0f,  1.0f,
+         1.0f,  0.0f,  1.0f,
+
+        // bottom face
+         0.0f,  0.0f,  0.0f,
+         1.0f,  0.0f,  0.0f,
+         1.0f,  0.0f,  1.0f,
+
+         1.0f,  0.0f,  1.0f,
+         0.0f,  0.0f,  1.0f,
+         0.0f,  0.0f,  0.0f,
+
+        // top face
+         0.0f,  1.0f,  0.0f,
+         1.0f,  1.0f,  0.0f,
+         1.0f,  1.0f,  1.0f,
+
+         1.0f,  1.0f,  1.0f,
+         0.0f,  1.0f,  1.0f,
+         0.0f,  1.0f,  0.0f
+    };
+    //alternative
+    /*
+    float vertices[] = {
+        // back face
         -1.0f, -1.0f, -1.0f,
          1.0f, -1.0f, -1.0f,
          1.0f,  1.0f, -1.0f,
@@ -239,16 +296,24 @@ void QT_GLRenderer::createGLResources(){
         -1.0f,  1.0f,  1.0f,
         -1.0f,  1.0f, -1.0f
     };
+    */
 
     //make mesh for cube object
     mesh = std::make_unique<Mesh>(vertices, sizeof(vertices));
     
+    //dummy vertices passed to a fullscreen shader
+    float dummyvertices[] = {
+        0.0f, 0.0f, 0.0f,
+        0.0f, 0.0f, 0.0f,
+        0.0f, 0.0f, 0.0f
+    };
     //make mesh for plane(any vertices data is fine because the shader doesn't use the vertices anyway)
-    mesh2 = std::make_unique<Mesh>(vertices, 3);
+    mesh2 = std::make_unique<Mesh>(dummyvertices, sizeof(dummyvertices));
 
     objects.clear();
 
     //make render objects
+    
     auto cube1 = std::make_unique<RenderObject>();
     cube1->transform.position = glm::vec3(-2.0f, 0.0f, 0.0f);
     cube1->mesh = mesh.get();
@@ -269,18 +334,17 @@ void QT_GLRenderer::createGLResources(){
     objects.push_back(std::move(cube3));
 
     auto cube4 = std::make_unique<RenderObject>();
-    cube4->transform.position = glm::vec3(0.0f, 0.0f, -5.0f);
+    cube4->transform.position = glm::vec3(0.0f, -3.0f, -5.0f);
     cube4->transform.scale = glm::vec3(0.5f, 2.0f, 0.5f);
     cube4->mesh = mesh.get();
     cube4->shader = objectShader.get();
     objects.push_back(std::move(cube4));
     
-
+    
     auto wireframeplaneShaderEffect = std::make_unique<RenderObject>();
     wireframeplaneShaderEffect->mesh = mesh2.get();
     wireframeplaneShaderEffect->shader = wireframePlaneShader.get();
     objects.push_back(std::move(wireframeplaneShaderEffect));
-
 }
 
 void QT_GLRenderer::destroyGLResources(){

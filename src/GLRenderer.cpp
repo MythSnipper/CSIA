@@ -436,6 +436,18 @@ void Camera::moveUp(float amount){
 void Camera::rotate(float yaw, float pitch){
     this->yaw += yaw;
     this->pitch += pitch;
+    if(this->yaw > 360){
+        this->yaw -= 360;
+    }
+    if(this->yaw < 360){
+        this->yaw += 360;
+    }
+    if(this->pitch > 89.9){
+        this->pitch = 89.9;
+    }
+    if(this->pitch < -89.9){
+        this->pitch = -89.9;
+    }
 }
 void Camera::zoom(float amount){
 
@@ -482,10 +494,10 @@ void Mesh::draw(){
     vao.bind();
 
     if(ebo){
-    glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, nullptr);
+        glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, nullptr);
     }
     else{
-    glDrawArrays(GL_TRIANGLES, 0, vertexCount);
+        glDrawArrays(GL_TRIANGLES, 0, vertexCount);
     }
 
     vao.unbind();
@@ -522,3 +534,4 @@ std::string readQFile(const QString& path){
 
     return source.toStdString();
 }
+
