@@ -6,5 +6,5 @@ CXX_DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_OPENGLWIDGETS_LIB -DQT_OPENGL_LIB 
 
 CXX_INCLUDES = -I/home/mythsnipper/Dev/cpp/QuantumSimulator/build/QuantumEngine_autogen/include -I/home/mythsnipper/Dev/cpp/QuantumSimulator/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtOpenGL -isystem /usr/include/qt6/QtOpenGLWidgets
 
-CXX_FLAGS = -g -std=gnu++20 -mno-direct-extern-access
+CXX_FLAGS = -g -std=gnu++20 -O1 -Wall -Wextra -mno-direct-extern-access
 

@@ -38,19 +38,13 @@ target_link_libraries(QuantumEngine
         Qt6::OpenGLWidgets
 )
 
-#[===[
 target_compile_options(QuantumEngine PRIVATE
-    -g
-    -O0
+    -O1
     -Wall
     -Wextra
-    -fsanitize=address,undefined
-    -fno-omit-frame-pointer
 )
 
 target_link_options(QuantumEngine PRIVATE
-    -fsanitize=address,undefined
 )
 
-]===]
 

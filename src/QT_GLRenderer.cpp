@@ -62,6 +62,8 @@ void QT_GLRenderer::paintGL(){
         drawRenderObject(object);
     }
 
+    drawGrid();
+
 }
 
 void QT_GLRenderer::keyPressEvent(QKeyEvent* event){
@@ -184,136 +186,45 @@ void QT_GLRenderer::createGLResources(){
     wireframePlaneShader->from_files(wireframePlaneVertShaderPath, wireframePlaneFragShaderPath);
 
     //vertices defining a cube
-    float vertices[] = {
-        // back face
-         0.0f,  0.0f,  0.0f,
-         1.0f,  0.0f,  0.0f,
-         1.0f,  1.0f,  0.0f,
-
-         1.0f,  1.0f,  0.0f,
-         0.0f,  1.0f,  0.0f,
-         0.0f,  0.0f,  0.0f,
-
-        // front face
-         0.0f,  0.0f,  1.0f,
-         1.0f,  0.0f,  1.0f,
-         1.0f,  1.0f,  1.0f,
-
-         1.0f,  1.0f,  1.0f,
-         0.0f,  1.0f,  1.0f,
-         0.0f,  0.0f,  1.0f,
-
-        // left face
-         0.0f,  1.0f,  1.0f,
-         0.0f,  1.0f,  0.0f,
-         0.0f,  0.0f,  0.0f,
-
-         0.0f,  0.0f,  0.0f,
-         0.0f,  0.0f,  1.0f,
-         0.0f,  1.0f,  1.0f,
-
-        // right face
-         1.0f,  1.0f,  1.0f,
-         1.0f,  0.0f,  0.0f,
-         1.0f,  1.0f,  0.0f,
-
-         1.0f,  0.0f,  0.0f,
-         1.0f,  1.0f,  1.0f,
-         1.0f,  0.0f,  1.0f,
-
-        // bottom face
-         0.0f,  0.0f,  0.0f,
-         1.0f,  0.0f,  0.0f,
-         1.0f,  0.0f,  1.0f,
-
-         1.0f,  0.0f,  1.0f,
-         0.0f,  0.0f,  1.0f,
-         0.0f,  0.0f,  0.0f,
-
-        // top face
-         0.0f,  1.0f,  0.0f,
-         1.0f,  1.0f,  0.0f,
-         1.0f,  1.0f,  1.0f,
-
-         1.0f,  1.0f,  1.0f,
-         0.0f,  1.0f,  1.0f,
-         0.0f,  1.0f,  0.0f
-    };
-    //alternative
-    /*
-    float vertices[] = {
-        // back face
-        -1.0f, -1.0f, -1.0f,
-         1.0f, -1.0f, -1.0f,
-         1.0f,  1.0f, -1.0f,
-
-         1.0f,  1.0f, -1.0f,
-        -1.0f,  1.0f, -1.0f,
-        -1.0f, -1.0f, -1.0f,
-
-        // front face
-        -1.0f, -1.0f,  1.0f,
-         1.0f, -1.0f,  1.0f,
-         1.0f,  1.0f,  1.0f,
-
-         1.0f,  1.0f,  1.0f,
-        -1.0f,  1.0f,  1.0f,
-        -1.0f, -1.0f,  1.0f,
-
-        // left face
-        -1.0f,  1.0f,  1.0f,
-        -1.0f,  1.0f, -1.0f,
-        -1.0f, -1.0f, -1.0f,
-
-        -1.0f, -1.0f, -1.0f,
-        -1.0f, -1.0f,  1.0f,
-        -1.0f,  1.0f,  1.0f,
-
-        // right face
-         1.0f,  1.0f,  1.0f,
-         1.0f, -1.0f, -1.0f,
-         1.0f,  1.0f, -1.0f,
-
-         1.0f, -1.0f, -1.0f,
-         1.0f,  1.0f,  1.0f,
-         1.0f, -1.0f,  1.0f,
-
-        // bottom face
-        -1.0f, -1.0f, -1.0f,
-         1.0f, -1.0f, -1.0f,
-         1.0f, -1.0f,  1.0f,
-
-         1.0f, -1.0f,  1.0f,
-        -1.0f, -1.0f,  1.0f,
-        -1.0f, -1.0f, -1.0f,
-
-        // top face
+    float cubeVertices[] = {
         -1.0f,  1.0f, -1.0f,
          1.0f,  1.0f, -1.0f,
-         1.0f,  1.0f,  1.0f,
+        -1.0f, -1.0f, -1.0f,
+         1.0f, -1.0f, -1.0f,
 
-         1.0f,  1.0f,  1.0f,
         -1.0f,  1.0f,  1.0f,
-        -1.0f,  1.0f, -1.0f
+         1.0f,  1.0f,  1.0f,
+        -1.0f, -1.0f,  1.0f,
+         1.0f, -1.0f,  1.0f
     };
-    */
+    uint32_t cubeIndices[] = {
+        0, 1, 2,
+        1, 2, 3,
+        4, 0, 6,
+        0, 6, 2,
+        5, 1, 7,
+        1, 7, 3,
+        4, 5, 6,
+        5, 6, 7,
+        0, 1, 4,
+        1, 4, 5,
+        2, 3, 6,
+        3, 6, 7,
+    };
 
-    //make mesh for cube object
-    mesh = std::make_unique<Mesh>(vertices, sizeof(vertices));
-    
-    //dummy vertices passed to a fullscreen shader
-    float dummyvertices[] = {
-        0.0f, 0.0f, 0.0f,
-        0.0f, 0.0f, 0.0f,
-        0.0f, 0.0f, 0.0f
-    };
-    //make mesh for plane(any vertices data is fine because the shader doesn't use the vertices anyway)
-    mesh2 = std::make_unique<Mesh>(dummyvertices, sizeof(dummyvertices));
+    std::vector<float> sphereVertices;
+    std::vector<uint32_t> sphereIndices;
+
+
+    //cube
+    mesh = std::make_unique<Mesh>(cubeVertices, sizeof(cubeVertices), cubeIndices, sizeof(cubeIndices));
+
+    //sphere
+    sphere = std::make_unique<Mesh>(sphereVertices, sizeof(sphereVertices), sphereIndices, sizeof(sphereIndices));
 
     objects.clear();
 
     //make render objects
-    
     auto cube1 = std::make_unique<RenderObject>();
     cube1->transform.position = glm::vec3(-2.0f, 0.0f, 0.0f);
     cube1->mesh = mesh.get();
@@ -339,22 +250,37 @@ void QT_GLRenderer::createGLResources(){
     cube4->mesh = mesh.get();
     cube4->shader = objectShader.get();
     objects.push_back(std::move(cube4));
-    
-    
-    auto wireframeplaneShaderEffect = std::make_unique<RenderObject>();
-    wireframeplaneShaderEffect->mesh = mesh2.get();
-    wireframeplaneShaderEffect->shader = wireframePlaneShader.get();
-    objects.push_back(std::move(wireframeplaneShaderEffect));
+
+    auto sphere1 = std::make_unique<RenderObject>();
+    sphere1->transform.position = glm::vec3(0.0f, 4.0f, 1.0f);
+    sphere1->transform.scale = glm::vec3(1.0f, 10f, 1.0f);
+    sphere1->mesh = sphere.get();
+    sphere1->shader = objectShader.get();
+    objects.push_back(std::move(sphere1));
+
+    //generate empty VAO for fullscreen shader passes
+    glGenVertexArrays(1, &fullscreenVAO);
+
 }
 
 void QT_GLRenderer::destroyGLResources(){
+    makeCurrent();
+
     objects.clear();
 
     mesh.reset();
-    mesh2.reset();
     objectShader.reset();
     wireframePlaneShader.reset();
+
+    if(fullscreenVAO != 0){
+        glDeleteVertexArrays(1, &fullscreenVAO);
+        fullscreenVAO = 0;
+    }
+
+    doneCurrent();
 }
+
+
 
 void QT_GLRenderer::drawRenderObject(std::unique_ptr<RenderObject>& object){
     glm::mat4 model = object->transform.get_matrix();
@@ -379,10 +305,52 @@ void QT_GLRenderer::drawRenderObject(std::unique_ptr<RenderObject>& object){
     if(object->wireframeMode){
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     }
-    else{
-        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-    }
     object->mesh->draw();
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+}
+
+void QT_GLRenderer::drawFullscreenPass(ShaderProgram& shader){
+    shader.activate();
+
+    glBindVertexArray(fullscreenVAO);
+    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glBindVertexArray(0);
+}
+
+void QT_GLRenderer::drawGrid(){
+    glm::mat4 view = camera.get_view_matrix();
+    glm::mat4 projection = camera.get_projection_matrix();
+
+    wireframePlaneShader->activate();
+
+    //set shader uniforms
+    wireframePlaneShader->set_mat4("inverseView", false, glm::inverse(view));
+    wireframePlaneShader->set_mat4("inverseProjection", false, glm::inverse(projection));
+    wireframePlaneShader->set_mat4("viewProjection", false, projection * view);
+
+    //gl_FragCoord is in physical pixels, so scale by the device pixel ratio
+    float ratio = static_cast<float>(devicePixelRatioF());
+    wireframePlaneShader->set_float("viewportSize", {
+        width() * ratio,
+        height() * ratio
+    });
+
+    wireframePlaneShader->set_float("spacing", {1.0f});
+    wireframePlaneShader->set_float("cameraPosition", {
+        camera.position.x,
+        camera.position.y,
+        camera.position.z
+    });
+
+    //depth test against the scene, but don't overwrite its depth values
+    glDepthMask(GL_FALSE);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    drawFullscreenPass(*wireframePlaneShader);
+
+    glDisable(GL_BLEND);
+    glDepthMask(GL_TRUE);
 }
 
 void QT_GLRenderer::printInfo(){
@@ -420,8 +388,49 @@ void QT_GLRenderer::applySettings(){
 
 
 
+void generate_sphere(float radius, uint32_t sectors, uint32_t stacks, std::vector<float>& vertices, std::vector<uint32_t>& indices){
+    vertices.clear();
+    indices.clear();
 
+    const float pi = glm::pi<float>();
 
+    //one ring of vertices per stack, from the top pole (+y) to the bottom pole (-y)
+    for(uint32_t i = 0; i <= stacks; i++){
+        float stackAngle = pi / 2.0f - i * pi / stacks; //phi
+        float ringRadius = radius * std::cos(stackAngle); //r cos(phi)
+        float y = radius * std::sin(stackAngle); //(r cos(phi))sin(theta)
+
+        //sectors + 1 vertices per ring, the last one duplicates the first to close the seam
+        for(uint32_t j = 0; j <= sectors; j++){
+            float sectorAngle = j * 2.0f * pi / sectors;
+
+            vertices.push_back(ringRadius * std::cos(sectorAngle));
+            vertices.push_back(y);
+            vertices.push_back(ringRadius * std::sin(sectorAngle));
+        }
+    }
+
+    //two triangles per quad between neighbouring rings
+    for(uint32_t i = 0; i < stacks; i++){
+        uint32_t top = i * (sectors + 1);
+        uint32_t bottom = top + sectors + 1;
+
+        for(uint32_t j = 0; j < sectors; j++, top++, bottom++){
+            //the top ring at the pole collapses to a point, so its first triangle is degenerate
+            if(i != 0){
+                indices.push_back(top);
+                indices.push_back(top + 1);
+                indices.push_back(bottom);
+            }
+            //same for the bottom pole
+            if(i != stacks - 1){
+                indices.push_back(top + 1);
+                indices.push_back(bottom + 1);
+                indices.push_back(bottom);
+            }
+        }
+    }
+}
 
 
 

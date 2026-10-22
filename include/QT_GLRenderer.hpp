@@ -43,9 +43,18 @@ private:
     void updateCamera(float deltaTime);
     void createGLResources();
     void destroyGLResources();
+
+    //drawing
     void drawRenderObject(std::unique_ptr<RenderObject>& object);
+    void drawFullscreenPass(ShaderProgram& shader);
+    void drawGrid();
+
+    //misc
     void printInfo();
     void applySettings();
+
+    void generate_sphere(float radius, uint32_t sectors, uint32_t stacks, std::vector<float>& vertices, std::vector<uint32_t>& indices);
+    
 
     //settings
     bool wireframe_mode = false;
@@ -54,7 +63,6 @@ private:
 
     //renderer objects
     std::unique_ptr<Mesh> mesh;
-    std::unique_ptr<Mesh> mesh2;
     std::unique_ptr<ShaderProgram> objectShader;
     std::unique_ptr<ShaderProgram> wireframePlaneShader;
 
@@ -63,6 +71,8 @@ private:
 
     QTimer renderTimer;
     QElapsedTimer frameTimer;
+
+    GLuint fullscreenVAO = 0; //VAO for drawing fullscreen shader passes
 
     //input states
     //keyboard
