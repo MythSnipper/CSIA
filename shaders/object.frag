@@ -37,3 +37,4 @@ void main(){
     vec3 lit = albedo * (ambientStrength + diffuse) * lightColor + specular * lightColor;
     FragColor = vec4(lit, 1.0);
 }
+

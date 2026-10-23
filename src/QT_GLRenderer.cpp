@@ -230,8 +230,6 @@ void QT_GLRenderer::createGLResources(){
     checker->albedo = checkerTexture.get();
     checker->tiling = glm::vec2(4.0f);
 
-
-
     objects.clear();
 
     //make render objects
@@ -248,7 +246,7 @@ void QT_GLRenderer::createGLResources(){
     objects.push_back(std::move(cube2));
 
     auto cube3 = std::make_unique<RenderObject>();
-    cube3->transform.position = glm::vec3(0.0f, 0.0f, 0.0f);
+    cube3->transform.position = glm::vec3(0.0f, 1.0f, 4.0f);
     cube3->transform.scale = glm::vec3(0.4f);
     cube3->mesh = cube.get();
     cube3->material = purple;
@@ -261,6 +259,14 @@ void QT_GLRenderer::createGLResources(){
     cube4->material = checker;
     objects.push_back(std::move(cube4));
 
+    auto sphere00 = std::make_unique<RenderObject>();
+    sphere00->transform.position = glm::vec3(0.0f, 0.0f, 0.0f);
+    sphere00->transform.scale = glm::vec3(0.1f);
+    sphere00->mesh = sphere.get();
+    sphere00->material = white;
+    sphere00->wireframeMode = false;
+    objects.push_back(std::move(sphere00));
+
     auto sphere1 = std::make_unique<RenderObject>();
     sphere1->transform.position = glm::vec3(0.0f, 4.0f, 1.0f);
     sphere1->transform.scale = glm::vec3(1.0f);
@@ -268,6 +274,14 @@ void QT_GLRenderer::createGLResources(){
     sphere1->material = checker;
     sphere1->wireframeMode = false;
     objects.push_back(std::move(sphere1));
+
+    auto pointlight = std::make_unique<RenderObject>();
+    pointlight->transform.position = glm::vec3(-0.4f, -1.0f, -0.3f);
+    pointlight->transform.scale = glm::vec3(0.1f);
+    pointlight->mesh = sphere.get();
+    pointlight->material = white;
+    pointlight->wireframeMode = false;
+    objects.push_back(std::move(pointlight));
 
     //generate empty VAO for fullscreen shader passes
     glGenVertexArrays(1, &fullscreenVAO);
