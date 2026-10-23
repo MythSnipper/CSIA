@@ -9,6 +9,7 @@
 
 //forward declare
 class Mesh;
+class Material;
 
 //Renderer objects
 struct Color{
@@ -174,16 +175,19 @@ public:
 
     bool wireframeMode = false;
     Mesh* mesh = nullptr;
-    ShaderProgram* shader = nullptr;
+    Material* material = nullptr;
 };
 class Mesh : protected QOpenGLFunctions_3_3_Core{
 public:
     Mesh(float vertices[], int vertices_size);
     Mesh(float vertices[], int vertices_size, uint32_t indices[], int indices_size);
+    Mesh(std::vector<float>& vertices);
+    Mesh(std::vector<float>& vertices, std::vector<uint32_t>& indices);
 
     void bind();
     void unbind();
     void draw();
+    void setup_attributes();
 
 private:
     VAO vao;
@@ -195,7 +199,25 @@ private:
 };
 
 
+class Material{
+public:
+    ShaderProgram* shader = nullptr;
+    Texture2D* albedo = nullptr;    //never null, use the renderer's white texture for untextured materials
 
+    glm::vec3 color = glm::vec3(1.0f);
+    glm::vec2 tiling = glm::vec2(1.0f);
+    float shininess = 32.0f;
+    float specularStrength = 0.5f;
+
+    void apply();
+};
+
+class DirectionalLight{
+public:
+    glm::vec3 direction = glm::normalize(glm::vec3(-0.4f, -1.0f, -0.3f));
+    glm::vec3 color = glm::vec3(1.0f);
+    float ambient = 0.15f;
+};
 
 
 

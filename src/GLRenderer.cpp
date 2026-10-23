@@ -459,13 +459,13 @@ Mesh::Mesh(float vertices[], int vertices_size){
 
     vbo.fill(vertices, vertices_size, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
+    setup_attributes();
 
     glEnableVertexAttribArray(0);
 
     vao.unbind();
 
-    vertexCount = vertices_size / (3 * sizeof(float));
+    vertexCount = vertices_size / (8 * sizeof(float));
 }
 Mesh::Mesh(float vertices[], int vertices_size, uint32_t indices[], int indices_size){
     initializeOpenGLFunctions();
@@ -476,13 +476,44 @@ Mesh::Mesh(float vertices[], int vertices_size, uint32_t indices[], int indices_
     vbo.fill(vertices, vertices_size, GL_STATIC_DRAW);
     ebo->fill(indices, indices_size, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
+    setup_attributes();
 
     glEnableVertexAttribArray(0);
 
     vao.unbind();
 
     indexCount = indices_size / sizeof(uint32_t);
+}
+Mesh::Mesh(std::vector<float>& vertices){
+    initializeOpenGLFunctions();
+    vao.bind();
+
+    vbo.fill(vertices.data(), vertices.size() * sizeof(float), GL_STATIC_DRAW);
+
+    setup_attributes();
+
+    glEnableVertexAttribArray(0);
+
+    vao.unbind();
+
+    vertexCount = vertices.size();
+}
+Mesh::Mesh(std::vector<float>& vertices, std::vector<uint32_t>& indices){
+    initializeOpenGLFunctions();
+    ebo = std::make_unique<EBO>();
+
+    vao.bind();
+
+    vbo.fill(vertices.data(), vertices.size() * sizeof(float), GL_STATIC_DRAW);
+    ebo->fill(indices.data(), indices.size() * sizeof(uint32_t), GL_STATIC_DRAW);
+
+    setup_attributes();
+
+    glEnableVertexAttribArray(0);
+
+    vao.unbind();
+
+    indexCount = indices.size();
 }
 void Mesh::bind(){
     vao.bind();
@@ -502,6 +533,31 @@ void Mesh::draw(){
 
     vao.unbind();
 }
+void Mesh::setup_attributes(){
+    uint32_t stride = 8 * sizeof(float);
+
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, stride, (void*) 0);
+    glEnableVertexAttribArray(0);
+
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, stride, (void*) (3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, stride, (void*) (6 * sizeof(float)));
+    glEnableVertexAttribArray(2);
+}
+
+void Material::apply(){
+    shader->activate();
+
+    shader->set_float("materialColor", {color.r, color.g, color.b});
+    shader->set_float("tiling", {tiling.x, tiling.y});
+    shader->set_float("shininess", {shininess});
+    shader->set_float("specularStrength", {specularStrength});
+
+    albedo->bind_texture_unit(GL_TEXTURE0);
+    shader->set_int("albedoTexture", {0});
+}
+
 
 //others
 std::string readFile(const std::string& filename){

@@ -45,7 +45,7 @@ private:
     void destroyGLResources();
 
     //drawing
-    void drawRenderObject(std::unique_ptr<RenderObject>& object);
+    void drawRenderObject(std::unique_ptr<RenderObject>& object, const glm::mat4& view, const glm::mat4& projection);
     void drawFullscreenPass(ShaderProgram& shader);
     void drawGrid();
 
@@ -53,8 +53,9 @@ private:
     void printInfo();
     void applySettings();
 
-    void generate_sphere(float radius, uint32_t sectors, uint32_t stacks, std::vector<float>& vertices, std::vector<uint32_t>& indices);
-    
+    //materials
+    Material* createMaterial(); //creates a default working material
+
 
     //settings
     bool wireframe_mode = false;
@@ -62,9 +63,12 @@ private:
     uint32_t FPS = 60;
 
     //renderer objects
-    std::unique_ptr<Mesh> mesh;
-    std::unique_ptr<ShaderProgram> objectShader;
-    std::unique_ptr<ShaderProgram> wireframePlaneShader;
+    std::unique_ptr<Mesh> cube, sphere;
+    
+    std::unique_ptr<Texture2D> whiteTexture, checkerTexture;
+    std::vector<std::unique_ptr<Material>> materials;
+    DirectionalLight light;
+    std::unique_ptr<ShaderProgram> objectShader, wireframePlaneShader;
 
     Camera camera;
     std::vector<std::unique_ptr<RenderObject>> objects;
@@ -88,4 +92,19 @@ private:
     bool rotating = false;
     
 };
+
+void generate_sphere(float radius, uint32_t sectors, uint32_t stacks, std::vector<float>& vertices, std::vector<uint32_t>& indices);
+void generate_cube(float halfSize, std::vector<float>& vertices, std::vector<uint32_t>& indices);
+
+
+
+
+
+
+
+
+
+
+
+
 
