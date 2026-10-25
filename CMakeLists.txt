@@ -19,11 +19,24 @@ qt_standard_project_setup()
 set(CMAKE_AUTORCC ON)
 
 qt_add_executable(QuantumEngine
+    resources.qrc
+    src/QT_GLRenderer.cpp
+    src/GLRenderer.cpp
+    src/Material.cpp
+    src/Mesh.cpp
+    src/Camera.cpp
+    src/RenderObject.cpp
+    src/Transform.cpp
+    src/Texture2D.cpp
+    src/EBO.cpp
+    src/VBO.cpp
+    src/VAO.cpp
+    src/ShaderProgram.cpp
+    src/FragmentShader.cpp
+    src/VertexShader.cpp
+    src/readfile.cpp
     src/main.cpp
     src/MainWindow.cpp
-    src/GLRenderer.cpp
-    src/QT_GLRenderer.cpp
-    resources.qrc
 )
 
 target_include_directories(QuantumEngine

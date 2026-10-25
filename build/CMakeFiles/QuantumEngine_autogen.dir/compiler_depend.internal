@@ -6,10 +6,23 @@
  /home/mythsnipper/Dev/cpp/QuantumSimulator/build/CMakeFiles/4.4.3/CMakeCXXCompiler.cmake
  /home/mythsnipper/Dev/cpp/QuantumSimulator/build/CMakeFiles/4.4.3/CMakeSystem.cmake
  /home/mythsnipper/Dev/cpp/QuantumSimulator/resources.qrc
+ /home/mythsnipper/Dev/cpp/QuantumSimulator/src/Camera.cpp
+ /home/mythsnipper/Dev/cpp/QuantumSimulator/src/EBO.cpp
+ /home/mythsnipper/Dev/cpp/QuantumSimulator/src/FragmentShader.cpp
  /home/mythsnipper/Dev/cpp/QuantumSimulator/src/GLRenderer.cpp
  /home/mythsnipper/Dev/cpp/QuantumSimulator/src/MainWindow.cpp
+ /home/mythsnipper/Dev/cpp/QuantumSimulator/src/Material.cpp
+ /home/mythsnipper/Dev/cpp/QuantumSimulator/src/Mesh.cpp
  /home/mythsnipper/Dev/cpp/QuantumSimulator/src/QT_GLRenderer.cpp
+ /home/mythsnipper/Dev/cpp/QuantumSimulator/src/RenderObject.cpp
+ /home/mythsnipper/Dev/cpp/QuantumSimulator/src/ShaderProgram.cpp
+ /home/mythsnipper/Dev/cpp/QuantumSimulator/src/Texture2D.cpp
+ /home/mythsnipper/Dev/cpp/QuantumSimulator/src/Transform.cpp
+ /home/mythsnipper/Dev/cpp/QuantumSimulator/src/VAO.cpp
+ /home/mythsnipper/Dev/cpp/QuantumSimulator/src/VBO.cpp
+ /home/mythsnipper/Dev/cpp/QuantumSimulator/src/VertexShader.cpp
  /home/mythsnipper/Dev/cpp/QuantumSimulator/src/main.cpp
+ /home/mythsnipper/Dev/cpp/QuantumSimulator/src/readfile.cpp
  /usr/bin/cmake
  /usr/lib/cmake/Qt6/FindWrapAtomic.cmake
  /usr/lib/cmake/Qt6/FindWrapOpenGL.cmake

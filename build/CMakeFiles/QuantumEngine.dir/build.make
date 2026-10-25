@@ -104,10 +104,220 @@ CMakeFiles/QuantumEngine.dir/QuantumEngine_autogen/mocs_compilation.cpp.s: cmake
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/QuantumEngine.dir/QuantumEngine_autogen/mocs_compilation.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mythsnipper/Dev/cpp/QuantumSimulator/build/QuantumEngine_autogen/mocs_compilation.cpp -o CMakeFiles/QuantumEngine.dir/QuantumEngine_autogen/mocs_compilation.cpp.s
 
+CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.o: CMakeFiles/QuantumEngine.dir/flags.make
+CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.o: /home/mythsnipper/Dev/cpp/QuantumSimulator/src/QT_GLRenderer.cpp
+CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.o: CMakeFiles/QuantumEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/mythsnipper/Dev/cpp/QuantumSimulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.o -MF CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.o.d -o CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.o -c /home/mythsnipper/Dev/cpp/QuantumSimulator/src/QT_GLRenderer.cpp
+
+CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mythsnipper/Dev/cpp/QuantumSimulator/src/QT_GLRenderer.cpp > CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.i
+
+CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mythsnipper/Dev/cpp/QuantumSimulator/src/QT_GLRenderer.cpp -o CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.s
+
+CMakeFiles/QuantumEngine.dir/src/GLRenderer.cpp.o: CMakeFiles/QuantumEngine.dir/flags.make
+CMakeFiles/QuantumEngine.dir/src/GLRenderer.cpp.o: /home/mythsnipper/Dev/cpp/QuantumSimulator/src/GLRenderer.cpp
+CMakeFiles/QuantumEngine.dir/src/GLRenderer.cpp.o: CMakeFiles/QuantumEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/mythsnipper/Dev/cpp/QuantumSimulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/QuantumEngine.dir/src/GLRenderer.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QuantumEngine.dir/src/GLRenderer.cpp.o -MF CMakeFiles/QuantumEngine.dir/src/GLRenderer.cpp.o.d -o CMakeFiles/QuantumEngine.dir/src/GLRenderer.cpp.o -c /home/mythsnipper/Dev/cpp/QuantumSimulator/src/GLRenderer.cpp
+
+CMakeFiles/QuantumEngine.dir/src/GLRenderer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/QuantumEngine.dir/src/GLRenderer.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mythsnipper/Dev/cpp/QuantumSimulator/src/GLRenderer.cpp > CMakeFiles/QuantumEngine.dir/src/GLRenderer.cpp.i
+
+CMakeFiles/QuantumEngine.dir/src/GLRenderer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/QuantumEngine.dir/src/GLRenderer.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mythsnipper/Dev/cpp/QuantumSimulator/src/GLRenderer.cpp -o CMakeFiles/QuantumEngine.dir/src/GLRenderer.cpp.s
+
+CMakeFiles/QuantumEngine.dir/src/Material.cpp.o: CMakeFiles/QuantumEngine.dir/flags.make
+CMakeFiles/QuantumEngine.dir/src/Material.cpp.o: /home/mythsnipper/Dev/cpp/QuantumSimulator/src/Material.cpp
+CMakeFiles/QuantumEngine.dir/src/Material.cpp.o: CMakeFiles/QuantumEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/mythsnipper/Dev/cpp/QuantumSimulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/QuantumEngine.dir/src/Material.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QuantumEngine.dir/src/Material.cpp.o -MF CMakeFiles/QuantumEngine.dir/src/Material.cpp.o.d -o CMakeFiles/QuantumEngine.dir/src/Material.cpp.o -c /home/mythsnipper/Dev/cpp/QuantumSimulator/src/Material.cpp
+
+CMakeFiles/QuantumEngine.dir/src/Material.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/QuantumEngine.dir/src/Material.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mythsnipper/Dev/cpp/QuantumSimulator/src/Material.cpp > CMakeFiles/QuantumEngine.dir/src/Material.cpp.i
+
+CMakeFiles/QuantumEngine.dir/src/Material.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/QuantumEngine.dir/src/Material.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mythsnipper/Dev/cpp/QuantumSimulator/src/Material.cpp -o CMakeFiles/QuantumEngine.dir/src/Material.cpp.s
+
+CMakeFiles/QuantumEngine.dir/src/Mesh.cpp.o: CMakeFiles/QuantumEngine.dir/flags.make
+CMakeFiles/QuantumEngine.dir/src/Mesh.cpp.o: /home/mythsnipper/Dev/cpp/QuantumSimulator/src/Mesh.cpp
+CMakeFiles/QuantumEngine.dir/src/Mesh.cpp.o: CMakeFiles/QuantumEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/mythsnipper/Dev/cpp/QuantumSimulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/QuantumEngine.dir/src/Mesh.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QuantumEngine.dir/src/Mesh.cpp.o -MF CMakeFiles/QuantumEngine.dir/src/Mesh.cpp.o.d -o CMakeFiles/QuantumEngine.dir/src/Mesh.cpp.o -c /home/mythsnipper/Dev/cpp/QuantumSimulator/src/Mesh.cpp
+
+CMakeFiles/QuantumEngine.dir/src/Mesh.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/QuantumEngine.dir/src/Mesh.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mythsnipper/Dev/cpp/QuantumSimulator/src/Mesh.cpp > CMakeFiles/QuantumEngine.dir/src/Mesh.cpp.i
+
+CMakeFiles/QuantumEngine.dir/src/Mesh.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/QuantumEngine.dir/src/Mesh.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mythsnipper/Dev/cpp/QuantumSimulator/src/Mesh.cpp -o CMakeFiles/QuantumEngine.dir/src/Mesh.cpp.s
+
+CMakeFiles/QuantumEngine.dir/src/Camera.cpp.o: CMakeFiles/QuantumEngine.dir/flags.make
+CMakeFiles/QuantumEngine.dir/src/Camera.cpp.o: /home/mythsnipper/Dev/cpp/QuantumSimulator/src/Camera.cpp
+CMakeFiles/QuantumEngine.dir/src/Camera.cpp.o: CMakeFiles/QuantumEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/mythsnipper/Dev/cpp/QuantumSimulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/QuantumEngine.dir/src/Camera.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QuantumEngine.dir/src/Camera.cpp.o -MF CMakeFiles/QuantumEngine.dir/src/Camera.cpp.o.d -o CMakeFiles/QuantumEngine.dir/src/Camera.cpp.o -c /home/mythsnipper/Dev/cpp/QuantumSimulator/src/Camera.cpp
+
+CMakeFiles/QuantumEngine.dir/src/Camera.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/QuantumEngine.dir/src/Camera.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mythsnipper/Dev/cpp/QuantumSimulator/src/Camera.cpp > CMakeFiles/QuantumEngine.dir/src/Camera.cpp.i
+
+CMakeFiles/QuantumEngine.dir/src/Camera.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/QuantumEngine.dir/src/Camera.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mythsnipper/Dev/cpp/QuantumSimulator/src/Camera.cpp -o CMakeFiles/QuantumEngine.dir/src/Camera.cpp.s
+
+CMakeFiles/QuantumEngine.dir/src/RenderObject.cpp.o: CMakeFiles/QuantumEngine.dir/flags.make
+CMakeFiles/QuantumEngine.dir/src/RenderObject.cpp.o: /home/mythsnipper/Dev/cpp/QuantumSimulator/src/RenderObject.cpp
+CMakeFiles/QuantumEngine.dir/src/RenderObject.cpp.o: CMakeFiles/QuantumEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/mythsnipper/Dev/cpp/QuantumSimulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/QuantumEngine.dir/src/RenderObject.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QuantumEngine.dir/src/RenderObject.cpp.o -MF CMakeFiles/QuantumEngine.dir/src/RenderObject.cpp.o.d -o CMakeFiles/QuantumEngine.dir/src/RenderObject.cpp.o -c /home/mythsnipper/Dev/cpp/QuantumSimulator/src/RenderObject.cpp
+
+CMakeFiles/QuantumEngine.dir/src/RenderObject.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/QuantumEngine.dir/src/RenderObject.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mythsnipper/Dev/cpp/QuantumSimulator/src/RenderObject.cpp > CMakeFiles/QuantumEngine.dir/src/RenderObject.cpp.i
+
+CMakeFiles/QuantumEngine.dir/src/RenderObject.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/QuantumEngine.dir/src/RenderObject.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mythsnipper/Dev/cpp/QuantumSimulator/src/RenderObject.cpp -o CMakeFiles/QuantumEngine.dir/src/RenderObject.cpp.s
+
+CMakeFiles/QuantumEngine.dir/src/Transform.cpp.o: CMakeFiles/QuantumEngine.dir/flags.make
+CMakeFiles/QuantumEngine.dir/src/Transform.cpp.o: /home/mythsnipper/Dev/cpp/QuantumSimulator/src/Transform.cpp
+CMakeFiles/QuantumEngine.dir/src/Transform.cpp.o: CMakeFiles/QuantumEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/mythsnipper/Dev/cpp/QuantumSimulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/QuantumEngine.dir/src/Transform.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QuantumEngine.dir/src/Transform.cpp.o -MF CMakeFiles/QuantumEngine.dir/src/Transform.cpp.o.d -o CMakeFiles/QuantumEngine.dir/src/Transform.cpp.o -c /home/mythsnipper/Dev/cpp/QuantumSimulator/src/Transform.cpp
+
+CMakeFiles/QuantumEngine.dir/src/Transform.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/QuantumEngine.dir/src/Transform.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mythsnipper/Dev/cpp/QuantumSimulator/src/Transform.cpp > CMakeFiles/QuantumEngine.dir/src/Transform.cpp.i
+
+CMakeFiles/QuantumEngine.dir/src/Transform.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/QuantumEngine.dir/src/Transform.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mythsnipper/Dev/cpp/QuantumSimulator/src/Transform.cpp -o CMakeFiles/QuantumEngine.dir/src/Transform.cpp.s
+
+CMakeFiles/QuantumEngine.dir/src/Texture2D.cpp.o: CMakeFiles/QuantumEngine.dir/flags.make
+CMakeFiles/QuantumEngine.dir/src/Texture2D.cpp.o: /home/mythsnipper/Dev/cpp/QuantumSimulator/src/Texture2D.cpp
+CMakeFiles/QuantumEngine.dir/src/Texture2D.cpp.o: CMakeFiles/QuantumEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/mythsnipper/Dev/cpp/QuantumSimulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/QuantumEngine.dir/src/Texture2D.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QuantumEngine.dir/src/Texture2D.cpp.o -MF CMakeFiles/QuantumEngine.dir/src/Texture2D.cpp.o.d -o CMakeFiles/QuantumEngine.dir/src/Texture2D.cpp.o -c /home/mythsnipper/Dev/cpp/QuantumSimulator/src/Texture2D.cpp
+
+CMakeFiles/QuantumEngine.dir/src/Texture2D.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/QuantumEngine.dir/src/Texture2D.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mythsnipper/Dev/cpp/QuantumSimulator/src/Texture2D.cpp > CMakeFiles/QuantumEngine.dir/src/Texture2D.cpp.i
+
+CMakeFiles/QuantumEngine.dir/src/Texture2D.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/QuantumEngine.dir/src/Texture2D.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mythsnipper/Dev/cpp/QuantumSimulator/src/Texture2D.cpp -o CMakeFiles/QuantumEngine.dir/src/Texture2D.cpp.s
+
+CMakeFiles/QuantumEngine.dir/src/EBO.cpp.o: CMakeFiles/QuantumEngine.dir/flags.make
+CMakeFiles/QuantumEngine.dir/src/EBO.cpp.o: /home/mythsnipper/Dev/cpp/QuantumSimulator/src/EBO.cpp
+CMakeFiles/QuantumEngine.dir/src/EBO.cpp.o: CMakeFiles/QuantumEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/mythsnipper/Dev/cpp/QuantumSimulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/QuantumEngine.dir/src/EBO.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QuantumEngine.dir/src/EBO.cpp.o -MF CMakeFiles/QuantumEngine.dir/src/EBO.cpp.o.d -o CMakeFiles/QuantumEngine.dir/src/EBO.cpp.o -c /home/mythsnipper/Dev/cpp/QuantumSimulator/src/EBO.cpp
+
+CMakeFiles/QuantumEngine.dir/src/EBO.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/QuantumEngine.dir/src/EBO.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mythsnipper/Dev/cpp/QuantumSimulator/src/EBO.cpp > CMakeFiles/QuantumEngine.dir/src/EBO.cpp.i
+
+CMakeFiles/QuantumEngine.dir/src/EBO.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/QuantumEngine.dir/src/EBO.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mythsnipper/Dev/cpp/QuantumSimulator/src/EBO.cpp -o CMakeFiles/QuantumEngine.dir/src/EBO.cpp.s
+
+CMakeFiles/QuantumEngine.dir/src/VBO.cpp.o: CMakeFiles/QuantumEngine.dir/flags.make
+CMakeFiles/QuantumEngine.dir/src/VBO.cpp.o: /home/mythsnipper/Dev/cpp/QuantumSimulator/src/VBO.cpp
+CMakeFiles/QuantumEngine.dir/src/VBO.cpp.o: CMakeFiles/QuantumEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/mythsnipper/Dev/cpp/QuantumSimulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/QuantumEngine.dir/src/VBO.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QuantumEngine.dir/src/VBO.cpp.o -MF CMakeFiles/QuantumEngine.dir/src/VBO.cpp.o.d -o CMakeFiles/QuantumEngine.dir/src/VBO.cpp.o -c /home/mythsnipper/Dev/cpp/QuantumSimulator/src/VBO.cpp
+
+CMakeFiles/QuantumEngine.dir/src/VBO.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/QuantumEngine.dir/src/VBO.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mythsnipper/Dev/cpp/QuantumSimulator/src/VBO.cpp > CMakeFiles/QuantumEngine.dir/src/VBO.cpp.i
+
+CMakeFiles/QuantumEngine.dir/src/VBO.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/QuantumEngine.dir/src/VBO.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mythsnipper/Dev/cpp/QuantumSimulator/src/VBO.cpp -o CMakeFiles/QuantumEngine.dir/src/VBO.cpp.s
+
+CMakeFiles/QuantumEngine.dir/src/VAO.cpp.o: CMakeFiles/QuantumEngine.dir/flags.make
+CMakeFiles/QuantumEngine.dir/src/VAO.cpp.o: /home/mythsnipper/Dev/cpp/QuantumSimulator/src/VAO.cpp
+CMakeFiles/QuantumEngine.dir/src/VAO.cpp.o: CMakeFiles/QuantumEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/mythsnipper/Dev/cpp/QuantumSimulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/QuantumEngine.dir/src/VAO.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QuantumEngine.dir/src/VAO.cpp.o -MF CMakeFiles/QuantumEngine.dir/src/VAO.cpp.o.d -o CMakeFiles/QuantumEngine.dir/src/VAO.cpp.o -c /home/mythsnipper/Dev/cpp/QuantumSimulator/src/VAO.cpp
+
+CMakeFiles/QuantumEngine.dir/src/VAO.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/QuantumEngine.dir/src/VAO.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mythsnipper/Dev/cpp/QuantumSimulator/src/VAO.cpp > CMakeFiles/QuantumEngine.dir/src/VAO.cpp.i
+
+CMakeFiles/QuantumEngine.dir/src/VAO.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/QuantumEngine.dir/src/VAO.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mythsnipper/Dev/cpp/QuantumSimulator/src/VAO.cpp -o CMakeFiles/QuantumEngine.dir/src/VAO.cpp.s
+
+CMakeFiles/QuantumEngine.dir/src/ShaderProgram.cpp.o: CMakeFiles/QuantumEngine.dir/flags.make
+CMakeFiles/QuantumEngine.dir/src/ShaderProgram.cpp.o: /home/mythsnipper/Dev/cpp/QuantumSimulator/src/ShaderProgram.cpp
+CMakeFiles/QuantumEngine.dir/src/ShaderProgram.cpp.o: CMakeFiles/QuantumEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/mythsnipper/Dev/cpp/QuantumSimulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/QuantumEngine.dir/src/ShaderProgram.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QuantumEngine.dir/src/ShaderProgram.cpp.o -MF CMakeFiles/QuantumEngine.dir/src/ShaderProgram.cpp.o.d -o CMakeFiles/QuantumEngine.dir/src/ShaderProgram.cpp.o -c /home/mythsnipper/Dev/cpp/QuantumSimulator/src/ShaderProgram.cpp
+
+CMakeFiles/QuantumEngine.dir/src/ShaderProgram.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/QuantumEngine.dir/src/ShaderProgram.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mythsnipper/Dev/cpp/QuantumSimulator/src/ShaderProgram.cpp > CMakeFiles/QuantumEngine.dir/src/ShaderProgram.cpp.i
+
+CMakeFiles/QuantumEngine.dir/src/ShaderProgram.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/QuantumEngine.dir/src/ShaderProgram.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mythsnipper/Dev/cpp/QuantumSimulator/src/ShaderProgram.cpp -o CMakeFiles/QuantumEngine.dir/src/ShaderProgram.cpp.s
+
+CMakeFiles/QuantumEngine.dir/src/FragmentShader.cpp.o: CMakeFiles/QuantumEngine.dir/flags.make
+CMakeFiles/QuantumEngine.dir/src/FragmentShader.cpp.o: /home/mythsnipper/Dev/cpp/QuantumSimulator/src/FragmentShader.cpp
+CMakeFiles/QuantumEngine.dir/src/FragmentShader.cpp.o: CMakeFiles/QuantumEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/mythsnipper/Dev/cpp/QuantumSimulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/QuantumEngine.dir/src/FragmentShader.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QuantumEngine.dir/src/FragmentShader.cpp.o -MF CMakeFiles/QuantumEngine.dir/src/FragmentShader.cpp.o.d -o CMakeFiles/QuantumEngine.dir/src/FragmentShader.cpp.o -c /home/mythsnipper/Dev/cpp/QuantumSimulator/src/FragmentShader.cpp
+
+CMakeFiles/QuantumEngine.dir/src/FragmentShader.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/QuantumEngine.dir/src/FragmentShader.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mythsnipper/Dev/cpp/QuantumSimulator/src/FragmentShader.cpp > CMakeFiles/QuantumEngine.dir/src/FragmentShader.cpp.i
+
+CMakeFiles/QuantumEngine.dir/src/FragmentShader.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/QuantumEngine.dir/src/FragmentShader.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mythsnipper/Dev/cpp/QuantumSimulator/src/FragmentShader.cpp -o CMakeFiles/QuantumEngine.dir/src/FragmentShader.cpp.s
+
+CMakeFiles/QuantumEngine.dir/src/VertexShader.cpp.o: CMakeFiles/QuantumEngine.dir/flags.make
+CMakeFiles/QuantumEngine.dir/src/VertexShader.cpp.o: /home/mythsnipper/Dev/cpp/QuantumSimulator/src/VertexShader.cpp
+CMakeFiles/QuantumEngine.dir/src/VertexShader.cpp.o: CMakeFiles/QuantumEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/mythsnipper/Dev/cpp/QuantumSimulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/QuantumEngine.dir/src/VertexShader.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QuantumEngine.dir/src/VertexShader.cpp.o -MF CMakeFiles/QuantumEngine.dir/src/VertexShader.cpp.o.d -o CMakeFiles/QuantumEngine.dir/src/VertexShader.cpp.o -c /home/mythsnipper/Dev/cpp/QuantumSimulator/src/VertexShader.cpp
+
+CMakeFiles/QuantumEngine.dir/src/VertexShader.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/QuantumEngine.dir/src/VertexShader.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mythsnipper/Dev/cpp/QuantumSimulator/src/VertexShader.cpp > CMakeFiles/QuantumEngine.dir/src/VertexShader.cpp.i
+
+CMakeFiles/QuantumEngine.dir/src/VertexShader.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/QuantumEngine.dir/src/VertexShader.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mythsnipper/Dev/cpp/QuantumSimulator/src/VertexShader.cpp -o CMakeFiles/QuantumEngine.dir/src/VertexShader.cpp.s
+
+CMakeFiles/QuantumEngine.dir/src/readfile.cpp.o: CMakeFiles/QuantumEngine.dir/flags.make
+CMakeFiles/QuantumEngine.dir/src/readfile.cpp.o: /home/mythsnipper/Dev/cpp/QuantumSimulator/src/readfile.cpp
+CMakeFiles/QuantumEngine.dir/src/readfile.cpp.o: CMakeFiles/QuantumEngine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/mythsnipper/Dev/cpp/QuantumSimulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/QuantumEngine.dir/src/readfile.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QuantumEngine.dir/src/readfile.cpp.o -MF CMakeFiles/QuantumEngine.dir/src/readfile.cpp.o.d -o CMakeFiles/QuantumEngine.dir/src/readfile.cpp.o -c /home/mythsnipper/Dev/cpp/QuantumSimulator/src/readfile.cpp
+
+CMakeFiles/QuantumEngine.dir/src/readfile.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/QuantumEngine.dir/src/readfile.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mythsnipper/Dev/cpp/QuantumSimulator/src/readfile.cpp > CMakeFiles/QuantumEngine.dir/src/readfile.cpp.i
+
+CMakeFiles/QuantumEngine.dir/src/readfile.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/QuantumEngine.dir/src/readfile.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mythsnipper/Dev/cpp/QuantumSimulator/src/readfile.cpp -o CMakeFiles/QuantumEngine.dir/src/readfile.cpp.s
+
 CMakeFiles/QuantumEngine.dir/src/main.cpp.o: CMakeFiles/QuantumEngine.dir/flags.make
 CMakeFiles/QuantumEngine.dir/src/main.cpp.o: /home/mythsnipper/Dev/cpp/QuantumSimulator/src/main.cpp
 CMakeFiles/QuantumEngine.dir/src/main.cpp.o: CMakeFiles/QuantumEngine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/mythsnipper/Dev/cpp/QuantumSimulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/QuantumEngine.dir/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/mythsnipper/Dev/cpp/QuantumSimulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/QuantumEngine.dir/src/main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QuantumEngine.dir/src/main.cpp.o -MF CMakeFiles/QuantumEngine.dir/src/main.cpp.o.d -o CMakeFiles/QuantumEngine.dir/src/main.cpp.o -c /home/mythsnipper/Dev/cpp/QuantumSimulator/src/main.cpp
 
 CMakeFiles/QuantumEngine.dir/src/main.cpp.i: cmake_force
@@ -121,7 +331,7 @@ CMakeFiles/QuantumEngine.dir/src/main.cpp.s: cmake_force
 CMakeFiles/QuantumEngine.dir/src/MainWindow.cpp.o: CMakeFiles/QuantumEngine.dir/flags.make
 CMakeFiles/QuantumEngine.dir/src/MainWindow.cpp.o: /home/mythsnipper/Dev/cpp/QuantumSimulator/src/MainWindow.cpp
 CMakeFiles/QuantumEngine.dir/src/MainWindow.cpp.o: CMakeFiles/QuantumEngine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/mythsnipper/Dev/cpp/QuantumSimulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/QuantumEngine.dir/src/MainWindow.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/mythsnipper/Dev/cpp/QuantumSimulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/QuantumEngine.dir/src/MainWindow.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QuantumEngine.dir/src/MainWindow.cpp.o -MF CMakeFiles/QuantumEngine.dir/src/MainWindow.cpp.o.d -o CMakeFiles/QuantumEngine.dir/src/MainWindow.cpp.o -c /home/mythsnipper/Dev/cpp/QuantumSimulator/src/MainWindow.cpp
 
 CMakeFiles/QuantumEngine.dir/src/MainWindow.cpp.i: cmake_force
@@ -132,38 +342,10 @@ CMakeFiles/QuantumEngine.dir/src/MainWindow.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/QuantumEngine.dir/src/MainWindow.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mythsnipper/Dev/cpp/QuantumSimulator/src/MainWindow.cpp -o CMakeFiles/QuantumEngine.dir/src/MainWindow.cpp.s
 
-CMakeFiles/QuantumEngine.dir/src/GLRenderer.cpp.o: CMakeFiles/QuantumEngine.dir/flags.make
-CMakeFiles/QuantumEngine.dir/src/GLRenderer.cpp.o: /home/mythsnipper/Dev/cpp/QuantumSimulator/src/GLRenderer.cpp
-CMakeFiles/QuantumEngine.dir/src/GLRenderer.cpp.o: CMakeFiles/QuantumEngine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/mythsnipper/Dev/cpp/QuantumSimulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/QuantumEngine.dir/src/GLRenderer.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QuantumEngine.dir/src/GLRenderer.cpp.o -MF CMakeFiles/QuantumEngine.dir/src/GLRenderer.cpp.o.d -o CMakeFiles/QuantumEngine.dir/src/GLRenderer.cpp.o -c /home/mythsnipper/Dev/cpp/QuantumSimulator/src/GLRenderer.cpp
-
-CMakeFiles/QuantumEngine.dir/src/GLRenderer.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/QuantumEngine.dir/src/GLRenderer.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mythsnipper/Dev/cpp/QuantumSimulator/src/GLRenderer.cpp > CMakeFiles/QuantumEngine.dir/src/GLRenderer.cpp.i
-
-CMakeFiles/QuantumEngine.dir/src/GLRenderer.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/QuantumEngine.dir/src/GLRenderer.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mythsnipper/Dev/cpp/QuantumSimulator/src/GLRenderer.cpp -o CMakeFiles/QuantumEngine.dir/src/GLRenderer.cpp.s
-
-CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.o: CMakeFiles/QuantumEngine.dir/flags.make
-CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.o: /home/mythsnipper/Dev/cpp/QuantumSimulator/src/QT_GLRenderer.cpp
-CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.o: CMakeFiles/QuantumEngine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/mythsnipper/Dev/cpp/QuantumSimulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.o -MF CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.o.d -o CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.o -c /home/mythsnipper/Dev/cpp/QuantumSimulator/src/QT_GLRenderer.cpp
-
-CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mythsnipper/Dev/cpp/QuantumSimulator/src/QT_GLRenderer.cpp > CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.i
-
-CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mythsnipper/Dev/cpp/QuantumSimulator/src/QT_GLRenderer.cpp -o CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.s
-
 CMakeFiles/QuantumEngine.dir/QuantumEngine_autogen/EWIEGA46WW/qrc_resources.cpp.o: CMakeFiles/QuantumEngine.dir/flags.make
 CMakeFiles/QuantumEngine.dir/QuantumEngine_autogen/EWIEGA46WW/qrc_resources.cpp.o: QuantumEngine_autogen/EWIEGA46WW/qrc_resources.cpp
 CMakeFiles/QuantumEngine.dir/QuantumEngine_autogen/EWIEGA46WW/qrc_resources.cpp.o: CMakeFiles/QuantumEngine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/mythsnipper/Dev/cpp/QuantumSimulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/QuantumEngine.dir/QuantumEngine_autogen/EWIEGA46WW/qrc_resources.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/mythsnipper/Dev/cpp/QuantumSimulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/QuantumEngine.dir/QuantumEngine_autogen/EWIEGA46WW/qrc_resources.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/QuantumEngine.dir/QuantumEngine_autogen/EWIEGA46WW/qrc_resources.cpp.o -MF CMakeFiles/QuantumEngine.dir/QuantumEngine_autogen/EWIEGA46WW/qrc_resources.cpp.o.d -o CMakeFiles/QuantumEngine.dir/QuantumEngine_autogen/EWIEGA46WW/qrc_resources.cpp.o -c /home/mythsnipper/Dev/cpp/QuantumSimulator/build/QuantumEngine_autogen/EWIEGA46WW/qrc_resources.cpp
 
 CMakeFiles/QuantumEngine.dir/QuantumEngine_autogen/EWIEGA46WW/qrc_resources.cpp.i: cmake_force
@@ -177,20 +359,46 @@ CMakeFiles/QuantumEngine.dir/QuantumEngine_autogen/EWIEGA46WW/qrc_resources.cpp.
 # Object files for target QuantumEngine
 QuantumEngine_OBJECTS = \
 "CMakeFiles/QuantumEngine.dir/QuantumEngine_autogen/mocs_compilation.cpp.o" \
+"CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.o" \
+"CMakeFiles/QuantumEngine.dir/src/GLRenderer.cpp.o" \
+"CMakeFiles/QuantumEngine.dir/src/Material.cpp.o" \
+"CMakeFiles/QuantumEngine.dir/src/Mesh.cpp.o" \
+"CMakeFiles/QuantumEngine.dir/src/Camera.cpp.o" \
+"CMakeFiles/QuantumEngine.dir/src/RenderObject.cpp.o" \
+"CMakeFiles/QuantumEngine.dir/src/Transform.cpp.o" \
+"CMakeFiles/QuantumEngine.dir/src/Texture2D.cpp.o" \
+"CMakeFiles/QuantumEngine.dir/src/EBO.cpp.o" \
+"CMakeFiles/QuantumEngine.dir/src/VBO.cpp.o" \
+"CMakeFiles/QuantumEngine.dir/src/VAO.cpp.o" \
+"CMakeFiles/QuantumEngine.dir/src/ShaderProgram.cpp.o" \
+"CMakeFiles/QuantumEngine.dir/src/FragmentShader.cpp.o" \
+"CMakeFiles/QuantumEngine.dir/src/VertexShader.cpp.o" \
+"CMakeFiles/QuantumEngine.dir/src/readfile.cpp.o" \
 "CMakeFiles/QuantumEngine.dir/src/main.cpp.o" \
 "CMakeFiles/QuantumEngine.dir/src/MainWindow.cpp.o" \
-"CMakeFiles/QuantumEngine.dir/src/GLRenderer.cpp.o" \
-"CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.o" \
 "CMakeFiles/QuantumEngine.dir/QuantumEngine_autogen/EWIEGA46WW/qrc_resources.cpp.o"
 
 # External object files for target QuantumEngine
 QuantumEngine_EXTERNAL_OBJECTS =
 
 QuantumEngine: CMakeFiles/QuantumEngine.dir/QuantumEngine_autogen/mocs_compilation.cpp.o
+QuantumEngine: CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.o
+QuantumEngine: CMakeFiles/QuantumEngine.dir/src/GLRenderer.cpp.o
+QuantumEngine: CMakeFiles/QuantumEngine.dir/src/Material.cpp.o
+QuantumEngine: CMakeFiles/QuantumEngine.dir/src/Mesh.cpp.o
+QuantumEngine: CMakeFiles/QuantumEngine.dir/src/Camera.cpp.o
+QuantumEngine: CMakeFiles/QuantumEngine.dir/src/RenderObject.cpp.o
+QuantumEngine: CMakeFiles/QuantumEngine.dir/src/Transform.cpp.o
+QuantumEngine: CMakeFiles/QuantumEngine.dir/src/Texture2D.cpp.o
+QuantumEngine: CMakeFiles/QuantumEngine.dir/src/EBO.cpp.o
+QuantumEngine: CMakeFiles/QuantumEngine.dir/src/VBO.cpp.o
+QuantumEngine: CMakeFiles/QuantumEngine.dir/src/VAO.cpp.o
+QuantumEngine: CMakeFiles/QuantumEngine.dir/src/ShaderProgram.cpp.o
+QuantumEngine: CMakeFiles/QuantumEngine.dir/src/FragmentShader.cpp.o
+QuantumEngine: CMakeFiles/QuantumEngine.dir/src/VertexShader.cpp.o
+QuantumEngine: CMakeFiles/QuantumEngine.dir/src/readfile.cpp.o
 QuantumEngine: CMakeFiles/QuantumEngine.dir/src/main.cpp.o
 QuantumEngine: CMakeFiles/QuantumEngine.dir/src/MainWindow.cpp.o
-QuantumEngine: CMakeFiles/QuantumEngine.dir/src/GLRenderer.cpp.o
-QuantumEngine: CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.o
 QuantumEngine: CMakeFiles/QuantumEngine.dir/QuantumEngine_autogen/EWIEGA46WW/qrc_resources.cpp.o
 QuantumEngine: CMakeFiles/QuantumEngine.dir/build.make
 QuantumEngine: CMakeFiles/QuantumEngine.dir/compiler_depend.ts
@@ -202,7 +410,7 @@ QuantumEngine: /usr/lib/libGLX.so
 QuantumEngine: /usr/lib/libOpenGL.so
 QuantumEngine: /usr/lib/libQt6Core.so.6.11.2
 QuantumEngine: CMakeFiles/QuantumEngine.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/mythsnipper/Dev/cpp/QuantumSimulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable QuantumEngine"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/mythsnipper/Dev/cpp/QuantumSimulator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Linking CXX executable QuantumEngine"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/QuantumEngine.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

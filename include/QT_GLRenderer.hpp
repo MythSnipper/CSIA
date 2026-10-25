@@ -1,27 +1,14 @@
 #pragma once
 
-#include <GLRenderer.hpp>
-
 #include <QOpenGLWidget>
-#include <QOpenGLFunctions_3_3_Core>
 #include <QTimer>
 #include <QElapsedTimer>
-#include <QMouseEvent>
-#include <QWheelEvent>
-#include <QKeyEvent>
-
-#include <memory>
-#include <vector>
+#include <QPoint>
 
 //forward declare
-class VertexShader;
-class FragmentShader;
-class ShaderProgram;
-class VBO;
-class VAO;
-class RenderObject;
+class GLRenderer;
 
-class QT_GLRenderer : public QOpenGLWidget, protected QOpenGLFunctions_3_3_Core{
+class QT_GLRenderer : public QOpenGLWidget{
 public:
     explicit QT_GLRenderer(QWidget* parent = nullptr);
     ~QT_GLRenderer();
@@ -41,45 +28,14 @@ protected:
 
 private:
     void updateCamera(float deltaTime);
-    void createGLResources();
-    void destroyGLResources();
 
-    //drawing
-    void drawRenderObject(std::unique_ptr<RenderObject>& object, const glm::mat4& view, const glm::mat4& projection);
-    void drawFullscreenPass(ShaderProgram& shader);
-    void drawGrid();
-
-    //misc
-    void printInfo();
-    void applySettings();
-
-    //materials
-    Material* createMaterial(); //creates a default working material
-
-
-    //settings
-    bool wireframe_mode = false;
-    bool depth_test = true;
-    uint32_t FPS = 60;
-
-    //renderer objects
-    std::unique_ptr<Mesh> cube, sphere;
-    
-    std::unique_ptr<Texture2D> whiteTexture, checkerTexture;
-    std::vector<std::unique_ptr<Material>> materials;
-    DirectionalLight light;
-    std::unique_ptr<ShaderProgram> objectShader, wireframePlaneShader;
-
-    Camera camera;
-    std::vector<std::unique_ptr<RenderObject>> objects;
+    std::unique_ptr<GLRenderer> renderer;
+    QMetaObject::Connection contextConnection;
 
     QTimer renderTimer;
     QElapsedTimer frameTimer;
+    uint32_t FPS = 60; //fps setting
 
-    GLuint fullscreenVAO = 0; //VAO for drawing fullscreen shader passes
-
-    //input states
-    //keyboard
     bool moveForward = false;
     bool moveBackward = false;
     bool moveLeft = false;
@@ -87,24 +43,8 @@ private:
     bool moveUp = false;
     bool moveDown = false;
 
-    //mouse
     QPoint lastMousePosition;
     bool rotating = false;
-    
 };
-
-void generate_sphere(float radius, uint32_t sectors, uint32_t stacks, std::vector<float>& vertices, std::vector<uint32_t>& indices);
-void generate_cube(float halfSize, std::vector<float>& vertices, std::vector<uint32_t>& indices);
-
-
-
-
-
-
-
-
-
-
-
 
 

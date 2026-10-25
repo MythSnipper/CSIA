@@ -5,10 +5,23 @@ QuantumEngine_autogen/timestamp: /home/mythsnipper/Dev/cpp/QuantumSimulator/CMak
   CMakeFiles/4.4.3/CMakeCXXCompiler.cmake \
   CMakeFiles/4.4.3/CMakeSystem.cmake \
   /home/mythsnipper/Dev/cpp/QuantumSimulator/resources.qrc \
+  /home/mythsnipper/Dev/cpp/QuantumSimulator/src/Camera.cpp \
+  /home/mythsnipper/Dev/cpp/QuantumSimulator/src/EBO.cpp \
+  /home/mythsnipper/Dev/cpp/QuantumSimulator/src/FragmentShader.cpp \
   /home/mythsnipper/Dev/cpp/QuantumSimulator/src/GLRenderer.cpp \
   /home/mythsnipper/Dev/cpp/QuantumSimulator/src/MainWindow.cpp \
+  /home/mythsnipper/Dev/cpp/QuantumSimulator/src/Material.cpp \
+  /home/mythsnipper/Dev/cpp/QuantumSimulator/src/Mesh.cpp \
   /home/mythsnipper/Dev/cpp/QuantumSimulator/src/QT_GLRenderer.cpp \
+  /home/mythsnipper/Dev/cpp/QuantumSimulator/src/RenderObject.cpp \
+  /home/mythsnipper/Dev/cpp/QuantumSimulator/src/ShaderProgram.cpp \
+  /home/mythsnipper/Dev/cpp/QuantumSimulator/src/Texture2D.cpp \
+  /home/mythsnipper/Dev/cpp/QuantumSimulator/src/Transform.cpp \
+  /home/mythsnipper/Dev/cpp/QuantumSimulator/src/VAO.cpp \
+  /home/mythsnipper/Dev/cpp/QuantumSimulator/src/VBO.cpp \
+  /home/mythsnipper/Dev/cpp/QuantumSimulator/src/VertexShader.cpp \
   /home/mythsnipper/Dev/cpp/QuantumSimulator/src/main.cpp \
+  /home/mythsnipper/Dev/cpp/QuantumSimulator/src/readfile.cpp \
   /usr/bin/cmake \
   /usr/lib/cmake/Qt6/FindWrapAtomic.cmake \
   /usr/lib/cmake/Qt6/FindWrapOpenGL.cmake \
@@ -513,8 +526,6 @@ QuantumEngine_autogen/timestamp: /home/mythsnipper/Dev/cpp/QuantumSimulator/CMak
 
 /usr/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsTargetsPrecheck.cmake:
 
-/usr/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsTargets.cmake:
-
 /usr/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsDependencies.cmake:
 
 /usr/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsConfigVersionImpl.cmake:
@@ -563,8 +574,6 @@ QuantumEngine_autogen/timestamp: /home/mythsnipper/Dev/cpp/QuantumSimulator/CMak
 
 /usr/lib/cmake/Qt6Gui/Qt6QXcbIntegrationPluginAdditionalTargetInfo.cmake:
 
-/usr/lib/cmake/Qt6Gui/Qt6QXcbEglIntegrationPluginTargetsPrecheck.cmake:
-
 /usr/lib/cmake/Qt6Gui/Qt6QXcbEglIntegrationPluginTargets.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QXcbEglIntegrationPluginConfig.cmake:
@@ -580,8 +589,6 @@ QuantumEngine_autogen/timestamp: /home/mythsnipper/Dev/cpp/QuantumSimulator/CMak
 /usr/lib/cmake/Qt6Gui/Qt6QWbmpPluginConfig.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QWbmpPluginAdditionalTargetInfo.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QWaylandXdgShellIntegrationPluginTargetsPrecheck.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QWaylandXdgShellIntegrationPluginConfig.cmake:
 
@@ -691,8 +698,6 @@ QuantumEngine_autogen/timestamp: /home/mythsnipper/Dev/cpp/QuantumSimulator/CMak
 
 /usr/lib/cmake/Qt6Gui/Qt6QTuioTouchPluginAdditionalTargetInfo.cmake:
 
-/usr/lib/cmake/Qt6Gui/Qt6QTsLibPluginTargetsPrecheck.cmake:
-
 /usr/lib/cmake/Qt6GuiTools/Qt6GuiToolsConfigVersion.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QTsLibPluginTargets.cmake:
@@ -701,11 +706,33 @@ QuantumEngine_autogen/timestamp: /home/mythsnipper/Dev/cpp/QuantumSimulator/CMak
 
 /usr/lib/cmake/Qt6Gui/Qt6QTiffPluginTargets-relwithdebinfo.cmake:
 
+/usr/lib/cmake/Qt6Gui/Qt6QWaylandEglClientBufferPluginTargets.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QTiffPluginConfig.cmake:
+
+/usr/share/cmake/Modules/CMakeCommonLanguageInclude.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QTiffPluginAdditionalTargetInfo.cmake:
+
 /usr/lib/cmake/Qt6Gui/Qt6QTgaPluginTargets.cmake:
 
-/usr/lib/cmake/Qt6Gui/Qt6QComposePlatformInputContextPluginConfig.cmake:
+/usr/lib/cmake/Qt6Gui/Qt6QTgaPluginConfig.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QSvgPluginTargetsPrecheck.cmake:
+
+/usr/share/cmake/Modules/Platform/Linux-GNU-CXX.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QSvgPluginConfig.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QSvgPluginAdditionalTargetInfo.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QSvgIconPluginTargetsPrecheck.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6GuiConfig.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QXcbEglIntegrationPluginTargetsPrecheck.cmake:
+
+/home/mythsnipper/Dev/cpp/QuantumSimulator/src/FragmentShader.cpp:
 
 /usr/lib/cmake/Qt6GuiTools/Qt6GuiToolsTargets.cmake:
 
@@ -717,13 +744,13 @@ QuantumEngine_autogen/timestamp: /home/mythsnipper/Dev/cpp/QuantumSimulator/CMak
 
 /usr/lib/cmake/Qt6/FindWrapVulkanHeaders.cmake:
 
+/home/mythsnipper/Dev/cpp/QuantumSimulator/src/Camera.cpp:
+
 /usr/lib/cmake/Qt6Gui/Qt6QEglFSKmsEglDeviceIntegrationPluginAdditionalTargetInfo.cmake:
 
-/usr/share/cmake/Modules/Platform/Linux-GNU.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6DrmEglServerBufferPluginAdditionalTargetInfo.cmake:
-
 /usr/lib/cmake/Qt6Gui/Qt6DmaBufServerBufferPluginAdditionalTargetInfo.cmake:
+
+/home/mythsnipper/Dev/cpp/QuantumSimulator/src/VBO.cpp:
 
 /usr/lib/cmake/Qt6Gui/Qt6ShmServerBufferPluginTargets.cmake:
 
@@ -740,8 +767,6 @@ QuantumEngine_autogen/timestamp: /home/mythsnipper/Dev/cpp/QuantumSimulator/CMak
 /usr/lib/cmake/Qt6Gui/Qt6QXcbIntegrationPluginTargetsPrecheck.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QEvdevKeyboardPluginTargets.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QMinimalIntegrationPluginAdditionalTargetInfo.cmake:
 
 /usr/lib/cmake/Qt6DBusTools/Qt6DBusToolsDependencies.cmake:
 
@@ -775,15 +800,7 @@ QuantumEngine_autogen/timestamp: /home/mythsnipper/Dev/cpp/QuantumSimulator/CMak
 
 /usr/lib/cmake/Qt6DBusTools/Qt6DBusToolsVersionlessTargets.cmake:
 
-/usr/lib/cmake/Qt6Gui/Qt6GuiVersionlessAliasTargets.cmake:
-
-/usr/lib/cmake/Qt6DBus/Qt6DBusConfigVersion.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QGifPluginAdditionalTargetInfo.cmake:
-
 /usr/lib/cmake/Qt6/QtPublicSbomPythonHelpers.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QTgaPluginConfig.cmake:
 
 /usr/lib/cmake/Qt6CoreTools/Qt6CoreToolsTargetsPrecheck.cmake:
 
@@ -801,10 +818,6 @@ QuantumEngine_autogen/timestamp: /home/mythsnipper/Dev/cpp/QuantumSimulator/CMak
 
 /usr/bin/cmake:
 
-/usr/lib/cmake/Qt6Gui/Qt6QComposePlatformInputContextPluginAdditionalTargetInfo.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QEglFSEmulatorIntegrationPluginConfig.cmake:
-
 /usr/lib/cmake/Qt6CoreTools/Qt6CoreToolsConfig.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QEvdevTabletPluginTargets.cmake:
@@ -817,13 +830,17 @@ QuantumEngine_autogen/timestamp: /home/mythsnipper/Dev/cpp/QuantumSimulator/CMak
 
 /usr/lib/cmake/Qt6Gui/Qt6QEvdevKeyboardPluginTargetsPrecheck.cmake:
 
-/usr/lib/cmake/Qt6Gui/Qt6QJpegPluginAdditionalTargetInfo.cmake:
-
 /usr/lib/cmake/Qt6Gui/Qt6QOffscreenIntegrationPluginTargetsPrecheck.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QWaylandFullScreenShellV1IntegrationPluginTargetsPrecheck.cmake:
 
 /usr/lib/cmake/Qt6Core/Qt6CoreMacros.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QVncIntegrationPluginTargets-relwithdebinfo.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QSvgPluginTargets.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QMngPluginConfig.cmake:
 
 /usr/lib/cmake/Qt6Core/Qt6CoreConfigVersion.cmake:
 
@@ -832,6 +849,12 @@ QuantumEngine_autogen/timestamp: /home/mythsnipper/Dev/cpp/QuantumSimulator/CMak
 /usr/lib/cmake/Qt6Core/Qt6CoreAdditionalTargetInfo.cmake:
 
 /usr/lib/cmake/Qt6DBus/Qt6DBusTargets.cmake:
+
+/usr/share/cmake/Modules/Platform/Linux.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QSvgPluginTargets-relwithdebinfo.cmake:
+
+CMakeFiles/4.4.3/CMakeSystem.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QVkKhrDisplayIntegrationPluginTargets-relwithdebinfo.cmake:
 
@@ -843,81 +866,125 @@ QuantumEngine_autogen/timestamp: /home/mythsnipper/Dev/cpp/QuantumSimulator/CMak
 
 /usr/lib/cmake/Qt6/QtPublicWalkLibsHelpers.cmake:
 
-/usr/lib/cmake/Qt6/QtPublicCMakeIncludeGuardHelpers.cmake:
+/usr/lib/cmake/Qt6Core/Qt6CoreDependencies.cmake:
 
-/usr/lib/cmake/Qt6Gui/Qt6DmaBufServerBufferPluginTargetsPrecheck.cmake:
+/usr/lib/cmake/Qt6Gui/Qt6QEvdevMousePluginConfig.cmake:
 
-/usr/lib/cmake/Qt6/QtPublicSbomOpsHelpers.cmake:
+/usr/lib/cmake/Qt6/QtPublicTargetHelpers.cmake:
 
-/usr/lib/cmake/Qt6Gui/Qt6QLibInputPluginConfig.cmake:
+/usr/lib/cmake/Qt6/QtPublicSbomFileHelpers.cmake:
 
-/usr/lib/cmake/Qt6Gui/Qt6QWebpPluginConfig.cmake:
+/usr/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsVersionlessTargets.cmake:
 
-/usr/lib/cmake/Qt6CoreTools/Qt6CoreToolsAdditionalTargetInfo.cmake:
+/usr/lib/cmake/Qt6Gui/Qt6QMngPluginTargets-relwithdebinfo.cmake:
 
-/usr/lib/cmake/Qt6Gui/Qt6VulkanServerBufferPluginAdditionalTargetInfo.cmake:
+/usr/lib/cmake/Qt6/QtPublicSbomSystemDepHelpers.cmake:
 
-/usr/lib/cmake/Qt6Gui/Qt6GuiDependencies.cmake:
+/usr/lib/cmake/Qt6/QtPublicSbomHelpers.cmake:
 
-/usr/lib/cmake/Qt6/QtPublicCMakeEarlyPolicyHelpers.cmake:
+/usr/lib/cmake/Qt6/QtPublicJsonHelpers.cmake:
 
-/usr/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsConfigVersionImpl.cmake:
-
-/usr/lib/cmake/Qt6Core/Qt6CoreConfigExtras.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6GuiAdditionalTargetInfo.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QEglFSKmsEglDeviceIntegrationPluginConfig.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6GuiConfigVersion.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QEglFSKmsGbmIntegrationPluginTargets-relwithdebinfo.cmake:
-
-/usr/lib/cmake/Qt6/QtPublicExternalProjectHelpers.cmake:
-
-/usr/lib/cmake/Qt6Widgets/Qt6WidgetsConfigVersionImpl.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6VulkanServerBufferPluginTargets-relwithdebinfo.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6ShmServerBufferPluginTargets-relwithdebinfo.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6GuiPlugins.cmake:
-
-/usr/lib/cmake/Qt6/QtPublicAppleHelpers.cmake:
-
-/usr/lib/cmake/Qt6/QtFeatureCommon.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QXcbEglIntegrationPluginTargets-relwithdebinfo.cmake:
-
-/usr/lib/cmake/Qt6/QtInstallPaths.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QEglFSX11IntegrationPluginTargetsPrecheck.cmake:
-
-/usr/lib/cmake/Qt6CoreTools/Qt6CoreToolsConfigVersionImpl.cmake:
-
-/usr/lib/cmake/Qt6/Qt6TargetsPrecheck.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QWaylandBradientDecorationPluginTargetsPrecheck.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6GuiTargets.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QTiffPluginTargets.cmake:
-
-/home/mythsnipper/Dev/cpp/QuantumSimulator/resources.qrc:
+/usr/lib/cmake/Qt6Gui/Qt6QMinimalIntegrationPluginTargets-relwithdebinfo.cmake:
 
 /usr/lib/cmake/Qt6/QtPublicSbomGenerationHelpers.cmake:
 
 /usr/lib/cmake/Qt6/QtPublicTestHelpers.cmake:
 
-/usr/share/cmake/Modules/Platform/Linker/Linux-GNU-CXX.cmake:
+/usr/lib/cmake/Qt6Gui/Qt6QTiffPluginTargets.cmake:
 
-/usr/lib/cmake/Qt6/Qt6ConfigVersionImpl.cmake:
+/home/mythsnipper/Dev/cpp/QuantumSimulator/resources.qrc:
 
 /usr/lib/cmake/Qt6Gui/Qt6QWebpPluginTargetsPrecheck.cmake:
 
 /usr/lib/cmake/Qt6/QtPublicGitHelpers.cmake:
 
-/usr/lib/cmake/Qt6Core/Qt6CoreConfig.cmake:
+/usr/lib/cmake/Qt6/QtPublicSbomBuildToolHelpers.cmake:
+
+/usr/share/cmake/Modules/Platform/UnixPaths.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6DrmEglServerBufferPluginTargets.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QGifPluginTargets.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QWaylandWlShellIntegrationPluginAdditionalTargetInfo.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QGifPluginTargetsPrecheck.cmake:
+
+/usr/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsConfigVersion.cmake:
+
+/usr/lib/cmake/Qt6DBusTools/Qt6DBusToolsTargets.cmake:
+
+/usr/lib/cmake/Qt6/Qt6ConfigExtras.cmake:
+
+/usr/share/cmake/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6GuiConfigVersionImpl.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QPdfPluginTargets.cmake:
+
+/usr/lib/cmake/Qt6OpenGLWidgets/Qt6OpenGLWidgetsTargets.cmake:
+
+/home/mythsnipper/Dev/cpp/QuantumSimulator/src/readfile.cpp:
+
+/usr/lib/cmake/Qt6Gui/Qt6GuiAdditionalTargetInfo.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QEglFSKmsEglDeviceIntegrationPluginConfig.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QMinimalIntegrationPluginAdditionalTargetInfo.cmake:
+
+/home/mythsnipper/Dev/cpp/QuantumSimulator/src/VertexShader.cpp:
+
+/usr/lib/cmake/Qt6/QtPublicSbomOpsHelpers.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6DmaBufServerBufferPluginTargetsPrecheck.cmake:
+
+/usr/lib/cmake/Qt6/QtPublicCMakeIncludeGuardHelpers.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QLibInputPluginConfig.cmake:
+
+/usr/lib/cmake/Qt6/FindWrapAtomic.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QWaylandAdwaitaDecorationPluginTargetsPrecheck.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QEglFSX11IntegrationPluginTargets-relwithdebinfo.cmake:
+
+/usr/lib/cmake/Qt6/QtPublicToolHelpers.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QLinuxFbIntegrationPluginTargets-relwithdebinfo.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QMngPluginTargets.cmake:
+
+/home/mythsnipper/Dev/cpp/QuantumSimulator/src/VAO.cpp:
+
+/usr/lib/cmake/Qt6Gui/Qt6QWaylandBradientDecorationPluginTargetsPrecheck.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6GuiTargets.cmake:
+
+/usr/lib/cmake/Qt6DBus/Qt6DBusConfigVersion.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QGifPluginAdditionalTargetInfo.cmake:
+
+/home/mythsnipper/Dev/cpp/QuantumSimulator/src/Texture2D.cpp:
+
+/usr/share/cmake/Modules/Platform/Linker/Linux-GNU-CXX.cmake:
+
+/usr/lib/cmake/Qt6/Qt6ConfigVersionImpl.cmake:
+
+/home/mythsnipper/Dev/cpp/QuantumSimulator/src/Transform.cpp:
+
+/usr/lib/cmake/Qt6CoreTools/Qt6CoreToolsConfigVersionImpl.cmake:
+
+/usr/lib/cmake/Qt6/Qt6TargetsPrecheck.cmake:
+
+/usr/share/cmake/Modules/Platform/Linux-GNU.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6DrmEglServerBufferPluginAdditionalTargetInfo.cmake:
+
+/home/mythsnipper/Dev/cpp/QuantumSimulator/src/ShaderProgram.cpp:
+
+/usr/lib/cmake/Qt6Gui/Qt6QEglFSKmsGbmIntegrationPluginTargetsPrecheck.cmake:
+
+/usr/lib/cmake/Qt6/QtPublicSbomGenerationCycloneDXHelpers.cmake:
 
 /usr/lib/cmake/Qt6DBus/Qt6DBusDependencies.cmake:
 
@@ -929,11 +996,71 @@ QuantumEngine_autogen/timestamp: /home/mythsnipper/Dev/cpp/QuantumSimulator/CMak
 
 /usr/lib/cmake/Qt6Gui/Qt6QEvdevMousePluginAdditionalTargetInfo.cmake:
 
-/usr/lib/cmake/Qt6/FindWrapAtomic.cmake:
+/usr/lib/cmake/Qt6Gui/Qt6QICNSPluginTargets-relwithdebinfo.cmake:
 
-/usr/lib/cmake/Qt6Gui/Qt6QWaylandAdwaitaDecorationPluginTargetsPrecheck.cmake:
+/usr/lib/cmake/Qt6/QtPublicSbomRelationshipHelpers.cmake:
 
-/usr/lib/cmake/Qt6Gui/Qt6QEglFSX11IntegrationPluginTargets-relwithdebinfo.cmake:
+/usr/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QOffscreenIntegrationPluginAdditionalTargetInfo.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QJpegPluginAdditionalTargetInfo.cmake:
+
+/home/mythsnipper/Dev/cpp/QuantumSimulator/src/Mesh.cpp:
+
+/usr/lib/cmake/Qt6Gui/Qt6QTgaPluginAdditionalTargetInfo.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QEglFSEmulatorIntegrationPluginAdditionalTargetInfo.cmake:
+
+/usr/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsConfigVersionImpl.cmake:
+
+/usr/lib/cmake/Qt6Core/Qt6CoreConfigExtras.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QWebpPluginConfig.cmake:
+
+/usr/lib/cmake/Qt6CoreTools/Qt6CoreToolsAdditionalTargetInfo.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6GuiConfigVersion.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QEglFSKmsGbmIntegrationPluginTargets-relwithdebinfo.cmake:
+
+/usr/lib/cmake/Qt6/QtPublicExternalProjectHelpers.cmake:
+
+/usr/lib/cmake/Qt6Core/Qt6CoreConfig.cmake:
+
+/home/mythsnipper/Dev/cpp/QuantumSimulator/src/RenderObject.cpp:
+
+/usr/lib/cmake/Qt6Gui/Qt6QXcbEglIntegrationPluginTargets-relwithdebinfo.cmake:
+
+/usr/lib/cmake/Qt6/QtInstallPaths.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QEglFSX11IntegrationPluginTargetsPrecheck.cmake:
+
+/usr/lib/cmake/Qt6/FindWrapOpenGL.cmake:
+
+/usr/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsConfig.cmake:
+
+/usr/lib/cmake/Qt6OpenGL/Qt6OpenGLAdditionalTargetInfo.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QICOPluginAdditionalTargetInfo.cmake:
+
+/home/mythsnipper/Dev/cpp/QuantumSimulator/src/GLRenderer.cpp:
+
+/usr/lib/cmake/Qt6Gui/Qt6QWaylandIviShellIntegrationPluginTargetsPrecheck.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QWaylandAdwaitaDecorationPluginAdditionalTargetInfo.cmake:
+
+/usr/lib/cmake/Qt6/QtPublicSbomQtEntityHelpers.cmake:
+
+/usr/lib/cmake/Qt6/Qt6VersionlessAliasTargets.cmake:
+
+/usr/lib/cmake/Qt6/QtPublicFinalizerHelpers.cmake:
+
+/usr/lib/cmake/Qt6/QtFeatureCommon.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QWaylandXdgShellIntegrationPluginTargetsPrecheck.cmake:
+
+/home/mythsnipper/Dev/cpp/QuantumSimulator/src/Material.cpp:
 
 /usr/lib/cmake/Qt6Gui/Qt6QWaylandFullScreenShellV1IntegrationPluginTargets.cmake:
 
@@ -951,103 +1078,19 @@ QuantumEngine_autogen/timestamp: /home/mythsnipper/Dev/cpp/QuantumSimulator/CMak
 
 /usr/lib/cmake/Qt6DBus/Qt6DBusConfigVersionImpl.cmake:
 
-/usr/lib/cmake/Qt6/QtPublicFinalizerHelpers.cmake:
-
-/usr/lib/cmake/Qt6/Qt6VersionlessAliasTargets.cmake:
-
 /usr/lib/cmake/Qt6/QtPublicFindPackageHelpers.cmake:
 
+/usr/lib/cmake/Qt6Gui/Qt6QTsLibPluginTargetsPrecheck.cmake:
+
+/home/mythsnipper/Dev/cpp/QuantumSimulator/src/EBO.cpp:
+
 /usr/lib/cmake/Qt6/QtPublicSbomAttributionHelpers.cmake:
-
-/home/mythsnipper/Dev/cpp/QuantumSimulator/src/GLRenderer.cpp:
-
-/usr/lib/cmake/Qt6Gui/Qt6QWaylandIviShellIntegrationPluginTargetsPrecheck.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QWaylandAdwaitaDecorationPluginAdditionalTargetInfo.cmake:
-
-/usr/lib/cmake/Qt6/QtPublicSbomQtEntityHelpers.cmake:
-
-/usr/share/cmake/Modules/Platform/UnixPaths.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6DrmEglServerBufferPluginTargets.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QGifPluginTargets.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QWaylandWlShellIntegrationPluginAdditionalTargetInfo.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QGifPluginTargetsPrecheck.cmake:
-
-/usr/lib/cmake/Qt6/FindWrapOpenGL.cmake:
-
-/usr/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsConfig.cmake:
-
-/usr/lib/cmake/Qt6OpenGL/Qt6OpenGLAdditionalTargetInfo.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QICOPluginAdditionalTargetInfo.cmake:
-
-/usr/lib/cmake/Qt6/QtPublicSbomBuildToolHelpers.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6DmaBufServerBufferPluginTargets.cmake:
 
 /usr/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QIbusPlatformInputContextPluginAdditionalTargetInfo.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QICNSPluginTargets-relwithdebinfo.cmake:
-
-/usr/lib/cmake/Qt6/QtPublicSbomRelationshipHelpers.cmake:
-
-/usr/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QOffscreenIntegrationPluginAdditionalTargetInfo.cmake:
-
-/usr/lib/cmake/Qt6/QtPublicJsonHelpers.cmake:
-
-/usr/lib/cmake/Qt6/QtPublicSbomHelpers.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QMinimalIntegrationPluginTargets-relwithdebinfo.cmake:
-
-/usr/lib/cmake/Qt6/QtPublicSbomGenerationCycloneDXHelpers.cmake:
-
-/usr/lib/cmake/Qt6CoreTools/Qt6CoreToolsTargets-relwithdebinfo.cmake:
-
-/usr/lib/cmake/Qt6/QtPublicPluginHelpers.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QEglFSEmulatorIntegrationPluginTargets.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6GuiTargets-relwithdebinfo.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QComposePlatformInputContextPluginTargets-relwithdebinfo.cmake:
-
-/usr/lib/cmake/Qt6/Qt6Targets.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QICOPluginTargets-relwithdebinfo.cmake:
-
-/usr/lib/cmake/Qt6Core/Qt6CoreTargets.cmake:
-
-/usr/lib/cmake/Qt6Widgets/Qt6WidgetsConfigVersion.cmake:
-
-/usr/lib/cmake/Qt6/QtPublicSbomCommonGenerationHelpers.cmake:
-
-/usr/lib/cmake/Qt6/QtPublicPluginHelpers_v2.cmake:
-
-/home/mythsnipper/Dev/cpp/QuantumSimulator/CMakeLists.txt:
-
-/usr/lib/cmake/Qt6Gui/Qt6QEglFSKmsEglDeviceIntegrationPluginTargets-relwithdebinfo.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QComposePlatformInputContextPluginTargetsPrecheck.cmake:
-
-/usr/lib/cmake/Qt6Widgets/Qt6WidgetsTargetsPrecheck.cmake:
-
-/usr/lib/cmake/Qt6/QtPublicSbomCycloneDXHelpers.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QGtk3ThemePluginTargetsPrecheck.cmake:
-
-/usr/lib/cmake/Qt6/QtPublicSbomDepHelpers.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QEglFSIntegrationPluginTargets.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QEvdevMousePluginTargets.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QTsLibPluginTargets-relwithdebinfo.cmake:
 
@@ -1063,45 +1106,69 @@ QuantumEngine_autogen/timestamp: /home/mythsnipper/Dev/cpp/QuantumSimulator/CMak
 
 /usr/lib/cmake/Qt6Gui/Qt6QEvdevKeyboardPluginConfig.cmake:
 
-/usr/share/cmake/Modules/Platform/Linux.cmake:
+/usr/lib/cmake/Qt6Gui/Qt6QEglFSIntegrationPluginTargets.cmake:
 
-CMakeFiles/4.4.3/CMakeSystem.cmake:
+/usr/lib/cmake/Qt6Gui/Qt6QEvdevMousePluginTargets.cmake:
 
-/usr/lib/cmake/Qt6Gui/Qt6QSvgPluginTargets-relwithdebinfo.cmake:
+/usr/lib/cmake/Qt6/QtPublicAppleHelpers.cmake:
 
-/usr/lib/cmake/Qt6/QtPublicSbomSystemDepHelpers.cmake:
+/usr/lib/cmake/Qt6Gui/Qt6QComposePlatformInputContextPluginConfig.cmake:
 
-/usr/lib/cmake/Qt6Core/Qt6CoreDependencies.cmake:
+/usr/lib/cmake/Qt6CoreTools/Qt6CoreToolsTargets-relwithdebinfo.cmake:
 
-/usr/lib/cmake/Qt6Gui/Qt6QEvdevMousePluginConfig.cmake:
+/usr/lib/cmake/Qt6/QtPublicPluginHelpers.cmake:
 
-/usr/lib/cmake/Qt6/QtPublicTargetHelpers.cmake:
+/usr/lib/cmake/Qt6Gui/Qt6QEglFSEmulatorIntegrationPluginTargets.cmake:
 
-/usr/lib/cmake/Qt6/QtPublicSbomFileHelpers.cmake:
+/usr/lib/cmake/Qt6Core/Qt6CoreTargets.cmake:
 
-/usr/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsVersionlessTargets.cmake:
+/usr/lib/cmake/Qt6Widgets/Qt6WidgetsConfigVersion.cmake:
 
-/usr/lib/cmake/Qt6Gui/Qt6QMngPluginTargets-relwithdebinfo.cmake:
+/usr/lib/cmake/Qt6/QtPublicSbomCommonGenerationHelpers.cmake:
 
-/usr/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsConfigVersion.cmake:
+/home/mythsnipper/Dev/cpp/QuantumSimulator/CMakeLists.txt:
 
-/usr/lib/cmake/Qt6DBusTools/Qt6DBusToolsTargets.cmake:
+/usr/lib/cmake/Qt6/QtPublicPluginHelpers_v2.cmake:
 
-/usr/lib/cmake/Qt6/Qt6ConfigExtras.cmake:
+/usr/lib/cmake/Qt6Gui/Qt6QEglFSKmsEglDeviceIntegrationPluginTargets-relwithdebinfo.cmake:
 
-/usr/share/cmake/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake:
+/usr/lib/cmake/Qt6Widgets/Qt6WidgetsTargetsPrecheck.cmake:
 
-/usr/lib/cmake/Qt6Gui/Qt6GuiConfigVersionImpl.cmake:
+/usr/lib/cmake/Qt6/QtPublicSbomCycloneDXHelpers.cmake:
 
-/usr/lib/cmake/Qt6Gui/Qt6QPdfPluginTargets.cmake:
+/usr/lib/cmake/Qt6Gui/Qt6QGtk3ThemePluginTargetsPrecheck.cmake:
 
-/usr/lib/cmake/Qt6/QtPublicToolHelpers.cmake:
+/usr/lib/cmake/Qt6/QtPublicSbomDepHelpers.cmake:
 
-/usr/lib/cmake/Qt6Gui/Qt6QLinuxFbIntegrationPluginTargets-relwithdebinfo.cmake:
+/usr/lib/cmake/Qt6Gui/Qt6VulkanServerBufferPluginAdditionalTargetInfo.cmake:
 
-/usr/lib/cmake/Qt6Gui/Qt6QMngPluginTargets.cmake:
+/usr/lib/cmake/Qt6/QtPublicCMakeEarlyPolicyHelpers.cmake:
 
-/usr/lib/cmake/Qt6Gui/Qt6QSvgPluginAdditionalTargetInfo.cmake:
+/usr/lib/cmake/Qt6Gui/Qt6GuiDependencies.cmake:
+
+/usr/lib/cmake/Qt6Widgets/Qt6WidgetsConfigVersionImpl.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6VulkanServerBufferPluginTargets-relwithdebinfo.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6ShmServerBufferPluginTargets-relwithdebinfo.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6GuiPlugins.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6GuiVersionlessAliasTargets.cmake:
+
+/usr/lib/cmake/Qt6/Qt6Targets.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QICOPluginTargets-relwithdebinfo.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6GuiTargets-relwithdebinfo.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QComposePlatformInputContextPluginTargets-relwithdebinfo.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QComposePlatformInputContextPluginTargetsPrecheck.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QComposePlatformInputContextPluginAdditionalTargetInfo.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QEglFSEmulatorIntegrationPluginConfig.cmake:
 
 /usr/lib/cmake/Qt6CoreTools/Qt6CoreToolsConfigVersion.cmake:
 
@@ -1149,13 +1216,9 @@ CMakeFiles/4.4.3/CMakeSystem.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QEglFSKmsGbmIntegrationPluginConfig.cmake:
 
-/usr/lib/cmake/Qt6Gui/Qt6QEglFSKmsGbmIntegrationPluginTargetsPrecheck.cmake:
-
 /usr/lib/cmake/Qt6GuiTools/Qt6GuiToolsAdditionalTargetInfo.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QEglFSX11IntegrationPluginAdditionalTargetInfo.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QSvgPluginTargetsPrecheck.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QWaylandIntegrationPluginTargetsPrecheck.cmake:
 
@@ -1189,10 +1252,6 @@ CMakeFiles/4.4.3/CMakeSystem.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QJp2PluginTargets-relwithdebinfo.cmake:
 
-/usr/share/cmake/Modules/CMakeCommonLanguageInclude.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QTiffPluginAdditionalTargetInfo.cmake:
-
 /usr/lib/cmake/Qt6Gui/Qt6QTgaPluginTargetsPrecheck.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QEvdevTouchScreenPluginAdditionalTargetInfo.cmake:
@@ -1210,6 +1269,16 @@ CMakeFiles/4.4.3/CMakeSystem.cmake:
 /usr/lib/cmake/Qt6Gui/Qt6QGifPluginConfig.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QGifPluginTargets-relwithdebinfo.cmake:
+
+/usr/share/cmake/Modules/FindPackageMessage.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QWbmpPluginTargets.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QTgaPluginTargets-relwithdebinfo.cmake:
+
+/usr/lib/cmake/Qt6DBusTools/Qt6DBusToolsConfigVersionImpl.cmake:
+
+/usr/lib/cmake/Qt6Gui/Qt6QGtk3ThemePluginConfig.cmake:
 
 /usr/lib/cmake/Qt6Widgets/Qt6WidgetsTargets-relwithdebinfo.cmake:
 
@@ -1289,10 +1358,6 @@ CMakeFiles/4.4.3/CMakeCXXCompiler.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QLinuxFbIntegrationPluginTargetsPrecheck.cmake:
 
-/usr/lib/cmake/Qt6Gui/Qt6QEglFSEmulatorIntegrationPluginAdditionalTargetInfo.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QTgaPluginAdditionalTargetInfo.cmake:
-
 /usr/lib/cmake/Qt6Gui/Qt6QWaylandXdgShellIntegrationPluginTargets.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QMinimalEglIntegrationPluginConfig.cmake:
@@ -1316,8 +1381,6 @@ CMakeFiles/4.4.3/CMakeCXXCompiler.cmake:
 /usr/lib/cmake/Qt6Gui/Qt6QEglFSX11IntegrationPluginConfig.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QMinimalIntegrationPluginTargets.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QSvgIconPluginTargetsPrecheck.cmake:
 
 /usr/share/cmake/Modules/Internal/CheckFlagCommonConfig.cmake:
 
@@ -1346,27 +1409,3 @@ CMakeFiles/4.4.3/CMakeCXXCompiler.cmake:
 /usr/lib/cmake/Qt6Gui/Qt6QSvgIconPluginTargets-relwithdebinfo.cmake:
 
 /usr/lib/cmake/Qt6Gui/Qt6QSvgIconPluginTargets.cmake:
-
-/usr/share/cmake/Modules/Platform/Linux-GNU-CXX.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QSvgPluginConfig.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QVncIntegrationPluginTargets-relwithdebinfo.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QMngPluginConfig.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QSvgPluginTargets.cmake:
-
-/usr/share/cmake/Modules/FindPackageMessage.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QWbmpPluginTargets.cmake:
-
-/usr/lib/cmake/Qt6DBusTools/Qt6DBusToolsConfigVersionImpl.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QGtk3ThemePluginConfig.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QTgaPluginTargets-relwithdebinfo.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QWaylandEglClientBufferPluginTargets.cmake:
-
-/usr/lib/cmake/Qt6Gui/Qt6QTiffPluginConfig.cmake:

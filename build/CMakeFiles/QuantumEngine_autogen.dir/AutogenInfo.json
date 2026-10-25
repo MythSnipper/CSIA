@@ -633,7 +633,7 @@
 	"MOC_RELAXED_MODE" : false,
 	"MOC_SKIP" : [],
 	"MULTI_CONFIG" : false,
-	"PARALLEL" : 2,
+	"PARALLEL" : 8,
 	"PARSE_CACHE_FILE" : "/home/mythsnipper/Dev/cpp/QuantumSimulator/build/CMakeFiles/QuantumEngine_autogen.dir/ParseCache.txt",
 	"QT_MOC_EXECUTABLE" : "/usr/lib/qt6/moc",
 	"QT_UIC_EXECUTABLE" : "/usr/lib/qt6/uic",
@@ -642,6 +642,17 @@
 	"SETTINGS_FILE" : "/home/mythsnipper/Dev/cpp/QuantumSimulator/build/CMakeFiles/QuantumEngine_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[
+			"/home/mythsnipper/Dev/cpp/QuantumSimulator/src/Camera.cpp",
+			"MU",
+			null
+		],
+		[ "/home/mythsnipper/Dev/cpp/QuantumSimulator/src/EBO.cpp", "MU", null ],
+		[
+			"/home/mythsnipper/Dev/cpp/QuantumSimulator/src/FragmentShader.cpp",
+			"MU",
+			null
+		],
 		[
 			"/home/mythsnipper/Dev/cpp/QuantumSimulator/src/GLRenderer.cpp",
 			"MU",
@@ -653,11 +664,49 @@
 			null
 		],
 		[
+			"/home/mythsnipper/Dev/cpp/QuantumSimulator/src/Material.cpp",
+			"MU",
+			null
+		],
+		[ "/home/mythsnipper/Dev/cpp/QuantumSimulator/src/Mesh.cpp", "MU", null ],
+		[
 			"/home/mythsnipper/Dev/cpp/QuantumSimulator/src/QT_GLRenderer.cpp",
 			"MU",
 			null
 		],
-		[ "/home/mythsnipper/Dev/cpp/QuantumSimulator/src/main.cpp", "MU", null ]
+		[
+			"/home/mythsnipper/Dev/cpp/QuantumSimulator/src/RenderObject.cpp",
+			"MU",
+			null
+		],
+		[
+			"/home/mythsnipper/Dev/cpp/QuantumSimulator/src/ShaderProgram.cpp",
+			"MU",
+			null
+		],
+		[
+			"/home/mythsnipper/Dev/cpp/QuantumSimulator/src/Texture2D.cpp",
+			"MU",
+			null
+		],
+		[
+			"/home/mythsnipper/Dev/cpp/QuantumSimulator/src/Transform.cpp",
+			"MU",
+			null
+		],
+		[ "/home/mythsnipper/Dev/cpp/QuantumSimulator/src/VAO.cpp", "MU", null ],
+		[ "/home/mythsnipper/Dev/cpp/QuantumSimulator/src/VBO.cpp", "MU", null ],
+		[
+			"/home/mythsnipper/Dev/cpp/QuantumSimulator/src/VertexShader.cpp",
+			"MU",
+			null
+		],
+		[ "/home/mythsnipper/Dev/cpp/QuantumSimulator/src/main.cpp", "MU", null ],
+		[
+			"/home/mythsnipper/Dev/cpp/QuantumSimulator/src/readfile.cpp",
+			"MU",
+			null
+		]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],

@@ -1,593 +1,365 @@
 #include "GLRenderer.hpp"
 
-#include <iostream>
-#include <fstream>
-#include <cstdio>
-#include <cmath>
-#include <QFile>
-#include <QByteArray>
+
+const char* objectVertShaderPath = ":/shaders/object.vert";
+const char* objectFragShaderPath = ":/shaders/object.frag";
+const char* wireframePlaneVertShaderPath = ":/shaders/wireframeplane.vert";
+const char* wireframePlaneFragShaderPath = ":/shaders/wireframeplane.frag";
 
 
-#define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
-
-//Renderer objects
-VertexShader::VertexShader(){
+void GLRenderer::initialize(){
     initializeOpenGLFunctions();
-}
-VertexShader::~VertexShader(){
-    if(id != 0){
-        puts("Log: VertexShader: Killing VertexShader");
-        glDeleteShader(id);
-        id = 0;
-    }
-}
-void VertexShader::from_source(const char* shader_source_addr){
-    if(id != 0){
-        puts("Log: VertexShader: Killing old VertexShader");
-        glDeleteShader(id);
-        id = 0;
-    }
 
-    id = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(id, 1, &shader_source_addr, NULL);
-    glCompileShader(id);
-    {
-        int success;
-        char infoLog[1024];
-        glGetShaderiv(id, GL_COMPILE_STATUS, &success);
-        if(!success){
-            glGetShaderInfoLog(id, 1024, NULL, infoLog);
-            printf("Err: VertexShader: VertexShader compilation failed\n\t%s\n", infoLog);
-            throw std::runtime_error("^");
-        }
-        else{
-            puts("Log: VertexShader: VertexShader compiled successfully");
-        }
-    }
-}
-void VertexShader::from_file(const char* filename){
-    std::string shader_source = readQFile(QString::fromUtf8(filename));
-    this->from_source(shader_source.c_str());
+    printInfo();
+    applySettings();
+    createGLResources();
 }
 
-FragmentShader::FragmentShader(){
-    initializeOpenGLFunctions();
-}
-FragmentShader::~FragmentShader(){
-    if(id != 0){
-        puts("Log: FragmentShader: Killing FragmentShader");
-        glDeleteShader(id);
-        id = 0;
-    }
-}
-void FragmentShader::from_source(const char* shader_source_addr){
-    if(id != 0){
-        puts("Log: FragmentShader: Killing old FragmentShader");
-        glDeleteShader(id);
-        id = 0;
+void GLRenderer::resize(int pixelWidth, int pixelHeight){
+    if(pixelWidth <= 0 || pixelHeight <= 0){
+        return;
     }
 
-    id = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(id, 1, &shader_source_addr, NULL);
-    glCompileShader(id);
-    {
-        int success;
-        char infoLog[1024];
-        glGetShaderiv(id, GL_COMPILE_STATUS, &success);
-        if(!success){
-            glGetShaderInfoLog(id, 1024, NULL, infoLog);
-            printf("Err: FragmentShader: FragmentShader compilation failed\n\t%s\n", infoLog);
-            throw std::runtime_error("^");
-        }
-        else{
-            puts("Log: FragmentShader: FragmentShader compiled successfully");
+    viewportWidth = pixelWidth;
+    viewportHeight = pixelHeight;
+
+    glViewport(0, 0, pixelWidth, pixelHeight);
+    camera.aspect_ratio = static_cast<float>(pixelWidth) / static_cast<float>(pixelHeight);
+}
+
+void GLRenderer::render(){
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    glm::mat4 view = camera.get_view_matrix();
+    glm::mat4 projection = camera.get_projection_matrix();
+
+    for(auto& object : objects){
+        drawRenderObject(object, view, projection);
+    }
+
+    drawGrid();
+}
+
+
+void GLRenderer::createGLResources(){
+    //make shaders
+    objectShader = std::make_unique<ShaderProgram>();
+    objectShader->from_files(objectVertShaderPath, objectFragShaderPath);
+    wireframePlaneShader = std::make_unique<ShaderProgram>();
+    wireframePlaneShader->from_files(wireframePlaneVertShaderPath, wireframePlaneFragShaderPath);
+
+    std::vector<float> cubeVertices;
+    std::vector<uint32_t> cubeIndices;
+    generate_cube(1.0, cubeVertices, cubeIndices);
+
+    std::vector<float> sphereVertices;
+    std::vector<uint32_t> sphereIndices;
+    generate_sphere(1.0f, 20, 20, sphereVertices, sphereIndices);
+
+    //cube
+    cube = std::make_unique<Mesh>(cubeVertices, cubeIndices);
+
+    //sphere
+    sphere = std::make_unique<Mesh>(sphereVertices.data(), sphereVertices.size() * sizeof(float), sphereIndices.data(), sphereIndices.size() * sizeof(uint32_t));
+
+    //make textures
+    uint8_t whiteColor[4] = {255, 255, 255, 255};
+    whiteTexture = std::make_unique<Texture2D>(whiteColor, 1, 1, GL_RGBA, GL_RGBA);
+
+    //64x64 checkerboard with 8px squares
+    std::vector<uint8_t> pixels(64 * 64 * 4);
+    for(int y = 0; y < 64; y++){
+        for(int x = 0; x < 64; x++){
+            uint8_t v = (((x / 8) + (y / 8)) % 2 == 0) ? 255 : 90;
+            int i = (y * 64 + x) * 4;
+            pixels[i + 0] = v;
+            pixels[i + 1] = v;
+            pixels[i + 2] = v;
+            pixels[i + 3] = 255;
         }
     }
-}
-void FragmentShader::from_file(const char* filename){
-    std::string shader_source = readQFile(QString::fromUtf8(filename));
-    this->from_source(shader_source.c_str());
+    checkerTexture = std::make_unique<Texture2D>(pixels.data(), 64, 64, GL_RGBA, GL_RGBA);
+
+    Material* white = createMaterial();
+    white->color = glm::vec3(1.0f, 1.0f, 1.0f);
+
+    Material* purple = createMaterial();
+    purple->color = glm::vec3(0.6f, 0.1f, 1.0f);
+
+    Material* checker = createMaterial();
+    checker->albedo = checkerTexture.get();
+    checker->tiling = glm::vec2(4.0f);
+
+    objects.clear();
+
+    //make render objects
+    auto cube1 = std::make_unique<RenderObject>();
+    cube1->transform.position = glm::vec3(-2.0f, 0.0f, 0.0f);
+    cube1->mesh = cube.get();
+    cube1->material = white;
+    objects.push_back(std::move(cube1));
+
+    auto cube2 = std::make_unique<RenderObject>();
+    cube2->transform.position = glm::vec3(2.0f, 0.0f, 0.0f);
+    cube2->mesh = cube.get();
+    cube2->material = white;
+    objects.push_back(std::move(cube2));
+
+    auto cube3 = std::make_unique<RenderObject>();
+    cube3->transform.position = glm::vec3(0.0f, 1.0f, 4.0f);
+    cube3->transform.scale = glm::vec3(0.4f);
+    cube3->mesh = cube.get();
+    cube3->material = purple;
+    objects.push_back(std::move(cube3));
+
+    auto cube4 = std::make_unique<RenderObject>();
+    cube4->transform.position = glm::vec3(0.0f, -3.0f, -5.0f);
+    cube4->transform.scale = glm::vec3(0.5f, 2.0f, 0.5f);
+    cube4->mesh = cube.get();
+    cube4->material = checker;
+    objects.push_back(std::move(cube4));
+
+    auto sphere00 = std::make_unique<RenderObject>();
+    sphere00->transform.position = glm::vec3(0.0f, 0.0f, 0.0f);
+    sphere00->transform.scale = glm::vec3(0.1f);
+    sphere00->mesh = sphere.get();
+    sphere00->material = white;
+    sphere00->wireframeMode = false;
+    objects.push_back(std::move(sphere00));
+
+    auto sphere1 = std::make_unique<RenderObject>();
+    sphere1->transform.position = glm::vec3(0.0f, 4.0f, 1.0f);
+    sphere1->transform.scale = glm::vec3(1.0f);
+    sphere1->mesh = sphere.get();
+    sphere1->material = checker;
+    sphere1->wireframeMode = false;
+    objects.push_back(std::move(sphere1));
+
+    auto pointlight = std::make_unique<RenderObject>();
+    pointlight->transform.position = glm::vec3(-0.4f, -1.0f, -0.3f);
+    pointlight->transform.scale = glm::vec3(0.1f);
+    pointlight->mesh = sphere.get();
+    pointlight->material = white;
+    pointlight->wireframeMode = false;
+    objects.push_back(std::move(pointlight));
+
+    //generate empty VAO for fullscreen shader passes
+    glGenVertexArrays(1, &fullscreenVAO);
+
 }
 
-ShaderProgram::ShaderProgram(){
-    initializeOpenGLFunctions();
-}
-ShaderProgram::~ShaderProgram(){
-    if(id != 0){
-        puts("Log: ShaderProgram: Killing ShaderProgram");
-        glDeleteProgram(id);
-        id = 0;
+void GLRenderer::destroyGLResources(){
+    objects.clear();
+    materials.clear();
+
+    cube.reset();
+    sphere.reset();
+
+    whiteTexture.reset();
+    checkerTexture.reset();
+
+    objectShader.reset();
+    wireframePlaneShader.reset();
+
+    if(fullscreenVAO != 0){
+        glDeleteVertexArrays(1, &fullscreenVAO);
+        fullscreenVAO = 0;
     }
 
-    if(vertShader != nullptr){
-        puts("Log: ShaderProgram: Killing VertexShader");
-        delete vertShader;
-        vertShader = nullptr;
-    }
-    if(fragShader != nullptr){
-        puts("Log: ShaderProgram: Killing FragmentShader");
-        delete fragShader;
-        fragShader = nullptr;
-    }
-}
-void ShaderProgram::from_shaders(VertexShader* vertex_shader, FragmentShader* fragment_shader){
-    if(id != 0){
-        puts("Log: ShaderProgram: Killing old ShaderProgram");
-        glDeleteProgram(id);
-        id = 0;
-    }
-
-    id = glCreateProgram();
-    glAttachShader(id, vertex_shader->id);
-    glAttachShader(id, fragment_shader->id);
-    glLinkProgram(id);
-    {
-        int success;
-        char infoLog[1024];
-        glGetProgramiv(id, GL_LINK_STATUS, &success);
-        if(!success){
-            glGetProgramInfoLog(id, 1024, NULL, infoLog);
-            printf("Err: ShaderProgram: ShaderProgram link failed\n\t%s\n", infoLog);
-            throw std::runtime_error(" ^ ^");
-        }
-        else{
-            puts("Log: ShaderProgram: ShaderProgram linked successfully");
-        }
-    }
-}
-void ShaderProgram::from_sources(const char* vert_source, const char* frag_source){
-    if(id != 0){
-        puts("Log: ShaderProgram: Killing old ShaderProgram");
-        glDeleteProgram(id);
-        id = 0;
-    }
-
-    if(vertShader != nullptr){
-        puts("Log: ShaderProgram: Killing old VertexShader");
-        delete vertShader;
-        vertShader = nullptr;
-    }
-    if(fragShader != nullptr){
-        puts("Log: ShaderProgram: Killing old FragmentShader");
-        delete fragShader;
-        fragShader = nullptr;
-    }
-
-    vertShader = new VertexShader();
-    vertShader->from_source(vert_source);
-    fragShader = new FragmentShader();
-    fragShader->from_source(frag_source);
-
-    this->from_shaders(vertShader, fragShader);
-}
-void ShaderProgram::from_files(const char* vert_filename, const char* frag_filename){
-    if(id != 0){
-        glDeleteProgram(id);
-        id = 0;
-    }
-
-    if(vertShader != nullptr){
-        puts("Log: ShaderProgram: Killing old VertexShader");
-        delete vertShader;
-        vertShader = nullptr;
-    }
-    if(fragShader != nullptr){
-        puts("Log: ShaderProgram: Killing old FragmentShader");
-        delete fragShader;
-        fragShader = nullptr;
-    }
-
-    vertShader = new VertexShader();
-    vertShader->from_file(vert_filename);
-    fragShader = new FragmentShader();
-    fragShader->from_file(frag_filename);
-
-    this->from_shaders(vertShader, fragShader);
-}
-void ShaderProgram::set_bool(const char* name, std::initializer_list<int> values){
-    set_int(name, values);
-}
-void ShaderProgram::set_bool(UniformID uid, std::initializer_list<int> values){
-    set_int(uid, values);
-}
-void ShaderProgram::set_int(const char* name, std::initializer_list<int> values){
-    set_int(glGetUniformLocation(id, name), values);
-}
-void ShaderProgram::set_int(UniformID uid, std::initializer_list<int> values){
-    const int* jump = values.begin();
-    switch(values.size()){
-        case 1:
-            glUniform1i(uid, jump[0]);
-        break;
-        case 2:
-            glUniform2i(uid, jump[0], jump[1]);
-        break;
-        case 3:
-            glUniform3i(uid, jump[0], jump[1], jump[2]);
-        break;
-        case 4:
-            glUniform4i(uid, jump[0], jump[1], jump[2], jump[3]);
-        break;
-        default:
-            printf("Err: ShaderProgram: Invalid number of values to set uniform. Expected 1-4, got %lu\n", values.size());
-            throw std::runtime_error("^");
-    }
-}
-void ShaderProgram::set_float(const char* name, std::initializer_list<float> values){
-    set_float(glGetUniformLocation(id, name), values);
-}
-void ShaderProgram::set_float(UniformID uid, std::initializer_list<float> values){
-    const float* jump = values.begin();
-    switch(values.size()){
-        case 1:
-            glUniform1f(uid, jump[0]);
-        break;
-        case 2:
-            glUniform2f(uid, jump[0], jump[1]);
-        break;
-        case 3:
-            glUniform3f(uid, jump[0], jump[1], jump[2]);
-        break;
-        case 4:
-            glUniform4f(uid, jump[0], jump[1], jump[2], jump[3]);
-        break;
-        default:
-            printf("Err: ShaderProgram: Invalid number of values to set uniform. Expected 1-4, got %lu\n", values.size());
-            throw std::runtime_error("^");
-    }
-}
-void ShaderProgram::set_mat4(const char* name, bool transpose, glm::mat4 matrix){
-    set_mat4(glGetUniformLocation(id, name), transpose, matrix);
-}
-void ShaderProgram::set_mat4(UniformID uid, bool transpose, glm::mat4 matrix){
-    glUniformMatrix4fv(uid, 1, (transpose) ? GL_TRUE : GL_FALSE, glm::value_ptr(matrix));
-}
-void ShaderProgram::activate(){
-    glUseProgram(id);
 }
 
-VBO::VBO(){
-    initializeOpenGLFunctions();
-    glGenBuffers(1, &id);
-}
-VBO::~VBO(){
-    if(id != 0){
-        puts("Log: VBO: Killing VBO");
-        glDeleteBuffers(1, &id);
-        id = 0;
+void GLRenderer::drawRenderObject(std::unique_ptr<RenderObject>& object, const glm::mat4& view, const glm::mat4& projection){
+    if(!object || !object->mesh || !object->material || !object->material->shader){
+        return;
     }
-}
-VBO::VBO(float vertices[], size_t vertices_size, GLenum usage){
-    initializeOpenGLFunctions();
-    glGenBuffers(1, &id);
-    fill(vertices, vertices_size, usage);
-}
-void VBO::bind(){
-    glBindBuffer(GL_ARRAY_BUFFER, id);
-}
-void VBO::unbind(){
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-}
-void VBO::fill(float vertices[], size_t vertices_size, GLenum usage){
-    bind();
-    glBufferData(GL_ARRAY_BUFFER, vertices_size, vertices, usage);
+
+    Material* material = object->material;
+
+    material->apply();   //activates the shader first, so the sets below hit the right program
+
+    //sets uniforms
+    material->shader->set_mat4("model", false, object->transform.get_matrix());
+    material->shader->set_mat4("view", false, view);
+    material->shader->set_mat4("projection", false, projection);
+    material->shader->set_float("cameraPosition", {camera.position.x, camera.position.y, camera.position.z});
+    material->shader->set_float("lightDirection", {light.direction.x, light.direction.y, light.direction.z});
+    material->shader->set_float("lightColor", {light.color.r, light.color.g, light.color.b});
+    material->shader->set_float("ambientStrength", {light.ambient});
+
+    glPolygonMode(GL_FRONT_AND_BACK, object->wireframeMode ? GL_LINE : GL_FILL);
+    object->mesh->draw();
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
-VAO::VAO(){
-    initializeOpenGLFunctions();
-    glGenVertexArrays(1, &id);
-}
-VAO::~VAO(){
-    if(id != 0){
-        puts("Log: VAO: Killing VAO");
-        glDeleteVertexArrays(1, &id);
-        id = 0;
-    }
-}
-void VAO::bind(){
-    glBindVertexArray(id);
-}
-void VAO::unbind(){
+void GLRenderer::drawFullscreenPass(ShaderProgram& shader){
+    shader.activate();
+
+    glBindVertexArray(fullscreenVAO);
+    glDrawArrays(GL_TRIANGLES, 0, 3);
     glBindVertexArray(0);
 }
 
-EBO::EBO(){
-    initializeOpenGLFunctions();
-    glGenBuffers(1, &id);
+void GLRenderer::drawGrid(){
+    glm::mat4 view = camera.get_view_matrix();
+    glm::mat4 projection = camera.get_projection_matrix();
+
+    wireframePlaneShader->activate();
+
+    //set shader uniforms
+    wireframePlaneShader->set_mat4("inverseView", false, glm::inverse(view));
+    wireframePlaneShader->set_mat4("inverseProjection", false, glm::inverse(projection));
+    wireframePlaneShader->set_mat4("viewProjection", false, projection * view);
+
+    //gl_FragCoord is in physical pixels, so scale by the device pixel ratio
+    wireframePlaneShader->set_float("viewportSize", {
+        (float)viewportWidth,
+        (float)viewportHeight
+    });
+
+    wireframePlaneShader->set_float("spacing", {1.0f});
+    wireframePlaneShader->set_float("cameraPosition", {
+        camera.position.x,
+        camera.position.y,
+        camera.position.z
+    });
+
+    //depth test against the scene, but don't overwrite its depth values
+    glDepthMask(GL_FALSE);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    drawFullscreenPass(*wireframePlaneShader);
+
+    glDisable(GL_BLEND);
+    glDepthMask(GL_TRUE);
 }
-EBO::~EBO(){
-    if(id != 0){
-        puts("Log: EBO: Killing EBO");
-        glDeleteBuffers(1, &id);
-        id = 0;
+
+void GLRenderer::printInfo(){
+    for(int i=0;i<20;i++){
+        printf("-");
+    }
+    puts("");
+    puts("Info:");
+    printf("\tOS: ");
+    #ifdef _WIN32
+        puts("Windows");
+    #else
+        puts("Linux");
+    #endif
+    printf("\tDepth testing: %s\n", (depth_test) ? "On" : "Off");
+
+    int nrAttributes;
+    glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &nrAttributes);
+    printf("\tNumber of vertex attributes available: %d\n", nrAttributes);
+    for(int i=0;i<20;i++){
+        printf("-");
     }
 }
-EBO::EBO(uint32_t indices[], size_t indices_size, GLenum usage){
-    initializeOpenGLFunctions();
-    glGenBuffers(1, &id);
-    fill(indices, indices_size, usage);
-}
-void EBO::bind(){
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id);
-}
-void EBO::unbind(){
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-}
-void EBO::fill(uint32_t indices[], size_t indices_size, GLenum usage){
-    bind();
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices_size, indices, usage);
-}
 
-Texture2D::Texture2D(char* file_path, GLenum internal_format){
-    initializeOpenGLFunctions();
-    glGenTextures(1, &id);
-    fill(file_path, internal_format);
-}
-Texture2D::Texture2D(uint8_t* data, uint32_t width, uint32_t height, GLenum image_format, GLenum internal_format){
-    initializeOpenGLFunctions();
-    glGenTextures(1, &id);
-    fill(data, width, height, image_format, internal_format);
-}
-Texture2D::~Texture2D(){
-    if(id != 0){
-        puts("Log: Texture2D: Killing Texture2D");
-        glDeleteTextures(1, &id);
-        id = 0;
-    }
-}
-void Texture2D::fill(char* file_path, GLenum internal_format){
-    //load texture
-    uint8_t* data = stbi_load(file_path, &texture_width, &texture_height, &color_channels_count, 0);
-    if(!data){
-        printf("Err: Texture2D: Failed to load texture image at path %s\n", file_path);
-        throw std::runtime_error("^");
-    }
-    if(color_channels_count != 3 && color_channels_count != 4){
-        printf("Err: Texture2D: Invalid color channels count for texture image at path %s. Expected 3-4, got %d\n", file_path, color_channels_count);
-        throw std::runtime_error("^");
-    }
-    fill(data, texture_width, texture_height, (color_channels_count == 4) ? GL_RGBA : GL_RGB, internal_format);
-    stbi_image_free(data);
-}
-void Texture2D::fill(uint8_t* data, uint32_t width, uint32_t height, GLenum image_format, GLenum internal_format){
-    if(internal_format == 0){
-        internal_format = image_format;
-    }
-    bind();
-    glTexImage2D(GL_TEXTURE_2D, 0, internal_format, width, height, 0, image_format, GL_UNSIGNED_BYTE, data);
-    glGenerateMipmap(GL_TEXTURE_2D);
-}
-void Texture2D::bind(){
-    glBindTexture(GL_TEXTURE_2D, id);
-}
-void Texture2D::bind_texture_unit(GLenum texture_unit){
-    glActiveTexture(texture_unit);
-    glBindTexture(GL_TEXTURE_2D, id);
-}
-
-glm::mat4 Transform::get_matrix(){
-    glm::mat4 model = glm::mat4(1.0f);
-
-    model = glm::translate(
-        model,
-        position
-    );
-
-    model = glm::rotate(
-        model,
-        rotation.x,
-        glm::vec3(1.0f, 0.0f, 0.0f)
-    );
-
-    model = glm::rotate(
-        model,
-        rotation.y,
-        glm::vec3(0.0f, 1.0f, 0.0f)
-    );
-
-    model = glm::rotate(
-        model,
-        rotation.z,
-        glm::vec3(0.0f, 0.0f, 1.0f)
-    );
-
-    model = glm::scale(
-        model,
-        scale
-    );
-
-    return model;
-}
-
-glm::mat4 Camera::get_view_matrix(){
-    
-    return glm::lookAt(position, position + getForward(), worldUp);
-}
-glm::mat4 Camera::get_projection_matrix(){
-    return glm::perspective(glm::radians(fov), aspect_ratio, near_plane, far_plane);
-}
-glm::vec3 Camera::getForward(){
-    glm::vec3 forward;
-    forward.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
-    forward.y = sin(glm::radians(pitch));
-    forward.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
-    return glm::normalize(forward);
-}
-glm::vec3 Camera::getRight(){
-    return glm::normalize(
-        glm::cross(getForward(), worldUp)
-    );
-}
-glm::vec3 Camera::getUp(){
-    return glm::normalize(
-        glm::cross(getRight(), getForward())
-    );
-}
-void Camera::moveForward(float amount){
-    position += getForward() * amount;
-}
-void Camera::moveRight(float amount){
-    position += getRight() * amount;
-}
-void Camera::moveUp(float amount){
-    position += worldUp * amount;
-}
-void Camera::rotate(float yaw, float pitch){
-    this->yaw += yaw;
-    this->pitch += pitch;
-    if(this->yaw > 360){
-        this->yaw -= 360;
-    }
-    if(this->yaw < 360){
-        this->yaw += 360;
-    }
-    if(this->pitch > 89.9){
-        this->pitch = 89.9;
-    }
-    if(this->pitch < -89.9){
-        this->pitch = -89.9;
-    }
-}
-void Camera::zoom(float amount){
-
-}
-
-Mesh::Mesh(float vertices[], int vertices_size){
-    initializeOpenGLFunctions();
-    vao.bind();
-
-    vbo.fill(vertices, vertices_size, GL_STATIC_DRAW);
-
-    setup_attributes();
-
-    glEnableVertexAttribArray(0);
-
-    vao.unbind();
-
-    vertexCount = vertices_size / (8 * sizeof(float));
-}
-Mesh::Mesh(float vertices[], int vertices_size, uint32_t indices[], int indices_size){
-    initializeOpenGLFunctions();
-    ebo = std::make_unique<EBO>();
-
-    vao.bind();
-
-    vbo.fill(vertices, vertices_size, GL_STATIC_DRAW);
-    ebo->fill(indices, indices_size, GL_STATIC_DRAW);
-
-    setup_attributes();
-
-    glEnableVertexAttribArray(0);
-
-    vao.unbind();
-
-    indexCount = indices_size / sizeof(uint32_t);
-}
-Mesh::Mesh(std::vector<float>& vertices){
-    initializeOpenGLFunctions();
-    vao.bind();
-
-    vbo.fill(vertices.data(), vertices.size() * sizeof(float), GL_STATIC_DRAW);
-
-    setup_attributes();
-
-    glEnableVertexAttribArray(0);
-
-    vao.unbind();
-
-    vertexCount = vertices.size();
-}
-Mesh::Mesh(std::vector<float>& vertices, std::vector<uint32_t>& indices){
-    initializeOpenGLFunctions();
-    ebo = std::make_unique<EBO>();
-
-    vao.bind();
-
-    vbo.fill(vertices.data(), vertices.size() * sizeof(float), GL_STATIC_DRAW);
-    ebo->fill(indices.data(), indices.size() * sizeof(uint32_t), GL_STATIC_DRAW);
-
-    setup_attributes();
-
-    glEnableVertexAttribArray(0);
-
-    vao.unbind();
-
-    indexCount = indices.size();
-}
-void Mesh::bind(){
-    vao.bind();
-}
-void Mesh::unbind(){
-    vao.unbind();
-}
-void Mesh::draw(){
-    vao.bind();
-
-    if(ebo){
-        glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, nullptr);
+void GLRenderer::applySettings(){
+    if(depth_test){
+        glEnable(GL_DEPTH_TEST);
     }
     else{
-        glDrawArrays(GL_TRIANGLES, 0, vertexCount);
+        glDisable(GL_DEPTH_TEST);
+    }
+}
+
+Material* GLRenderer::createMaterial(){
+    auto material = std::make_unique<Material>();
+    material->shader = objectShader.get();
+    material->albedo = whiteTexture.get();   //safe default, no null texture
+    materials.push_back(std::move(material));
+    return materials.back().get();
+}
+
+void generate_sphere(float radius, uint32_t sectors, uint32_t stacks, std::vector<float>& vertices, std::vector<uint32_t>& indices){
+    vertices.clear();
+    indices.clear();
+
+    const float pi = glm::pi<float>();
+
+    //one ring of vertices per stack, from the top pole (+y) to the bottom pole (-y)
+    for(uint32_t i = 0; i <= stacks; i++){
+        float stackAngle = pi / 2.0f - i * pi / stacks; //phi
+        float ringRadius = radius * std::cos(stackAngle); //r cos(phi)
+        float y = radius * std::sin(stackAngle); //(r cos(phi))sin(theta)
+
+        //sectors + 1 vertices per ring, the last one duplicates the first to close the seam
+        for(uint32_t j = 0; j <= sectors; j++){
+            float sectorAngle = j * 2.0f * pi / sectors;
+            float x = ringRadius * std::cos(sectorAngle);
+            float z = ringRadius * std::sin(sectorAngle);
+
+            vertices.insert(vertices.end(), {
+                x, y, z,                                    //position
+                x / radius, y / radius, z / radius,         //normal: position on a sphere, normalized
+                static_cast<float>(j) / sectors,            //u: around the ring
+                1.0f - static_cast<float>(i) / stacks       //v: 1 at the top pole, 0 at the bottom
+            });
+        }
     }
 
-    vao.unbind();
-}
-void Mesh::setup_attributes(){
-    uint32_t stride = 8 * sizeof(float);
+    //two triangles per quad between neighbouring rings
+    for(uint32_t i = 0; i < stacks; i++){
+        uint32_t top = i * (sectors + 1);
+        uint32_t bottom = top + sectors + 1;
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, stride, (void*) 0);
-    glEnableVertexAttribArray(0);
-
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, stride, (void*) (3 * sizeof(float)));
-    glEnableVertexAttribArray(1);
-
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, stride, (void*) (6 * sizeof(float)));
-    glEnableVertexAttribArray(2);
-}
-
-void Material::apply(){
-    shader->activate();
-
-    shader->set_float("materialColor", {color.r, color.g, color.b});
-    shader->set_float("tiling", {tiling.x, tiling.y});
-    shader->set_float("shininess", {shininess});
-    shader->set_float("specularStrength", {specularStrength});
-
-    albedo->bind_texture_unit(GL_TEXTURE0);
-    shader->set_int("albedoTexture", {0});
-}
-
-
-//others
-std::string readFile(const std::string& filename){
-    std::ifstream file(filename, std::ios::binary | std::ios::ate);
-    if(!file){
-        throw std::runtime_error("Err: readFile: Failed to open file for reading");
+        for(uint32_t j = 0; j < sectors; j++, top++, bottom++){
+            //the top ring at the pole collapses to a point, so its first triangle is degenerate
+            if(i != 0){
+                indices.push_back(top);
+                indices.push_back(top + 1);
+                indices.push_back(bottom);
+            }
+            //same for the bottom pole
+            if(i != stacks - 1){
+                indices.push_back(top + 1);
+                indices.push_back(bottom + 1);
+                indices.push_back(bottom);
+            }
+        }
     }
-    
-    std::streamsize size = file.tellg();
-    file.seekg(0, std::ios::beg);
-
-    std::string content;
-    content.resize(size);
-    
-    if(!file.read(&content[0], size)){
-        throw std::runtime_error("Err: readFile: Failed to read file content");
-    }
-
-    return content;
 }
+void generate_cube(float halfSize, std::vector<float>& vertices, std::vector<uint32_t>& indices){
+    vertices.clear();
+    indices.clear();
 
-std::string readQFile(const QString& path){
-    QFile file(path);
+    //per face: outward normal plus the two axes spanning it (right x up = normal, so winding is CCW from outside)
+    struct Face {
+        glm::vec3 normal;
+        glm::vec3 right;
+        glm::vec3 up;
+    };
+    const Face faces[6] = {
+        {glm::vec3( 0, 0, 1), glm::vec3( 1, 0, 0), glm::vec3(0, 1, 0)},
+        {glm::vec3( 0, 0,-1), glm::vec3(-1, 0, 0), glm::vec3(0, 1, 0)},
+        {glm::vec3( 1, 0, 0), glm::vec3( 0, 0,-1), glm::vec3(0, 1, 0)},
+        {glm::vec3(-1, 0, 0), glm::vec3( 0, 0, 1), glm::vec3(0, 1, 0)},
+        {glm::vec3( 0, 1, 0), glm::vec3( 1, 0, 0), glm::vec3(0, 0,-1)},
+        {glm::vec3( 0,-1, 0), glm::vec3( 1, 0, 0), glm::vec3(0, 0, 1)}
+    };
+    const glm::vec2 corners[4] = {
+        glm::vec2(-1, -1), glm::vec2(1, -1), glm::vec2(1, 1), glm::vec2(-1, 1)
+    };
 
-    if(!file.open(QIODevice::ReadOnly | QIODevice::Text)){
-        throw std::runtime_error("Err: readQFile: Failed to open shader: " + path.toStdString());
+    for(const Face& face : faces){
+        uint32_t first = static_cast<uint32_t>(vertices.size() / 8);
+
+        for(const glm::vec2& corner : corners){
+            glm::vec3 position = (face.normal + face.right * corner.x + face.up * corner.y) * halfSize;
+            glm::vec2 uv = corner * 0.5f + 0.5f;
+
+            vertices.insert(vertices.end(), {
+                position.x, position.y, position.z,
+                face.normal.x, face.normal.y, face.normal.z,
+                uv.x, uv.y
+            });
+        }
+
+        indices.insert(indices.end(), {
+            first, first + 1, first + 2,
+            first, first + 2, first + 3
+        });
     }
-
-    QByteArray source = file.readAll();
-
-    return source.toStdString();
 }
-

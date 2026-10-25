@@ -3,10 +3,23 @@ QuantumEngine: \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/../../../../lib/crti.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/16/crtbeginS.o \
   CMakeFiles/QuantumEngine.dir/QuantumEngine_autogen/mocs_compilation.cpp.o \
+  CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.o \
+  CMakeFiles/QuantumEngine.dir/src/GLRenderer.cpp.o \
+  CMakeFiles/QuantumEngine.dir/src/Material.cpp.o \
+  CMakeFiles/QuantumEngine.dir/src/Mesh.cpp.o \
+  CMakeFiles/QuantumEngine.dir/src/Camera.cpp.o \
+  CMakeFiles/QuantumEngine.dir/src/RenderObject.cpp.o \
+  CMakeFiles/QuantumEngine.dir/src/Transform.cpp.o \
+  CMakeFiles/QuantumEngine.dir/src/Texture2D.cpp.o \
+  CMakeFiles/QuantumEngine.dir/src/EBO.cpp.o \
+  CMakeFiles/QuantumEngine.dir/src/VBO.cpp.o \
+  CMakeFiles/QuantumEngine.dir/src/VAO.cpp.o \
+  CMakeFiles/QuantumEngine.dir/src/ShaderProgram.cpp.o \
+  CMakeFiles/QuantumEngine.dir/src/FragmentShader.cpp.o \
+  CMakeFiles/QuantumEngine.dir/src/VertexShader.cpp.o \
+  CMakeFiles/QuantumEngine.dir/src/readfile.cpp.o \
   CMakeFiles/QuantumEngine.dir/src/main.cpp.o \
   CMakeFiles/QuantumEngine.dir/src/MainWindow.cpp.o \
-  CMakeFiles/QuantumEngine.dir/src/GLRenderer.cpp.o \
-  CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.o \
   CMakeFiles/QuantumEngine.dir/QuantumEngine_autogen/EWIEGA46WW/qrc_resources.cpp.o \
   /usr/lib/libQt6OpenGLWidgets.so.6.11.2 \
   /usr/lib/libQt6Widgets.so.6.11.2 \
@@ -101,13 +114,39 @@ QuantumEngine: \
 
 CMakeFiles/QuantumEngine.dir/QuantumEngine_autogen/mocs_compilation.cpp.o:
 
-CMakeFiles/QuantumEngine.dir/src/main.cpp.o:
-
-CMakeFiles/QuantumEngine.dir/src/MainWindow.cpp.o:
+CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.o:
 
 CMakeFiles/QuantumEngine.dir/src/GLRenderer.cpp.o:
 
-CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.o:
+CMakeFiles/QuantumEngine.dir/src/Material.cpp.o:
+
+CMakeFiles/QuantumEngine.dir/src/Mesh.cpp.o:
+
+CMakeFiles/QuantumEngine.dir/src/Camera.cpp.o:
+
+CMakeFiles/QuantumEngine.dir/src/RenderObject.cpp.o:
+
+CMakeFiles/QuantumEngine.dir/src/Transform.cpp.o:
+
+CMakeFiles/QuantumEngine.dir/src/Texture2D.cpp.o:
+
+CMakeFiles/QuantumEngine.dir/src/EBO.cpp.o:
+
+CMakeFiles/QuantumEngine.dir/src/VBO.cpp.o:
+
+CMakeFiles/QuantumEngine.dir/src/VAO.cpp.o:
+
+CMakeFiles/QuantumEngine.dir/src/ShaderProgram.cpp.o:
+
+CMakeFiles/QuantumEngine.dir/src/FragmentShader.cpp.o:
+
+CMakeFiles/QuantumEngine.dir/src/VertexShader.cpp.o:
+
+CMakeFiles/QuantumEngine.dir/src/readfile.cpp.o:
+
+CMakeFiles/QuantumEngine.dir/src/main.cpp.o:
+
+CMakeFiles/QuantumEngine.dir/src/MainWindow.cpp.o:
 
 CMakeFiles/QuantumEngine.dir/QuantumEngine_autogen/EWIEGA46WW/qrc_resources.cpp.o:
 

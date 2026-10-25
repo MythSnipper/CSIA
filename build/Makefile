@@ -203,6 +203,78 @@ QuantumEngine_autogen/mocs_compilation.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/QuantumEngine_autogen/mocs_compilation.cpp.s
 .PHONY : QuantumEngine_autogen/mocs_compilation.cpp.s
 
+src/Camera.o: src/Camera.cpp.o
+.PHONY : src/Camera.o
+
+# target to build an object file
+src/Camera.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/Camera.cpp.o
+.PHONY : src/Camera.cpp.o
+
+src/Camera.i: src/Camera.cpp.i
+.PHONY : src/Camera.i
+
+# target to preprocess a source file
+src/Camera.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/Camera.cpp.i
+.PHONY : src/Camera.cpp.i
+
+src/Camera.s: src/Camera.cpp.s
+.PHONY : src/Camera.s
+
+# target to generate assembly for a file
+src/Camera.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/Camera.cpp.s
+.PHONY : src/Camera.cpp.s
+
+src/EBO.o: src/EBO.cpp.o
+.PHONY : src/EBO.o
+
+# target to build an object file
+src/EBO.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/EBO.cpp.o
+.PHONY : src/EBO.cpp.o
+
+src/EBO.i: src/EBO.cpp.i
+.PHONY : src/EBO.i
+
+# target to preprocess a source file
+src/EBO.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/EBO.cpp.i
+.PHONY : src/EBO.cpp.i
+
+src/EBO.s: src/EBO.cpp.s
+.PHONY : src/EBO.s
+
+# target to generate assembly for a file
+src/EBO.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/EBO.cpp.s
+.PHONY : src/EBO.cpp.s
+
+src/FragmentShader.o: src/FragmentShader.cpp.o
+.PHONY : src/FragmentShader.o
+
+# target to build an object file
+src/FragmentShader.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/FragmentShader.cpp.o
+.PHONY : src/FragmentShader.cpp.o
+
+src/FragmentShader.i: src/FragmentShader.cpp.i
+.PHONY : src/FragmentShader.i
+
+# target to preprocess a source file
+src/FragmentShader.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/FragmentShader.cpp.i
+.PHONY : src/FragmentShader.cpp.i
+
+src/FragmentShader.s: src/FragmentShader.cpp.s
+.PHONY : src/FragmentShader.s
+
+# target to generate assembly for a file
+src/FragmentShader.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/FragmentShader.cpp.s
+.PHONY : src/FragmentShader.cpp.s
+
 src/GLRenderer.o: src/GLRenderer.cpp.o
 .PHONY : src/GLRenderer.o
 
@@ -251,6 +323,54 @@ src/MainWindow.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/MainWindow.cpp.s
 .PHONY : src/MainWindow.cpp.s
 
+src/Material.o: src/Material.cpp.o
+.PHONY : src/Material.o
+
+# target to build an object file
+src/Material.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/Material.cpp.o
+.PHONY : src/Material.cpp.o
+
+src/Material.i: src/Material.cpp.i
+.PHONY : src/Material.i
+
+# target to preprocess a source file
+src/Material.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/Material.cpp.i
+.PHONY : src/Material.cpp.i
+
+src/Material.s: src/Material.cpp.s
+.PHONY : src/Material.s
+
+# target to generate assembly for a file
+src/Material.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/Material.cpp.s
+.PHONY : src/Material.cpp.s
+
+src/Mesh.o: src/Mesh.cpp.o
+.PHONY : src/Mesh.o
+
+# target to build an object file
+src/Mesh.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/Mesh.cpp.o
+.PHONY : src/Mesh.cpp.o
+
+src/Mesh.i: src/Mesh.cpp.i
+.PHONY : src/Mesh.i
+
+# target to preprocess a source file
+src/Mesh.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/Mesh.cpp.i
+.PHONY : src/Mesh.cpp.i
+
+src/Mesh.s: src/Mesh.cpp.s
+.PHONY : src/Mesh.s
+
+# target to generate assembly for a file
+src/Mesh.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/Mesh.cpp.s
+.PHONY : src/Mesh.cpp.s
+
 src/QT_GLRenderer.o: src/QT_GLRenderer.cpp.o
 .PHONY : src/QT_GLRenderer.o
 
@@ -274,6 +394,174 @@ src/QT_GLRenderer.s: src/QT_GLRenderer.cpp.s
 src/QT_GLRenderer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/QT_GLRenderer.cpp.s
 .PHONY : src/QT_GLRenderer.cpp.s
+
+src/RenderObject.o: src/RenderObject.cpp.o
+.PHONY : src/RenderObject.o
+
+# target to build an object file
+src/RenderObject.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/RenderObject.cpp.o
+.PHONY : src/RenderObject.cpp.o
+
+src/RenderObject.i: src/RenderObject.cpp.i
+.PHONY : src/RenderObject.i
+
+# target to preprocess a source file
+src/RenderObject.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/RenderObject.cpp.i
+.PHONY : src/RenderObject.cpp.i
+
+src/RenderObject.s: src/RenderObject.cpp.s
+.PHONY : src/RenderObject.s
+
+# target to generate assembly for a file
+src/RenderObject.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/RenderObject.cpp.s
+.PHONY : src/RenderObject.cpp.s
+
+src/ShaderProgram.o: src/ShaderProgram.cpp.o
+.PHONY : src/ShaderProgram.o
+
+# target to build an object file
+src/ShaderProgram.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/ShaderProgram.cpp.o
+.PHONY : src/ShaderProgram.cpp.o
+
+src/ShaderProgram.i: src/ShaderProgram.cpp.i
+.PHONY : src/ShaderProgram.i
+
+# target to preprocess a source file
+src/ShaderProgram.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/ShaderProgram.cpp.i
+.PHONY : src/ShaderProgram.cpp.i
+
+src/ShaderProgram.s: src/ShaderProgram.cpp.s
+.PHONY : src/ShaderProgram.s
+
+# target to generate assembly for a file
+src/ShaderProgram.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/ShaderProgram.cpp.s
+.PHONY : src/ShaderProgram.cpp.s
+
+src/Texture2D.o: src/Texture2D.cpp.o
+.PHONY : src/Texture2D.o
+
+# target to build an object file
+src/Texture2D.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/Texture2D.cpp.o
+.PHONY : src/Texture2D.cpp.o
+
+src/Texture2D.i: src/Texture2D.cpp.i
+.PHONY : src/Texture2D.i
+
+# target to preprocess a source file
+src/Texture2D.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/Texture2D.cpp.i
+.PHONY : src/Texture2D.cpp.i
+
+src/Texture2D.s: src/Texture2D.cpp.s
+.PHONY : src/Texture2D.s
+
+# target to generate assembly for a file
+src/Texture2D.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/Texture2D.cpp.s
+.PHONY : src/Texture2D.cpp.s
+
+src/Transform.o: src/Transform.cpp.o
+.PHONY : src/Transform.o
+
+# target to build an object file
+src/Transform.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/Transform.cpp.o
+.PHONY : src/Transform.cpp.o
+
+src/Transform.i: src/Transform.cpp.i
+.PHONY : src/Transform.i
+
+# target to preprocess a source file
+src/Transform.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/Transform.cpp.i
+.PHONY : src/Transform.cpp.i
+
+src/Transform.s: src/Transform.cpp.s
+.PHONY : src/Transform.s
+
+# target to generate assembly for a file
+src/Transform.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/Transform.cpp.s
+.PHONY : src/Transform.cpp.s
+
+src/VAO.o: src/VAO.cpp.o
+.PHONY : src/VAO.o
+
+# target to build an object file
+src/VAO.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/VAO.cpp.o
+.PHONY : src/VAO.cpp.o
+
+src/VAO.i: src/VAO.cpp.i
+.PHONY : src/VAO.i
+
+# target to preprocess a source file
+src/VAO.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/VAO.cpp.i
+.PHONY : src/VAO.cpp.i
+
+src/VAO.s: src/VAO.cpp.s
+.PHONY : src/VAO.s
+
+# target to generate assembly for a file
+src/VAO.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/VAO.cpp.s
+.PHONY : src/VAO.cpp.s
+
+src/VBO.o: src/VBO.cpp.o
+.PHONY : src/VBO.o
+
+# target to build an object file
+src/VBO.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/VBO.cpp.o
+.PHONY : src/VBO.cpp.o
+
+src/VBO.i: src/VBO.cpp.i
+.PHONY : src/VBO.i
+
+# target to preprocess a source file
+src/VBO.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/VBO.cpp.i
+.PHONY : src/VBO.cpp.i
+
+src/VBO.s: src/VBO.cpp.s
+.PHONY : src/VBO.s
+
+# target to generate assembly for a file
+src/VBO.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/VBO.cpp.s
+.PHONY : src/VBO.cpp.s
+
+src/VertexShader.o: src/VertexShader.cpp.o
+.PHONY : src/VertexShader.o
+
+# target to build an object file
+src/VertexShader.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/VertexShader.cpp.o
+.PHONY : src/VertexShader.cpp.o
+
+src/VertexShader.i: src/VertexShader.cpp.i
+.PHONY : src/VertexShader.i
+
+# target to preprocess a source file
+src/VertexShader.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/VertexShader.cpp.i
+.PHONY : src/VertexShader.cpp.i
+
+src/VertexShader.s: src/VertexShader.cpp.s
+.PHONY : src/VertexShader.s
+
+# target to generate assembly for a file
+src/VertexShader.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/VertexShader.cpp.s
+.PHONY : src/VertexShader.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
@@ -299,6 +587,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/readfile.o: src/readfile.cpp.o
+.PHONY : src/readfile.o
+
+# target to build an object file
+src/readfile.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/readfile.cpp.o
+.PHONY : src/readfile.cpp.o
+
+src/readfile.i: src/readfile.cpp.i
+.PHONY : src/readfile.i
+
+# target to preprocess a source file
+src/readfile.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/readfile.cpp.i
+.PHONY : src/readfile.cpp.i
+
+src/readfile.s: src/readfile.cpp.s
+.PHONY : src/readfile.s
+
+# target to generate assembly for a file
+src/readfile.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/QuantumEngine.dir/build.make CMakeFiles/QuantumEngine.dir/src/readfile.cpp.s
+.PHONY : src/readfile.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -316,18 +628,57 @@ help:
 	@echo "... QuantumEngine_autogen/mocs_compilation.o"
 	@echo "... QuantumEngine_autogen/mocs_compilation.i"
 	@echo "... QuantumEngine_autogen/mocs_compilation.s"
+	@echo "... src/Camera.o"
+	@echo "... src/Camera.i"
+	@echo "... src/Camera.s"
+	@echo "... src/EBO.o"
+	@echo "... src/EBO.i"
+	@echo "... src/EBO.s"
+	@echo "... src/FragmentShader.o"
+	@echo "... src/FragmentShader.i"
+	@echo "... src/FragmentShader.s"
 	@echo "... src/GLRenderer.o"
 	@echo "... src/GLRenderer.i"
 	@echo "... src/GLRenderer.s"
 	@echo "... src/MainWindow.o"
 	@echo "... src/MainWindow.i"
 	@echo "... src/MainWindow.s"
+	@echo "... src/Material.o"
+	@echo "... src/Material.i"
+	@echo "... src/Material.s"
+	@echo "... src/Mesh.o"
+	@echo "... src/Mesh.i"
+	@echo "... src/Mesh.s"
 	@echo "... src/QT_GLRenderer.o"
 	@echo "... src/QT_GLRenderer.i"
 	@echo "... src/QT_GLRenderer.s"
+	@echo "... src/RenderObject.o"
+	@echo "... src/RenderObject.i"
+	@echo "... src/RenderObject.s"
+	@echo "... src/ShaderProgram.o"
+	@echo "... src/ShaderProgram.i"
+	@echo "... src/ShaderProgram.s"
+	@echo "... src/Texture2D.o"
+	@echo "... src/Texture2D.i"
+	@echo "... src/Texture2D.s"
+	@echo "... src/Transform.o"
+	@echo "... src/Transform.i"
+	@echo "... src/Transform.s"
+	@echo "... src/VAO.o"
+	@echo "... src/VAO.i"
+	@echo "... src/VAO.s"
+	@echo "... src/VBO.o"
+	@echo "... src/VBO.i"
+	@echo "... src/VBO.s"
+	@echo "... src/VertexShader.o"
+	@echo "... src/VertexShader.i"
+	@echo "... src/VertexShader.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/readfile.o"
+	@echo "... src/readfile.i"
+	@echo "... src/readfile.s"
 .PHONY : help
 
 
