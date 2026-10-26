@@ -70,12 +70,12 @@ private:
 
     //settings
     bool depth_test = true;
-    uint32_t FPS = 60;
+    uint32_t FPS = 180;
 
     //renderer objects
     std::unique_ptr<Mesh> cube, sphere;
     
-    std::unique_ptr<Texture2D> whiteTexture, checkerTexture;
+    std::unique_ptr<Texture2D> whiteTexture, checkerTexture, salmonTexture;
     std::vector<std::unique_ptr<Material>> materials;
     DirectionalLight light;
     std::unique_ptr<ShaderProgram> objectShader, wireframePlaneShader;

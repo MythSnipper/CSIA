@@ -66,6 +66,10 @@ void GLRenderer::createGLResources(){
     uint8_t whiteColor[4] = {255, 255, 255, 255};
     whiteTexture = std::make_unique<Texture2D>(whiteColor, 1, 1, GL_RGBA, GL_RGBA);
 
+    uint8_t salmonColor[4] = {255, 255, 255, 255};
+    salmonTexture = std::make_unique<Texture2D>(salmonColor, 1, 1, GL_RGBA, GL_RGBA);
+
+
     //64x64 checkerboard with 8px squares
     std::vector<uint8_t> pixels(64 * 64 * 4);
     for(int y = 0; y < 64; y++){
