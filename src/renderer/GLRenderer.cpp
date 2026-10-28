@@ -1,4 +1,4 @@
-#include "GLRenderer.hpp"
+#include <GLRenderer.hpp>
 
 
 const char* objectVertShaderPath = ":/shaders/object.vert";
@@ -11,7 +11,6 @@ void GLRenderer::initialize(){
     initializeOpenGLFunctions();
 
     printInfo();
-    applySettings();
     createGLResources();
 }
 
@@ -40,6 +39,10 @@ void GLRenderer::render(){
     drawGrid();
 }
 
+void GLRenderer::setScene(Scene* scene){
+    this->scene = scene;
+};
+
 
 void GLRenderer::createGLResources(){
     //make shaders
@@ -66,10 +69,6 @@ void GLRenderer::createGLResources(){
     uint8_t whiteColor[4] = {255, 255, 255, 255};
     whiteTexture = std::make_unique<Texture2D>(whiteColor, 1, 1, GL_RGBA, GL_RGBA);
 
-    uint8_t salmonColor[4] = {255, 255, 255, 255};
-    salmonTexture = std::make_unique<Texture2D>(salmonColor, 1, 1, GL_RGBA, GL_RGBA);
-
-
     //64x64 checkerboard with 8px squares
     std::vector<uint8_t> pixels(64 * 64 * 4);
     for(int y = 0; y < 64; y++){
@@ -84,6 +83,8 @@ void GLRenderer::createGLResources(){
     }
     checkerTexture = std::make_unique<Texture2D>(pixels.data(), 64, 64, GL_RGBA, GL_RGBA);
 
+
+
     Material* white = createMaterial();
     white->color = glm::vec3(1.0f, 1.0f, 1.0f);
 
@@ -94,62 +95,63 @@ void GLRenderer::createGLResources(){
     checker->albedo = checkerTexture.get();
     checker->tiling = glm::vec2(4.0f);
 
-    objects.clear();
-
-    //make render objects
-    auto cube1 = std::make_unique<RenderObject>();
-    cube1->transform.position = glm::vec3(-2.0f, 0.0f, 0.0f);
-    cube1->mesh = cube.get();
-    cube1->material = white;
-    objects.push_back(std::move(cube1));
-
-    auto cube2 = std::make_unique<RenderObject>();
-    cube2->transform.position = glm::vec3(2.0f, 0.0f, 0.0f);
-    cube2->mesh = cube.get();
-    cube2->material = white;
-    objects.push_back(std::move(cube2));
-
-    auto cube3 = std::make_unique<RenderObject>();
-    cube3->transform.position = glm::vec3(0.0f, 1.0f, 4.0f);
-    cube3->transform.scale = glm::vec3(0.4f);
-    cube3->mesh = cube.get();
-    cube3->material = purple;
-    objects.push_back(std::move(cube3));
-
-    auto cube4 = std::make_unique<RenderObject>();
-    cube4->transform.position = glm::vec3(0.0f, -3.0f, -5.0f);
-    cube4->transform.scale = glm::vec3(0.5f, 2.0f, 0.5f);
-    cube4->mesh = cube.get();
-    cube4->material = checker;
-    objects.push_back(std::move(cube4));
-
-    auto sphere00 = std::make_unique<RenderObject>();
-    sphere00->transform.position = glm::vec3(0.0f, 0.0f, 0.0f);
-    sphere00->transform.scale = glm::vec3(0.1f);
-    sphere00->mesh = sphere.get();
-    sphere00->material = white;
-    sphere00->wireframeMode = false;
-    objects.push_back(std::move(sphere00));
-
-    auto sphere1 = std::make_unique<RenderObject>();
-    sphere1->transform.position = glm::vec3(0.0f, 4.0f, 1.0f);
-    sphere1->transform.scale = glm::vec3(1.0f);
-    sphere1->mesh = sphere.get();
-    sphere1->material = checker;
-    sphere1->wireframeMode = false;
-    objects.push_back(std::move(sphere1));
-
-    auto pointlight = std::make_unique<RenderObject>();
-    pointlight->transform.position = glm::vec3(-0.4f, -1.0f, -0.3f);
-    pointlight->transform.scale = glm::vec3(0.1f);
-    pointlight->mesh = sphere.get();
-    pointlight->material = white;
-    pointlight->wireframeMode = false;
-    objects.push_back(std::move(pointlight));
-
     //generate empty VAO for fullscreen shader passes
     glGenVertexArrays(1, &fullscreenVAO);
 
+    objects.clear();
+
+    if(scene == nullptr){
+        return;
+    }
+
+    //make render objects 
+    for(const auto& [id, sceneObject] : scene->getObjects()){
+        switch(sceneObject->getType()){
+            case SceneObjectType::PointParticle:
+                createRenderObject(id, sphere.get(), purple);
+            break;
+
+            case SceneObjectType::FieldVolume:
+                createRenderObject(id, cube.get(), white);
+            break;
+        }
+        updateRenderObject(id, sceneObject->getTransform());
+    }
+
+
+}
+
+void GLRenderer::syncRenderObjects(){
+    if(scene == nullptr){
+        objects.clear();
+        return;
+    }
+    //add existing
+    for(const auto& [id, sceneObject] : scene->getObjects()){
+        auto it = objects.find(id);
+
+        if(it == objects.end()){
+            switch(sceneObject->getType()){
+                case SceneObjectType::PointParticle:
+                    createRenderObject(id, sphere.get(), whiteMaterial);
+                break;
+
+                case SceneObjectType::FieldVolume:
+                    createRenderObject(id, cube.get(), purpleMaterial);
+                break;
+            }
+        }
+        updateRenderObject(id, sceneObject->getTransform());
+    }
+    //delete stale RenderObject s if not in Scene
+    for(auto it=objects.begin();it!=objects.end(); ){
+        if(scene->getObject(it->first) == nullptr){
+            it = objects.erase(it);
+        }
+        else{
+            it++;
+        }
+    }
 }
 
 void GLRenderer::destroyGLResources(){
@@ -238,6 +240,24 @@ void GLRenderer::drawGrid(){
     glDepthMask(GL_TRUE);
 }
 
+
+
+void GLRenderer::createRenderObject(ID id, Mesh* mesh, Material* material){
+    objects.emplace(id, std::make_unique<RenderObject>(id, mesh, material));
+}
+void GLRenderer::updateRenderObject(ID id, const Transform& transform){
+    auto it = objects.find(id);
+    if(it == objects.end()){
+        return;
+    }
+    it->second->transform = transform;
+}
+void GLRenderer::destroyRenderObject(ID id){
+    objects.erase(id);
+}
+
+
+
 void GLRenderer::printInfo(){
     for(int i=0;i<20;i++){
         printf("-");
@@ -250,22 +270,12 @@ void GLRenderer::printInfo(){
     #else
         puts("Linux");
     #endif
-    printf("\tDepth testing: %s\n", (depth_test) ? "On" : "Off");
 
     int nrAttributes;
     glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &nrAttributes);
     printf("\tNumber of vertex attributes available: %d\n", nrAttributes);
     for(int i=0;i<20;i++){
         printf("-");
-    }
-}
-
-void GLRenderer::applySettings(){
-    if(depth_test){
-        glEnable(GL_DEPTH_TEST);
-    }
-    else{
-        glDisable(GL_DEPTH_TEST);
     }
 }
 
@@ -367,3 +377,4 @@ void generate_cube(float halfSize, std::vector<float>& vertices, std::vector<uin
         });
     }
 }
+

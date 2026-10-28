@@ -5,6 +5,11 @@
 #include <QCloseEvent>
 #include <QOpenGLWidget>
 
+#include <Scene.hpp>
+//forward declare
+class QT_GLRenderer;
+
+
 class MainWindow : public QMainWindow{
 public:
     MainWindow();
@@ -13,6 +18,9 @@ protected:
     void closeEvent(QCloseEvent* event) override;
 
 private:
+    Scene scene;
+    QT_GLRenderer* rendererWidget = nullptr;
+
 
     void setupDefaultLayout();
 

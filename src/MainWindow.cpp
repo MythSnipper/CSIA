@@ -150,7 +150,6 @@ QToolBar* MainWindow::createToolbarDock(){
     toolbar->setFloatable(true);
 
     toolbar->addAction("Add Particle");
-    toolbar->addAction("Add Potential");
     toolbar->addAction("Add Field");
 
     return toolbar;
@@ -246,10 +245,10 @@ QDockWidget* MainWindow::createPropertiesDock(){
 
 //Create widgets
 QOpenGLWidget* MainWindow::createRenderer(){
+    rendererWidget = new QT_GLRenderer();
+    rendererWidget->setScene(&scene);
 
-    QT_GLRenderer* renderer = new QT_GLRenderer();
-
-    return renderer;
+    return rendererWidget;
 }
 QWidget* MainWindow::createTimeline(){
     // timeline

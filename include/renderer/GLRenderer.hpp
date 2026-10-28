@@ -17,6 +17,7 @@
 #include <Camera.hpp>
 #include <Mesh.hpp>
 #include <Material.hpp>
+#include <Scene.hpp>
 
 //Renderer objects
 struct Color{
@@ -44,7 +45,10 @@ public:
     void initialize();
     void resize(int pixelWidth, int pixelHeight);
     void render();
+    void syncRenderObjects();
     void destroyGLResources();
+
+    void setScene(Scene* scene);
 
     Camera camera;
 
@@ -56,9 +60,13 @@ private:
     void drawFullscreenPass(ShaderProgram& shader);
     void drawGrid();
 
+    //objects
+    void createRenderObject(ID id, Mesh* mesh, Material* material);
+    void updateRenderObject(ID id, const Transform& transform);
+    void destroyRenderObject(ID id);
+
     //misc
     void printInfo();
-    void applySettings();
 
     //material
     Material* createMaterial(); //creates a default working material
@@ -67,20 +75,18 @@ private:
     int viewportWidth = 1;   //physical pixels, what gl_FragCoord uses
     int viewportHeight = 1;
 
-
-    //settings
-    bool depth_test = true;
-    uint32_t FPS = 180;
-
     //renderer objects
+    //All renderer objects should depend on Scene for reconstruction
+    Scene* scene = nullptr;
+
     std::unique_ptr<Mesh> cube, sphere;
     
-    std::unique_ptr<Texture2D> whiteTexture, checkerTexture, salmonTexture;
+    std::unique_ptr<Texture2D> whiteTexture, checkerTexture;
     std::vector<std::unique_ptr<Material>> materials;
     DirectionalLight light;
     std::unique_ptr<ShaderProgram> objectShader, wireframePlaneShader;
 
-    std::vector<std::unique_ptr<RenderObject>> objects;
+    std::unordered_map<ID, std::unique_ptr<RenderObject>> objects;
 
     GLuint fullscreenVAO = 0; //VAO for drawing fullscreen shader passes
 

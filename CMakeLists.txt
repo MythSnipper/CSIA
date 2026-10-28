@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(QuantumEngine
-    VERSION 0.1
+project(CSIA
+    VERSION 1.0
     LANGUAGES CXX
 )
 
@@ -20,28 +20,35 @@ set(CMAKE_AUTORCC ON)
 
 qt_add_executable(QuantumEngine
     resources.qrc
-    src/QT_GLRenderer.cpp
-    src/GLRenderer.cpp
-    src/Material.cpp
-    src/Mesh.cpp
-    src/Camera.cpp
-    src/RenderObject.cpp
-    src/Transform.cpp
-    src/Texture2D.cpp
-    src/EBO.cpp
-    src/VBO.cpp
-    src/VAO.cpp
-    src/ShaderProgram.cpp
-    src/FragmentShader.cpp
-    src/VertexShader.cpp
-    src/readfile.cpp
+
     src/main.cpp
     src/MainWindow.cpp
+
+    src/scene/Scene.cpp
+
+    src/renderer/QT_GLRenderer.cpp
+    src/renderer/GLRenderer.cpp
+
+    src/renderer/Material.cpp
+    src/renderer/Mesh.cpp
+    src/renderer/Camera.cpp
+    src/renderer/RenderObject.cpp
+    src/renderer/Transform.cpp
+    src/renderer/Texture2D.cpp
+    src/renderer/EBO.cpp
+    src/renderer/VBO.cpp
+    src/renderer/VAO.cpp
+    src/renderer/ShaderProgram.cpp
+    src/renderer/FragmentShader.cpp
+    src/renderer/VertexShader.cpp
+    src/renderer/readfile.cpp
 )
 
 target_include_directories(QuantumEngine
     PRIVATE
         include
+        include/renderer
+        include/scene
 )
 
 target_link_libraries(QuantumEngine
@@ -52,7 +59,7 @@ target_link_libraries(QuantumEngine
 )
 
 target_compile_options(QuantumEngine PRIVATE
-    -O1
+    -O0
     -Wall
     -Wextra
 )

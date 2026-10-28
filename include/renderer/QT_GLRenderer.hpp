@@ -5,6 +5,8 @@
 #include <QElapsedTimer>
 #include <QPoint>
 
+#include <Scene.hpp>
+
 //forward declare
 class GLRenderer;
 
@@ -12,6 +14,10 @@ class QT_GLRenderer : public QOpenGLWidget{
 public:
     explicit QT_GLRenderer(QWidget* parent = nullptr);
     ~QT_GLRenderer();
+
+    //forwards calls to the renderer
+    void setScene(Scene* scene);
+    void syncScene();
 
 protected:
     void initializeGL() override;
@@ -27,6 +33,8 @@ protected:
     void keyReleaseEvent(QKeyEvent* event) override;
 
 private:
+    Scene* scene = nullptr;
+
     void updateCamera(float deltaTime);
 
     std::unique_ptr<GLRenderer> renderer;

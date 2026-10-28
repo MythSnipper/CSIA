@@ -2,7 +2,6 @@
 
 #include <QApplication>
 
-
 void setStyles(QApplication* app);
 
 

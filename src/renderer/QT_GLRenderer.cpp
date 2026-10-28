@@ -14,6 +14,10 @@ QT_GLRenderer::QT_GLRenderer(QWidget* parent) : QOpenGLWidget(parent), renderer(
     renderTimer.setInterval(1000 / FPS);
     frameTimer.start();
     renderTimer.start();
+
+    //give renderer the scene and construct the resources
+    renderer->setScene(scene);
+    renderer->createGLResources();
 }
 
 QT_GLRenderer::~QT_GLRenderer(){
@@ -26,6 +30,29 @@ QT_GLRenderer::~QT_GLRenderer(){
         doneCurrent();
     }
 }
+
+
+
+
+//forwards calls to GLRenderer
+void QT_GLRenderer::setScene(Scene* scene){
+    this->scene = scene;
+    if(renderer){
+        renderer->setScene(scene);
+    }
+}
+
+void QT_GLRenderer::syncScene(){
+    if(renderer){
+        renderer->syncRenderObjects();
+        update(); //trigger redraw after the update
+    }
+}
+
+
+
+
+
 
 void QT_GLRenderer::initializeGL(){
     QObject::disconnect(contextConnection);
