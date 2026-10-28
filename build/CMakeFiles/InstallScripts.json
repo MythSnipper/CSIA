@@ -1,7 +1,0 @@
-{
-	"InstallScripts" : 
-	[
-		"/home/mythsnipper/Dev/cpp/QuantumSimulator/build/cmake_install.cmake"
-	],
-	"Parallel" : false
-}

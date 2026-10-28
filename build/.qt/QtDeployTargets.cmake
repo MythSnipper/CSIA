@@ -1,2 +1,0 @@
-set(__QT_DEPLOY_TARGET_QuantumEngine_FILE /home/mythsnipper/Dev/cpp/QuantumSimulator/build/QuantumEngine)
-set(__QT_DEPLOY_TARGET_QuantumEngine_TYPE EXECUTABLE)
