@@ -33,7 +33,7 @@ void GLRenderer::render(){
     glm::mat4 projection = camera.get_projection_matrix();
 
     for(auto& object : objects){
-        drawRenderObject(object, view, projection);
+        drawRenderObject(object.second, view, projection);
     }
 
     drawGrid();
@@ -85,13 +85,13 @@ void GLRenderer::createGLResources(){
 
 
 
-    Material* white = createMaterial();
+    white = createMaterial();
     white->color = glm::vec3(1.0f, 1.0f, 1.0f);
 
-    Material* purple = createMaterial();
+    purple = createMaterial();
     purple->color = glm::vec3(0.6f, 0.1f, 1.0f);
 
-    Material* checker = createMaterial();
+    checker = createMaterial();
     checker->albedo = checkerTexture.get();
     checker->tiling = glm::vec2(4.0f);
 
@@ -133,11 +133,11 @@ void GLRenderer::syncRenderObjects(){
         if(it == objects.end()){
             switch(sceneObject->getType()){
                 case SceneObjectType::PointParticle:
-                    createRenderObject(id, sphere.get(), whiteMaterial);
+                    createRenderObject(id, sphere.get(), purple);
                 break;
 
                 case SceneObjectType::FieldVolume:
-                    createRenderObject(id, cube.get(), purpleMaterial);
+                    createRenderObject(id, cube.get(), white);
                 break;
             }
         }

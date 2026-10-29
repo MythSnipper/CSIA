@@ -149,7 +149,17 @@ QToolBar* MainWindow::createToolbarDock(){
     toolbar->setMovable(true);
     toolbar->setFloatable(true);
 
-    toolbar->addAction("Add Particle");
+    QAction* addParticleAction = toolbar->addAction("Add Particle");
+
+    connect(addParticleAction, &QAction::triggered, this, [this](){
+        scene.createParticle("Particle");
+    
+        if(rendererWidget){
+            rendererWidget->syncScene();
+        }
+    });
+
+
     toolbar->addAction("Add Field");
 
     return toolbar;

@@ -42,7 +42,7 @@ public:
         transform.scale = scale;
     }
 
-    virtual SceneObjectType getType() = 0;
+    virtual SceneObjectType getType() const = 0;
 
 private:
     ID id;

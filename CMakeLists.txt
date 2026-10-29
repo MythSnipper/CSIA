@@ -24,8 +24,6 @@ qt_add_executable(QuantumEngine
     src/main.cpp
     src/MainWindow.cpp
 
-    src/scene/Scene.cpp
-
     src/renderer/QT_GLRenderer.cpp
     src/renderer/GLRenderer.cpp
 
@@ -62,9 +60,11 @@ target_compile_options(QuantumEngine PRIVATE
     -O0
     -Wall
     -Wextra
+    -fsanitize=address,undefined -Wformat -Werror=format-security -Werror=array-bounds -g
 )
 
 target_link_options(QuantumEngine PRIVATE
+    -fsanitize=address,undefined
 )
 
 

@@ -46,6 +46,8 @@ public:
     void resize(int pixelWidth, int pixelHeight);
     void render();
     void syncRenderObjects();
+
+    void createGLResources();
     void destroyGLResources();
 
     void setScene(Scene* scene);
@@ -53,7 +55,6 @@ public:
     Camera camera;
 
 private:
-    void createGLResources();
 
     //drawing
     void drawRenderObject(std::unique_ptr<RenderObject>& object, const glm::mat4& view, const glm::mat4& projection);
@@ -89,6 +90,11 @@ private:
     std::unordered_map<ID, std::unique_ptr<RenderObject>> objects;
 
     GLuint fullscreenVAO = 0; //VAO for drawing fullscreen shader passes
+
+    //temporary pointers with same lifetime as materials vector
+    Material* white = nullptr;
+    Material* purple = nullptr;
+    Material* checker = nullptr;
 
 };
 
