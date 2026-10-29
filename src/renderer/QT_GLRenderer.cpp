@@ -15,9 +15,6 @@ QT_GLRenderer::QT_GLRenderer(QWidget* parent) : QOpenGLWidget(parent), renderer(
     frameTimer.start();
     renderTimer.start();
 
-    //give renderer the scene and construct the resources
-    renderer->setScene(scene);
-    renderer->createGLResources();
 }
 
 QT_GLRenderer::~QT_GLRenderer(){
@@ -63,6 +60,12 @@ void QT_GLRenderer::initializeGL(){
     }, Qt::DirectConnection);
 
     renderer->initialize();
+
+    //give renderer the scene and construct the resources
+    renderer->setScene(scene);
+    renderer->createGLResources();
+
+    
     update();
 }
 

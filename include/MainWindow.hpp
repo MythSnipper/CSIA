@@ -4,8 +4,16 @@
 #include <QByteArray>
 #include <QCloseEvent>
 #include <QOpenGLWidget>
+#include <QTreeWidget>
+#include <QFormLayout>
+#include <QLabel>
+#include <QVBoxLayout>
+#include <QLineEdit>
+#include <QDoubleSpinBox>
+
 
 #include <Scene.hpp>
+
 //forward declare
 class QT_GLRenderer;
 
@@ -18,6 +26,7 @@ protected:
     void closeEvent(QCloseEvent* event) override;
 
 private:
+
     Scene scene;
     QT_GLRenderer* rendererWidget = nullptr;
 
@@ -46,4 +55,26 @@ private:
     QWidget* createTimeline();
     QWidget* createScenePanel();
     QWidget* createPropertiesPanel();
+
+
+
+    //Scene and Properties panels
+    QTreeWidget* sceneTree = nullptr;
+    QFormLayout* propertiesLayout = nullptr;
+    ID selectedObjectID = 0; //0 if no object is selected
+
+    //Fields for editable properties
+    QLineEdit* nameField = nullptr;
+    QDoubleSpinBox* positionFields[3] = {};
+    QDoubleSpinBox* rotationFields[3] = {};
+    QDoubleSpinBox* scaleFields[3] = {};
+    QDoubleSpinBox* massField = nullptr;
+    QDoubleSpinBox* chargeField = nullptr;
+
+    void refreshScenePanel();
+    void showSelectedObjectProperties(ID id);
+    void clearPropertiesPanel();
+    void selectSceneObject(ID id);
+
+    void applyPropertyEdits();
 };

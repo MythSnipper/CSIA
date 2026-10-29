@@ -12,6 +12,7 @@ public:
     ID createParticle(std::string name){
         ID id = nextID++;
         objects.emplace(id, std::make_unique<PointParticle>(id, std::move(name)));
+        objects.at(id)->setPosition(glm::vec3((float)id, 0.0f, 0.0f));
         return id;
     }
     ID createField(std::string name){

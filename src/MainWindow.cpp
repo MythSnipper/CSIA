@@ -8,15 +8,16 @@
 #include <QWidget>
 #include <QStatusBar>
 #include <QHBoxLayout>
-#include <QVBoxLayout>
 #include <QPushButton>
-#include <QLabel>
 #include <QSlider>
 #include <QToolBar>
 #include <QMenuBar>
 #include <QMenu>
 #include <QSettings>
 #include <QCloseEvent>
+#include <QAction>
+#include <QSignalBlocker>
+
 
 auto QDFEATURES = QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable | QDockWidget::DockWidgetClosable;
 
@@ -152,8 +153,11 @@ QToolBar* MainWindow::createToolbarDock(){
     QAction* addParticleAction = toolbar->addAction("Add Particle");
 
     connect(addParticleAction, &QAction::triggered, this, [this](){
-        scene.createParticle("Particle");
-    
+        ID id = scene.createParticle("Particle");
+
+        refreshScenePanel();
+        selectSceneObject(id);
+
         if(rendererWidget){
             rendererWidget->syncScene();
         }
@@ -295,19 +299,321 @@ QWidget* MainWindow::createTimeline(){
     return timeline;
 }
 QWidget* MainWindow::createScenePanel(){
-    QWidget* scenePanel = new QWidget();
+    QWidget* panel = new QWidget();
+    QVBoxLayout* layout = new QVBoxLayout(panel);
 
-    QLabel* sceneText = new QLabel("objects listed here", scenePanel);
-    sceneText->setAlignment(Qt::AlignLeft | Qt::AlignTop);
-    
-    return scenePanel;
+    sceneTree = new QTreeWidget(panel);
+    sceneTree->setHeaderHidden(true);
+    sceneTree->setSelectionMode(QAbstractItemView::SingleSelection);
+
+    layout->addWidget(sceneTree);
+
+    connect(sceneTree, &QTreeWidget::currentItemChanged, this,
+        [this](QTreeWidgetItem* current, QTreeWidgetItem*){
+            if(current == nullptr){
+                selectedObjectID = 0;
+                clearPropertiesPanel();
+                return;
+            }
+
+            ID id = static_cast<ID>(
+                current->data(0, Qt::UserRole).toULongLong()
+            );
+
+            selectedObjectID = id;
+            showSelectedObjectProperties(id);
+        });
+
+    refreshScenePanel();
+    return panel;
 }
 QWidget* MainWindow::createPropertiesPanel(){
-    QWidget* propertiesPanel = new QWidget();
+    QWidget* panel = new QWidget();
+    propertiesLayout = new QFormLayout(panel);
 
-    QLabel* propertiesText = new QLabel("properties listed here", propertiesPanel);
-    propertiesText->setAlignment(Qt::AlignLeft | Qt::AlignTop);
+    nameField = new QLineEdit(panel);
+    propertiesLayout->addRow("Name:", nameField);
 
-    return propertiesPanel;
+    const char* axes[] = {"X:", "Y:", "Z:"};
+
+    for(int i = 0; i < 3; i++){
+        positionFields[i] = new QDoubleSpinBox(panel);
+        positionFields[i]->setRange(-1000000.0, 1000000.0);
+        positionFields[i]->setDecimals(3);
+        positionFields[i]->setSingleStep(0.1);
+        propertiesLayout->addRow(
+            QString("Position %1").arg(axes[i]),
+            positionFields[i]
+        );
+
+        rotationFields[i] = new QDoubleSpinBox(panel);
+        rotationFields[i]->setRange(-360000.0, 360000.0);
+        rotationFields[i]->setDecimals(2);
+        rotationFields[i]->setSingleStep(1.0);
+        propertiesLayout->addRow(
+            QString("Rotation %1").arg(axes[i]),
+            rotationFields[i]
+        );
+
+        scaleFields[i] = new QDoubleSpinBox(panel);
+        scaleFields[i]->setRange(-10000.0, 10000.0);
+        scaleFields[i]->setDecimals(3);
+        scaleFields[i]->setSingleStep(0.1);
+        propertiesLayout->addRow(
+            QString("Scale %1").arg(axes[i]),
+            scaleFields[i]
+        );
+    }
+
+    massField = new QDoubleSpinBox(panel);
+    massField->setRange(0.0001, 1000000000.0);
+    massField->setDecimals(4);
+    massField->setSingleStep(0.1);
+    propertiesLayout->addRow("Mass:", massField);
+
+    chargeField = new QDoubleSpinBox(panel);
+    chargeField->setRange(-1000000000.0, 1000000000.0);
+    chargeField->setDecimals(4);
+    chargeField->setSingleStep(0.1);
+    propertiesLayout->addRow("Charge:", chargeField);
+
+    connect(nameField, &QLineEdit::editingFinished, this, [this](){
+        SceneObject* object = scene.getObject(selectedObjectID);
+
+        if(object == nullptr){
+            return;
+        }
+
+        QString name = nameField->text().trimmed();
+
+        if(name.isEmpty()){
+            nameField->setText(QString::fromStdString(object->getName()));
+            return;
+        }
+
+        object->setName(name.toStdString());
+
+        for(int i = 0; i < sceneTree->topLevelItemCount(); i++){
+            QTreeWidgetItem* item = sceneTree->topLevelItem(i);
+
+            if(item->data(0, Qt::UserRole).toULongLong() == selectedObjectID){
+                item->setText(0, "Particle: " + name);
+                break;
+            }
+        }
+    });
+
+    for(auto* field : positionFields){
+        connect(field, &QDoubleSpinBox::valueChanged,
+            this, [this](double){ applyPropertyEdits(); });
+    }
+
+    for(auto* field : rotationFields){
+        connect(field, &QDoubleSpinBox::valueChanged,
+            this, [this](double){ applyPropertyEdits(); });
+    }
+
+    for(auto* field : scaleFields){
+        connect(field, &QDoubleSpinBox::valueChanged,
+            this, [this](double){ applyPropertyEdits(); });
+    }
+
+    connect(massField, &QDoubleSpinBox::valueChanged,
+        this, [this](double){ applyPropertyEdits(); });
+
+    connect(chargeField, &QDoubleSpinBox::valueChanged,
+        this, [this](double){ applyPropertyEdits(); });
+
+    clearPropertiesPanel();
+    return panel;
 }
 
+
+
+
+//helper to display a 3d vector
+static QString vectorToString(const glm::vec3& value){
+    return QString("X: %1, Y: %2, Z: %3")
+        .arg(value.x, 0, 'f', 2)
+        .arg(value.y, 0, 'f', 2)
+        .arg(value.z, 0, 'f', 2);
+}
+
+
+//Scene panel
+void MainWindow::refreshScenePanel(){
+    if(sceneTree == nullptr){
+        return;
+    }
+
+    sceneTree->clear();
+
+    for(const auto& [id, object] : scene.getObjects()){
+        QString typeName;
+
+        switch(object->getType()){
+            case SceneObjectType::PointParticle:
+                typeName = "Particle";
+                break;
+            case SceneObjectType::FieldVolume:
+                typeName = "Field";
+                break;
+        }
+
+        QString itemName = QString::fromStdString(object->getName());
+
+        QTreeWidgetItem* item = new QTreeWidgetItem(sceneTree);
+        item->setText(0, typeName + ": " + itemName);
+        item->setData(0, Qt::UserRole, QVariant::fromValue<qulonglong>(id));
+    }
+}
+void MainWindow::showSelectedObjectProperties(ID id){
+    SceneObject* object = scene.getObject(id);
+
+    if(object == nullptr){
+        selectedObjectID = 0;
+        clearPropertiesPanel();
+        return;
+    }
+
+    selectedObjectID = id;
+
+    const QSignalBlocker blockName(nameField);
+    const QSignalBlocker blockMass(massField);
+    const QSignalBlocker blockCharge(chargeField);
+
+    nameField->setText(QString::fromStdString(object->getName()));
+    nameField->setEnabled(true);
+
+    const Transform& transform = object->getTransform();
+
+    const float position[] = {
+        transform.position.x,
+        transform.position.y,
+        transform.position.z
+    };
+
+    const float rotation[] = {
+        transform.rotation.x,
+        transform.rotation.y,
+        transform.rotation.z
+    };
+
+    const float scale[] = {
+        transform.scale.x,
+        transform.scale.y,
+        transform.scale.z
+    };
+
+    for(int i = 0; i < 3; i++){
+        const QSignalBlocker blockPosition(positionFields[i]);
+        const QSignalBlocker blockRotation(rotationFields[i]);
+        const QSignalBlocker blockScale(scaleFields[i]);
+
+        positionFields[i]->setValue(position[i]);
+        rotationFields[i]->setValue(rotation[i]);
+        scaleFields[i]->setValue(scale[i]);
+
+        positionFields[i]->setEnabled(true);
+        rotationFields[i]->setEnabled(true);
+        scaleFields[i]->setEnabled(true);
+    }
+
+    bool isParticle = object->getType() == SceneObjectType::PointParticle;
+
+    massField->setEnabled(isParticle);
+    chargeField->setEnabled(isParticle);
+
+    if(isParticle){
+        auto* particle = static_cast<PointParticle*>(object);
+        massField->setValue(particle->getMass());
+        chargeField->setValue(particle->getCharge());
+    }
+}
+
+
+
+
+
+
+
+//Properties panel
+void MainWindow::clearPropertiesPanel(){
+    nameField->clear();
+    nameField->setEnabled(false);
+
+    for(int i = 0; i < 3; i++){
+        positionFields[i]->setValue(0.0);
+        rotationFields[i]->setValue(0.0);
+        scaleFields[i]->setValue(1.0);
+
+        positionFields[i]->setEnabled(false);
+        rotationFields[i]->setEnabled(false);
+        scaleFields[i]->setEnabled(false);
+    }
+
+    massField->setValue(1.0);
+    chargeField->setValue(0.0);
+    massField->setEnabled(false);
+    chargeField->setEnabled(false);
+}
+void MainWindow::selectSceneObject(ID id){
+    if(sceneTree == nullptr){
+        return;
+    }
+
+    for(int i = 0; i < sceneTree->topLevelItemCount(); i++){
+        QTreeWidgetItem* item = sceneTree->topLevelItem(i);
+
+        if(item->data(0, Qt::UserRole).toULongLong() == id){
+            sceneTree->setCurrentItem(item);
+            return;
+        }
+    }
+}
+
+
+
+
+
+
+
+void MainWindow::applyPropertyEdits(){
+    SceneObject* object = scene.getObject(selectedObjectID);
+
+    if(object == nullptr){
+        return;
+    }
+
+    glm::vec3 position(
+        positionFields[0]->value(),
+        positionFields[1]->value(),
+        positionFields[2]->value()
+    );
+
+    glm::vec3 rotation(
+        rotationFields[0]->value(),
+        rotationFields[1]->value(),
+        rotationFields[2]->value()
+    );
+
+    glm::vec3 scale(
+        scaleFields[0]->value(),
+        scaleFields[1]->value(),
+        scaleFields[2]->value()
+    );
+
+    object->setPosition(position);
+    object->setRotation(rotation);
+    object->setScale(scale);
+
+    if(object->getType() == SceneObjectType::PointParticle){
+        auto* particle = static_cast<PointParticle*>(object);
+        particle->setMass(massField->value());
+        particle->setCharge(chargeField->value());
+    }
+
+    if(rendererWidget){
+        rendererWidget->syncScene();
+    }
+}
