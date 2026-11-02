@@ -26,10 +26,8 @@ protected:
     void closeEvent(QCloseEvent* event) override;
 
 private:
-
     Scene scene;
     QT_GLRenderer* rendererWidget = nullptr;
-
 
     void setupDefaultLayout();
 
@@ -55,8 +53,6 @@ private:
     QWidget* createTimeline();
     QWidget* createScenePanel();
     QWidget* createPropertiesPanel();
-
-
 
     //Scene and Properties panels
     QTreeWidget* sceneTree = nullptr;

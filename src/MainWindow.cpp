@@ -2,6 +2,7 @@
 
 #include "QT_GLRenderer.hpp"
 
+#include <climits>
 #include <iostream>
 
 #include <QDockWidget>
@@ -17,9 +18,7 @@
 #include <QCloseEvent>
 #include <QAction>
 #include <QSignalBlocker>
-
-
-auto QDFEATURES = QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable | QDockWidget::DockWidgetClosable;
+#include <sys/select.h>
 
 //callback: save layout on close
 void MainWindow::closeEvent(QCloseEvent* event){
@@ -33,7 +32,7 @@ MainWindow::MainWindow(){
     resize(1280, 720);
 
     setDockNestingEnabled(true);
-    setAnimated(false);
+    setAnimated(true);
 
     addToolBar(Qt::TopToolBarArea, createToolbarDock());
     
@@ -113,8 +112,8 @@ void MainWindow::createMenuBar(){
 //save and restore the layout of panels
 void MainWindow::saveLayout(){
     QSettings settings(
-        "QuantumUser",
-        "QuantumEngine"
+        "CSIAUser",
+        "CSIA"
     );
 
     settings.setValue(
@@ -129,8 +128,8 @@ void MainWindow::saveLayout(){
 }
 void MainWindow::restoreLayout(){
     QSettings settings(
-        "QuantumUser",
-        "QuantumEngine"
+        "CSIAUser",
+        "CSIA"
     );
 
     restoreGeometry(
@@ -141,6 +140,9 @@ void MainWindow::restoreLayout(){
         settings.value("windowState").toByteArray()
     );
 }
+
+//features enabled for dock widgets
+auto QDFEATURES = QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable | QDockWidget::DockWidgetClosable;
 
 //Create dockable widgets wrapping normal widgets
 QToolBar* MainWindow::createToolbarDock(){
@@ -257,10 +259,10 @@ QDockWidget* MainWindow::createPropertiesDock(){
     return dock;
 }
 
-//Create widgets
+//Create widgets in dock widgets
 QOpenGLWidget* MainWindow::createRenderer(){
     rendererWidget = new QT_GLRenderer();
-    rendererWidget->setScene(&scene);
+    rendererWidget->setScene(&scene); //give managed scene to renderer
 
     return rendererWidget;
 }
@@ -310,15 +312,14 @@ QWidget* MainWindow::createScenePanel(){
 
     connect(sceneTree, &QTreeWidget::currentItemChanged, this,
         [this](QTreeWidgetItem* current, QTreeWidgetItem*){
-            if(current == nullptr){
+            if(current == nullptr){ //select nothing
                 selectedObjectID = 0;
                 clearPropertiesPanel();
                 return;
             }
-
-            ID id = static_cast<ID>(
-                current->data(0, Qt::UserRole).toULongLong()
-            );
+            
+            //select something
+            ID id = (ID) current->data(0, Qt::UserRole).toULongLong();
 
             selectedObjectID = id;
             showSelectedObjectProperties(id);
@@ -334,50 +335,56 @@ QWidget* MainWindow::createPropertiesPanel(){
     nameField = new QLineEdit(panel);
     propertiesLayout->addRow("Name:", nameField);
 
-    const char* axes[] = {"X:", "Y:", "Z:"};
-
-    for(int i = 0; i < 3; i++){
+    char* axes[] = {"X", "Y", "Z"};
+    
+    propertiesLayout->addRow(new QLabel("Position(m):"));
+    for(int i=0;i<3;i++){
         positionFields[i] = new QDoubleSpinBox(panel);
         positionFields[i]->setRange(-1000000.0, 1000000.0);
         positionFields[i]->setDecimals(3);
         positionFields[i]->setSingleStep(0.1);
         propertiesLayout->addRow(
-            QString("Position %1").arg(axes[i]),
+            QString("\t%1:").arg(axes[i]),
             positionFields[i]
         );
-
+    }
+    propertiesLayout->addRow(new QLabel("Rotation(degrees):"));
+    for(int i=0;i<3;i++){
         rotationFields[i] = new QDoubleSpinBox(panel);
         rotationFields[i]->setRange(-360000.0, 360000.0);
         rotationFields[i]->setDecimals(2);
         rotationFields[i]->setSingleStep(1.0);
         propertiesLayout->addRow(
-            QString("Rotation %1").arg(axes[i]),
+            QString("\t%1:").arg(axes[i]),
             rotationFields[i]
         );
-
+    }
+    propertiesLayout->addRow(new QLabel("Scale:"));
+    for(int i=0;i<3;i++){
         scaleFields[i] = new QDoubleSpinBox(panel);
         scaleFields[i]->setRange(-10000.0, 10000.0);
         scaleFields[i]->setDecimals(3);
         scaleFields[i]->setSingleStep(0.1);
         propertiesLayout->addRow(
-            QString("Scale %1").arg(axes[i]),
+            QString("\t%1:").arg(axes[i]),
             scaleFields[i]
         );
     }
 
     massField = new QDoubleSpinBox(panel);
-    massField->setRange(0.0001, 1000000000.0);
-    massField->setDecimals(4);
+    massField->setRange(-1000000000.0, 1000000000.0);
+    massField->setDecimals(5);
     massField->setSingleStep(0.1);
-    propertiesLayout->addRow("Mass:", massField);
+    propertiesLayout->addRow("Mass(kg):", massField);
 
     chargeField = new QDoubleSpinBox(panel);
     chargeField->setRange(-1000000000.0, 1000000000.0);
-    chargeField->setDecimals(4);
+    chargeField->setDecimals(5);
     chargeField->setSingleStep(0.1);
-    propertiesLayout->addRow("Charge:", chargeField);
+    propertiesLayout->addRow("Charge(C):", chargeField);
 
     connect(nameField, &QLineEdit::editingFinished, this, [this](){
+        //Apply editing changes for name field
         SceneObject* object = scene.getObject(selectedObjectID);
 
         if(object == nullptr){
@@ -386,14 +393,14 @@ QWidget* MainWindow::createPropertiesPanel(){
 
         QString name = nameField->text().trimmed();
 
-        if(name.isEmpty()){
+        if(name.isEmpty()){ //if name field empty restore to old name
             nameField->setText(QString::fromStdString(object->getName()));
             return;
         }
 
         object->setName(name.toStdString());
 
-        for(int i = 0; i < sceneTree->topLevelItemCount(); i++){
+        for(int i=0;i<sceneTree->topLevelItemCount();i++){
             QTreeWidgetItem* item = sceneTree->topLevelItem(i);
 
             if(item->data(0, Qt::UserRole).toULongLong() == selectedObjectID){
@@ -402,43 +409,26 @@ QWidget* MainWindow::createPropertiesPanel(){
             }
         }
     });
-
+    //non name fields connected to applyPropertyEdits()
     for(auto* field : positionFields){
-        connect(field, &QDoubleSpinBox::valueChanged,
-            this, [this](double){ applyPropertyEdits(); });
+        connect(field, &QDoubleSpinBox::valueChanged, this, [this](double){ applyPropertyEdits(); });
     }
 
     for(auto* field : rotationFields){
-        connect(field, &QDoubleSpinBox::valueChanged,
-            this, [this](double){ applyPropertyEdits(); });
+        connect(field, &QDoubleSpinBox::valueChanged, this, [this](double){ applyPropertyEdits(); });
     }
 
     for(auto* field : scaleFields){
-        connect(field, &QDoubleSpinBox::valueChanged,
-            this, [this](double){ applyPropertyEdits(); });
+        connect(field, &QDoubleSpinBox::valueChanged, this, [this](double){ applyPropertyEdits(); });
     }
 
-    connect(massField, &QDoubleSpinBox::valueChanged,
-        this, [this](double){ applyPropertyEdits(); });
+    connect(massField, &QDoubleSpinBox::valueChanged, this, [this](double){ applyPropertyEdits(); });
 
-    connect(chargeField, &QDoubleSpinBox::valueChanged,
-        this, [this](double){ applyPropertyEdits(); });
+    connect(chargeField, &QDoubleSpinBox::valueChanged, this, [this](double){ applyPropertyEdits(); });
 
     clearPropertiesPanel();
     return panel;
 }
-
-
-
-
-//helper to display a 3d vector
-static QString vectorToString(const glm::vec3& value){
-    return QString("X: %1, Y: %2, Z: %3")
-        .arg(value.x, 0, 'f', 2)
-        .arg(value.y, 0, 'f', 2)
-        .arg(value.z, 0, 'f', 2);
-}
-
 
 //Scene panel
 void MainWindow::refreshScenePanel(){
@@ -467,6 +457,7 @@ void MainWindow::refreshScenePanel(){
         item->setData(0, Qt::UserRole, QVariant::fromValue<qulonglong>(id));
     }
 }
+//make properties panel show properties of object [id]
 void MainWindow::showSelectedObjectProperties(ID id){
     SceneObject* object = scene.getObject(id);
 
@@ -478,37 +469,37 @@ void MainWindow::showSelectedObjectProperties(ID id){
 
     selectedObjectID = id;
 
-    const QSignalBlocker blockName(nameField);
-    const QSignalBlocker blockMass(massField);
-    const QSignalBlocker blockCharge(chargeField);
+    QSignalBlocker blockName(nameField);
+    QSignalBlocker blockMass(massField);
+    QSignalBlocker blockCharge(chargeField);
 
     nameField->setText(QString::fromStdString(object->getName()));
     nameField->setEnabled(true);
 
     const Transform& transform = object->getTransform();
 
-    const float position[] = {
+    float position[] = {
         transform.position.x,
         transform.position.y,
         transform.position.z
     };
 
-    const float rotation[] = {
+    float rotation[] = {
         transform.rotation.x,
         transform.rotation.y,
         transform.rotation.z
     };
 
-    const float scale[] = {
+    float scale[] = {
         transform.scale.x,
         transform.scale.y,
         transform.scale.z
     };
 
-    for(int i = 0; i < 3; i++){
-        const QSignalBlocker blockPosition(positionFields[i]);
-        const QSignalBlocker blockRotation(rotationFields[i]);
-        const QSignalBlocker blockScale(scaleFields[i]);
+    for(int i=0;i<3;i++){
+        QSignalBlocker blockPosition(positionFields[i]);
+        QSignalBlocker blockRotation(rotationFields[i]);
+        QSignalBlocker blockScale(scaleFields[i]);
 
         positionFields[i]->setValue(position[i]);
         rotationFields[i]->setValue(rotation[i]);
@@ -525,24 +516,18 @@ void MainWindow::showSelectedObjectProperties(ID id){
     chargeField->setEnabled(isParticle);
 
     if(isParticle){
-        auto* particle = static_cast<PointParticle*>(object);
+        PointParticle* particle = (PointParticle*)object;
         massField->setValue(particle->getMass());
         chargeField->setValue(particle->getCharge());
     }
 }
 
-
-
-
-
-
-
-//Properties panel
+//Properties panel clear so it shows nothing
 void MainWindow::clearPropertiesPanel(){
     nameField->clear();
     nameField->setEnabled(false);
 
-    for(int i = 0; i < 3; i++){
+    for(int i=0;i<3;i++){
         positionFields[i]->setValue(0.0);
         rotationFields[i]->setValue(0.0);
         scaleFields[i]->setValue(1.0);
@@ -557,12 +542,13 @@ void MainWindow::clearPropertiesPanel(){
     massField->setEnabled(false);
     chargeField->setEnabled(false);
 }
+//select object [id] in Scene
 void MainWindow::selectSceneObject(ID id){
     if(sceneTree == nullptr){
         return;
     }
 
-    for(int i = 0; i < sceneTree->topLevelItemCount(); i++){
+    for(int i=0;i<sceneTree->topLevelItemCount();i++){
         QTreeWidgetItem* item = sceneTree->topLevelItem(i);
 
         if(item->data(0, Qt::UserRole).toULongLong() == id){
@@ -571,13 +557,7 @@ void MainWindow::selectSceneObject(ID id){
         }
     }
 }
-
-
-
-
-
-
-
+//apply property edits to non-name attributes of selected item
 void MainWindow::applyPropertyEdits(){
     SceneObject* object = scene.getObject(selectedObjectID);
 
@@ -608,12 +588,21 @@ void MainWindow::applyPropertyEdits(){
     object->setScale(scale);
 
     if(object->getType() == SceneObjectType::PointParticle){
-        auto* particle = static_cast<PointParticle*>(object);
+        PointParticle* particle = (PointParticle*)object;
         particle->setMass(massField->value());
         particle->setCharge(chargeField->value());
     }
 
+    //visual changes
     if(rendererWidget){
         rendererWidget->syncScene();
     }
 }
+
+
+
+
+
+
+
+

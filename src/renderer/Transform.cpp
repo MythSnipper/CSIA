@@ -12,19 +12,19 @@ glm::mat4 Transform::get_matrix(){
 
     model = glm::rotate(
         model,
-        rotation.x,
+        glm::radians(rotation.x), //convert from degrees to radians
         glm::vec3(1.0f, 0.0f, 0.0f)
     );
 
     model = glm::rotate(
         model,
-        rotation.y,
+        glm::radians(rotation.y),
         glm::vec3(0.0f, 1.0f, 0.0f)
     );
 
     model = glm::rotate(
         model,
-        rotation.z,
+        glm::radians(rotation.z),
         glm::vec3(0.0f, 0.0f, 1.0f)
     );
 

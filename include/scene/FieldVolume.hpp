@@ -1,7 +1,9 @@
 #pragma once
 
-#include "SceneObject.hpp"
+#include <SceneObject.hpp>
 
+#include <glm/glm.hpp>
+#include <glm/gtc/quaternion.hpp>
 
 class FieldVolume : public SceneObject{
 public:
@@ -23,6 +25,13 @@ public:
     }
     void setEStrength(float value){
         EStrength = value;
+    }
+
+    //get the direction vector based on the field's rotation, representing the orientation
+    glm::vec3 getDirection(){
+        glm::quat rotation = glm::quat(glm::radians(getTransform().rotation));
+    
+        return glm::normalize(rotation * glm::vec3(0.0f, 1.0f, 0.0f));
     }
 
 private:
